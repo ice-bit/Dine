@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+class Employee: Person {
+    private var employeeId: Int
+    private var dateJoined: Date
+    
+    init(name: String, email: String, phoneNumber: String, employeeId: Int, dateJoined: Date) {
+        self.employeeId = employeeId
+        self.dateJoined = dateJoined
+        super.init(name: name, email: email, phoneNumber: phoneNumber)
+    }
+}
