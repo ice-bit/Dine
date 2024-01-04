@@ -7,8 +7,10 @@
 
 import Foundation
 
-enum AccountStatus {
-    case active, closed, cancelled
+enum AccountStatus: Int {
+    case active = 1
+    case closed = 2
+    case cancelled = 3
 }
 
 class Account {

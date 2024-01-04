@@ -13,6 +13,11 @@
 		55081A6E2B467CF400D71B31 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A6D2B467CF400D71B31 /* Person.swift */; };
 		55081A702B467D9D00D71B31 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A6F2B467D9D00D71B31 /* Employee.swift */; };
 		55081A722B46817E00D71B31 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A712B46817E00D71B31 /* Account.swift */; };
+		55081A752B46877B00D71B31 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A742B46877B00D71B31 /* Menu.swift */; };
+		55081A772B4687DE00D71B31 /* MenuSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A762B4687DE00D71B31 /* MenuSection.swift */; };
+		55081A792B46881900D71B31 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A782B46881900D71B31 /* MenuItem.swift */; };
+		55081A7B2B46887900D71B31 /* MealItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A7A2B46887900D71B31 /* MealItem.swift */; };
+		55081A7D2B4688AD00D71B31 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A7C2B4688AD00D71B31 /* Meal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,6 +40,11 @@
 		55081A6D2B467CF400D71B31 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		55081A6F2B467D9D00D71B31 /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
 		55081A712B46817E00D71B31 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		55081A742B46877B00D71B31 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		55081A762B4687DE00D71B31 /* MenuSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSection.swift; sourceTree = "<group>"; };
+		55081A782B46881900D71B31 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
+		55081A7A2B46887900D71B31 /* MealItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealItem.swift; sourceTree = "<group>"; };
+		55081A7C2B4688AD00D71B31 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +88,7 @@
 		55081A662B467B0F00D71B31 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				55081A732B46877400D71B31 /* Menu */,
 				55081A692B467BF300D71B31 /* Restaurant.swift */,
 				55081A6B2B467C7000D71B31 /* Branch.swift */,
 				55081A6D2B467CF400D71B31 /* Person.swift */,
@@ -99,6 +110,18 @@
 			children = (
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		55081A732B46877400D71B31 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				55081A742B46877B00D71B31 /* Menu.swift */,
+				55081A762B4687DE00D71B31 /* MenuSection.swift */,
+				55081A782B46881900D71B31 /* MenuItem.swift */,
+				55081A7A2B46887900D71B31 /* MealItem.swift */,
+				55081A7C2B4688AD00D71B31 /* Meal.swift */,
+			);
+			path = Menu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,9 +184,14 @@
 			files = (
 				55081A6A2B467BF300D71B31 /* Restaurant.swift in Sources */,
 				55081A6C2B467C7000D71B31 /* Branch.swift in Sources */,
+				55081A752B46877B00D71B31 /* Menu.swift in Sources */,
 				55081A6E2B467CF400D71B31 /* Person.swift in Sources */,
+				55081A7D2B4688AD00D71B31 /* Meal.swift in Sources */,
 				55081A702B467D9D00D71B31 /* Employee.swift in Sources */,
 				55081A602B467AF800D71B31 /* main.swift in Sources */,
+				55081A792B46881900D71B31 /* MenuItem.swift in Sources */,
+				55081A7B2B46887900D71B31 /* MealItem.swift in Sources */,
+				55081A772B4687DE00D71B31 /* MenuSection.swift in Sources */,
 				55081A722B46817E00D71B31 /* Account.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
