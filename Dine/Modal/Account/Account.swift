@@ -23,4 +23,8 @@ class Account {
         self.password = password
         self.accountStatus = accountStatus
     }
+    
+    func resetPassword() {
+        
+    }
 }

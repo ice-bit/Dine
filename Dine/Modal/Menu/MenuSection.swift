@@ -11,10 +11,16 @@ class MenuSection {
     private var menuSectionId: Int
     private var title: String
     private var description: String
+    private var menuItems: [MenuItem]
     
-    init(menuSectionId: Int, title: String, description: String) {
+    init(menuSectionId: Int, title: String, description: String, menuItems: [MenuItem]) {
         self.menuSectionId = menuSectionId
         self.title = title
         self.description = description
+        self.menuItems = menuItems
+    }
+    
+    func addMenuItem() {
+        
     }
 }

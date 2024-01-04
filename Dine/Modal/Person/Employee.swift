@@ -9,11 +9,10 @@ import Foundation
 
 class Employee: Person {
     private var employeeId: Int
-    private var dateJoined: Date
+    private var dateJoined = Date()
     
-    init(name: String, email: String, phoneNumber: String, employeeId: Int, dateJoined: Date) {
+    init(name: String, email: String, phoneNumber: String, employeeId: Int) {
         self.employeeId = employeeId
-        self.dateJoined = dateJoined
         super.init(name: name, email: email, phoneNumber: phoneNumber)
     }
 }

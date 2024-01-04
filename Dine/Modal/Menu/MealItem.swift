@@ -10,9 +10,15 @@ import Foundation
 class MealItem {
     private var mealItemId: Int
     private var quantity: Int
+    private var menuItem: MenuItem
     
-    init(mealItemId: Int, quantity: Int) {
+    init(mealItemId: Int, quantity: Int, menuItem: MenuItem) {
         self.mealItemId = mealItemId
         self.quantity = quantity
+        self.menuItem = menuItem
+    }
+    
+    func updateQuantity() {
+        
     }
 }

@@ -10,9 +10,11 @@ import Foundation
 class Branch {
     private var branchNAme: String
     private var location: String
+    private var kitchen: Kitchen
     
-    init(branchNAme: String, location: String) {
+    init(branchNAme: String, location: String, kitchen: Kitchen) {
         self.branchNAme = branchNAme
         self.location = location
+        self.kitchen = kitchen
     }
 }

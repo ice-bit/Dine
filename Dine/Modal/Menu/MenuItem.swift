@@ -19,4 +19,8 @@ class MenuItem {
         self.description = description
         self.price = price
     }
+    
+    func updatePrice() {
+        
+    }
 }

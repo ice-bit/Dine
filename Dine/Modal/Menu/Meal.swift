@@ -9,8 +9,10 @@ import Foundation
 
 class Meal {
     private var mealId: Int
+    private var mealItems: [MealItem]
     
-    init(mealId: Int) {
+    init(mealId: Int, mealItems: [MealItem]) {
         self.mealId = mealId
+        self.mealItems = mealItems
     }
 }
