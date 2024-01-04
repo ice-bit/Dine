@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+class Person {
+    private var name: String
+    private var email: String
+    private var phoneNumber: String // format later
+    
+    init(name: String, email: String, phoneNumber: String) {
+        self.name = name
+        self.email = email
+        self.phoneNumber = phoneNumber
+    }
+}

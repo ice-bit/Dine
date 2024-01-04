@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		55081A602B467AF800D71B31 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A5F2B467AF800D71B31 /* main.swift */; };
+		55081A6A2B467BF300D71B31 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A692B467BF300D71B31 /* Restaurant.swift */; };
+		55081A6C2B467C7000D71B31 /* Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A6B2B467C7000D71B31 /* Branch.swift */; };
+		55081A6E2B467CF400D71B31 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A6D2B467CF400D71B31 /* Person.swift */; };
+		55081A702B467D9D00D71B31 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A6F2B467D9D00D71B31 /* Employee.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +29,10 @@
 /* Begin PBXFileReference section */
 		55081A5C2B467AF800D71B31 /* Dine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Dine; sourceTree = BUILT_PRODUCTS_DIR; };
 		55081A5F2B467AF800D71B31 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		55081A692B467BF300D71B31 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		55081A6B2B467C7000D71B31 /* Branch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Branch.swift; sourceTree = "<group>"; };
+		55081A6D2B467CF400D71B31 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		55081A6F2B467D9D00D71B31 /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +66,36 @@
 			isa = PBXGroup;
 			children = (
 				55081A5F2B467AF800D71B31 /* main.swift */,
+				55081A682B467B1700D71B31 /* Controller */,
+				55081A672B467B1300D71B31 /* View */,
+				55081A662B467B0F00D71B31 /* Modal */,
 			);
 			path = Dine;
+			sourceTree = "<group>";
+		};
+		55081A662B467B0F00D71B31 /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				55081A692B467BF300D71B31 /* Restaurant.swift */,
+				55081A6B2B467C7000D71B31 /* Branch.swift */,
+				55081A6D2B467CF400D71B31 /* Person.swift */,
+				55081A6F2B467D9D00D71B31 /* Employee.swift */,
+			);
+			path = Modal;
+			sourceTree = "<group>";
+		};
+		55081A672B467B1300D71B31 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		55081A682B467B1700D71B31 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,6 +156,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55081A6A2B467BF300D71B31 /* Restaurant.swift in Sources */,
+				55081A6C2B467C7000D71B31 /* Branch.swift in Sources */,
+				55081A6E2B467CF400D71B31 /* Person.swift in Sources */,
+				55081A702B467D9D00D71B31 /* Employee.swift in Sources */,
 				55081A602B467AF800D71B31 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
