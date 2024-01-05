@@ -24,6 +24,9 @@
 		55081A852B4690E900D71B31 /* Kitchen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A842B4690E900D71B31 /* Kitchen.swift */; };
 		55081A872B46938F00D71B31 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A862B46938F00D71B31 /* Order.swift */; };
 		55081A892B4694E000D71B31 /* WaitStaff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A882B4694E000D71B31 /* WaitStaff.swift */; };
+		55081A912B46BE4C00D71B31 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A902B46BE4C00D71B31 /* LoginController.swift */; };
+		55081A932B46BE5800D71B31 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A922B46BE5800D71B31 /* SignUpController.swift */; };
+		55081A952B46C14A00D71B31 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A942B46C14A00D71B31 /* UserManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -57,6 +60,9 @@
 		55081A842B4690E900D71B31 /* Kitchen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kitchen.swift; sourceTree = "<group>"; };
 		55081A862B46938F00D71B31 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		55081A882B4694E000D71B31 /* WaitStaff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitStaff.swift; sourceTree = "<group>"; };
+		55081A902B46BE4C00D71B31 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		55081A922B46BE5800D71B31 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
+		55081A942B46C14A00D71B31 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,8 +96,8 @@
 			isa = PBXGroup;
 			children = (
 				55081A5F2B467AF800D71B31 /* main.swift */,
-				55081A682B467B1700D71B31 /* Controller */,
 				55081A672B467B1300D71B31 /* View */,
+				55081A682B467B1700D71B31 /* Controller */,
 				55081A662B467B0F00D71B31 /* Modal */,
 			);
 			path = Dine;
@@ -119,6 +125,8 @@
 		55081A682B467B1700D71B31 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				55081A902B46BE4C00D71B31 /* LoginController.swift */,
+				55081A922B46BE5800D71B31 /* SignUpController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -161,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				55081A712B46817E00D71B31 /* Account.swift */,
+				55081A942B46C14A00D71B31 /* UserManager.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -232,6 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55081A932B46BE5800D71B31 /* SignUpController.swift in Sources */,
 				55081A6A2B467BF300D71B31 /* Restaurant.swift in Sources */,
 				55081A6C2B467C7000D71B31 /* Branch.swift in Sources */,
 				55081A872B46938F00D71B31 /* Order.swift in Sources */,
@@ -245,9 +255,11 @@
 				55081A812B468DF300D71B31 /* Manager.swift in Sources */,
 				55081A602B467AF800D71B31 /* main.swift in Sources */,
 				55081A792B46881900D71B31 /* MenuItem.swift in Sources */,
+				55081A912B46BE4C00D71B31 /* LoginController.swift in Sources */,
 				55081A892B4694E000D71B31 /* WaitStaff.swift in Sources */,
 				55081A7B2B46887900D71B31 /* MealItem.swift in Sources */,
 				55081A772B4687DE00D71B31 /* MenuSection.swift in Sources */,
+				55081A952B46C14A00D71B31 /* UserManager.swift in Sources */,
 				55081A722B46817E00D71B31 /* Account.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
