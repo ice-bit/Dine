@@ -27,6 +27,7 @@
 		55081A912B46BE4C00D71B31 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A902B46BE4C00D71B31 /* LoginController.swift */; };
 		55081A932B46BE5800D71B31 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A922B46BE5800D71B31 /* SignUpController.swift */; };
 		55081A952B46C14A00D71B31 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A942B46C14A00D71B31 /* UserManager.swift */; };
+		55A7836D2B4BD25200E20DF9 /* AuthConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A7836C2B4BD25200E20DF9 /* AuthConsoleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -63,6 +64,7 @@
 		55081A902B46BE4C00D71B31 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		55081A922B46BE5800D71B31 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		55081A942B46C14A00D71B31 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		55A7836C2B4BD25200E20DF9 /* AuthConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthConsoleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 		55081A672B467B1300D71B31 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				55A7836C2B4BD25200E20DF9 /* AuthConsoleView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -125,8 +128,7 @@
 		55081A682B467B1700D71B31 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				55081A902B46BE4C00D71B31 /* LoginController.swift */,
-				55081A922B46BE5800D71B31 /* SignUpController.swift */,
+				55A783692B48324A00E20DF9 /* User */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -169,7 +171,6 @@
 			isa = PBXGroup;
 			children = (
 				55081A712B46817E00D71B31 /* Account.swift */,
-				55081A942B46C14A00D71B31 /* UserManager.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -181,6 +182,16 @@
 				55081A6F2B467D9D00D71B31 /* Employee.swift */,
 			);
 			path = Person;
+			sourceTree = "<group>";
+		};
+		55A783692B48324A00E20DF9 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				55081A902B46BE4C00D71B31 /* LoginController.swift */,
+				55081A922B46BE5800D71B31 /* SignUpController.swift */,
+				55081A942B46C14A00D71B31 /* UserManager.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +271,7 @@
 				55081A7B2B46887900D71B31 /* MealItem.swift in Sources */,
 				55081A772B4687DE00D71B31 /* MenuSection.swift in Sources */,
 				55081A952B46C14A00D71B31 /* UserManager.swift in Sources */,
+				55A7836D2B4BD25200E20DF9 /* AuthConsoleView.swift in Sources */,
 				55081A722B46817E00D71B31 /* Account.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

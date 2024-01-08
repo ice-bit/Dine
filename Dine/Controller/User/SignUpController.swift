@@ -14,25 +14,26 @@ class SignUpController {
         self.userManager = userManager
     }
     
-    func createAccount(username: String, password: String, role: UserRole) {
+    func createAccount(username: String, password: String, role: UserRole) -> Bool {
         guard isValidUsername(username) else {
             print("Invalid username. Please follow the username criteria.")
-            return
+            return false
         }
         
         guard isStrongPassword(password) else {
             print("Password is not strong enough. Please follow the password requirements.")
-            return
+            return false
         }
         
         guard !userManager.checkUserPresence(username) else {
             print("Username already exists!")
-            return
+            return false
         }
         
         let newAccount = Account(id: username, password: password, accountStatus: .active, userRole: role)
         
         userManager.addUser(newAccount)
+        return true
     }
     
     private func isStrongPassword(_ password: String) -> Bool {

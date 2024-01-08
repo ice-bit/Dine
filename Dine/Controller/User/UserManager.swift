@@ -13,14 +13,12 @@ protocol UserManagabale {
     func checkUserPresence(_ account: Account) -> Bool
     func checkUserPresence(_ username: String) -> Bool
     func searchUser(_ username: String) -> Account?
+    func getNumberOfUsers() -> Int
 }
 
 class UserManager: UserManagabale {
-    private var users: [Account]
-    
-    init(users: [Account]) {
-        self.users = users
-    }
+    var isLoggedIn: Bool = false
+    private var users: [Account] = []
     
     func addUser(_ account: Account) {
         users.append(account)
@@ -46,5 +44,9 @@ class UserManager: UserManagabale {
         } else {
             return nil
         }
+    }
+    
+    func getNumberOfUsers() -> Int {
+        return users.count
     }
 }
