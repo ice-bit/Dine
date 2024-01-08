@@ -18,7 +18,11 @@ enum UserRole {
 }
 
 class Account {
-    private var id: String
+    private var id: String {
+        didSet {
+            print("Value changed to \(id)")
+        }
+    }
     private var password: String
     private var accountStatus: AccountStatus
     private var userRole: UserRole
@@ -36,6 +40,14 @@ class Account {
     
     func verifyPassword(_ password: String) -> Bool {
         return self.password == password
+    }
+    
+    func updateUsername(_ username: String) {
+        self.id = username
+    }
+    
+    func updatePassword(_ password: String) {
+        self.password = password
     }
     
     // TODO: Add a hashed password and then compare the hashed input password with the stored hashed password(CryptoKit)

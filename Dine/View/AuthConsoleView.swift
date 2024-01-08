@@ -34,6 +34,7 @@ class AuthConsoleView {
         let loginController = LoginController(userManager: userManager)
         if loginController.authenticateUserCredentials(username: username, password: password) {
             print("User successfully logged in!")
+            displayChangeUsernamePrompt()
         } else {
             print("User not available!")
         }
@@ -62,4 +63,28 @@ class AuthConsoleView {
             displaySignUpPrompt()
         }
     }
+    
+    func displayChangeUsernamePrompt() {
+        print("Enter old username: ", terminator: "")
+        let oldUsername = readLine() ?? ""
+        
+        print("Enter your password: ", terminator: "")
+        let password = readLine() ?? ""
+        
+        let loginController = LoginController(userManager: userManager)
+        guard loginController.authenticateUserCredentials(username: oldUsername, password: password) else {
+            print("Failed to authenticate!")
+            return
+        }
+        
+        guard let user = userManager.searchUser(oldUsername) else { return }
+        
+        print("Enter new username: ", terminator: "")
+        let newUsername = readLine() ?? ""
+        user.updateUsername(newUsername)
+        
+        displayLoginPrompt()
+    }
+    
+    
 }

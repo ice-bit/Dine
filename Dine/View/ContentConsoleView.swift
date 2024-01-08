@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+class ContentConsoleView {
+    private let userManager: UserManagabale = UserManager()
+    
+    func start() {
+        let onboardingConsoleView = OnboardingConsoleView()
+        onboardingConsoleView.displayOnboardingPrompt()
+    }
+}
