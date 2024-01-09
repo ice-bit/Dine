@@ -22,7 +22,5 @@ class OnboardingConsoleView {
         print("~ 1 - Sign Up.")
         print("~ 2 - Already have an account? Login!")
         print("~ 3 - Forgot password?")
-        
-        
     }
 }

@@ -32,6 +32,7 @@
 		55A783732B4C009000E20DF9 /* AuthenticationValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A783722B4C009000E20DF9 /* AuthenticationValidator.swift */; };
 		55A783752B4C323800E20DF9 /* OnboardingConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A783742B4C323800E20DF9 /* OnboardingConsoleView.swift */; };
 		55A783772B4C343200E20DF9 /* ContentConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A783762B4C343200E20DF9 /* ContentConsoleView.swift */; };
+		55A783792B4D26F100E20DF9 /* SignUpConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A783782B4D26F100E20DF9 /* SignUpConsoleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -73,6 +74,7 @@
 		55A783722B4C009000E20DF9 /* AuthenticationValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationValidator.swift; sourceTree = "<group>"; };
 		55A783742B4C323800E20DF9 /* OnboardingConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingConsoleView.swift; sourceTree = "<group>"; };
 		55A783762B4C343200E20DF9 /* ContentConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentConsoleView.swift; sourceTree = "<group>"; };
+		55A783782B4D26F100E20DF9 /* SignUpConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpConsoleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 				55A7836C2B4BD25200E20DF9 /* AuthConsoleView.swift */,
 				55A783742B4C323800E20DF9 /* OnboardingConsoleView.swift */,
 				55A783762B4C343200E20DF9 /* ContentConsoleView.swift */,
+				55A783782B4D26F100E20DF9 /* SignUpConsoleView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				55081A702B467D9D00D71B31 /* Employee.swift in Sources */,
 				55081A852B4690E900D71B31 /* Kitchen.swift in Sources */,
 				55081A7F2B468D1800D71B31 /* Address.swift in Sources */,
+				55A783792B4D26F100E20DF9 /* SignUpConsoleView.swift in Sources */,
 				55081A812B468DF300D71B31 /* Manager.swift in Sources */,
 				55081A602B467AF800D71B31 /* main.swift in Sources */,
 				55081A792B46881900D71B31 /* MenuItem.swift in Sources */,

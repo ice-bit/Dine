@@ -17,7 +17,6 @@ protocol UserManagabale {
 }
 
 class UserManager: UserManagabale {
-    var isLoggedIn: Bool = false
     private var users: [Account] = []
     
     func addUser(_ account: Account) {

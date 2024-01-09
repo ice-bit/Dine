@@ -20,6 +20,7 @@ class LoginController {
             return false
         }
         
+        // Check whether the password is matching.
         if let account = userManager.searchUser(username), account.verifyPassword(password) {
             return true
         } else {

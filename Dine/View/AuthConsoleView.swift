@@ -56,12 +56,12 @@ class AuthConsoleView {
         }
         
         // TODO: Call the sign up controller class
-        let signUpController = SignUpController(userManager: userManager)
-        if signUpController.createAccount(username: username, password: password, role: .manager) {
-            displayLoginPrompt()
-        } else {
-            displaySignUpPrompt()
-        }
+//        let signUpController = SignUpController(userManager: userManager)
+////        if signUpController.createAccount(username: username, password: password, role: .manager) {
+//            displayLoginPrompt()
+//        } else {
+//            displaySignUpPrompt()
+//        }
     }
     
     func displayChangeUsernamePrompt() {
