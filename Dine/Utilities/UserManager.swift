@@ -17,7 +17,9 @@ protocol UserManagabale {
 }
 
 class UserManager: UserManagabale {
-    private var users: [Account] = []
+    private var users: [Account] = [
+        Account(id: "TechDev_123", password: "StrongP@ss123", accountStatus: .active, userRole: .manager)
+    ]
     
     func addUser(_ account: Account) {
         users.append(account)

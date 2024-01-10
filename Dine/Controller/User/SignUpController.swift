@@ -40,14 +40,9 @@ class SignUpController {
     }
     
     func initiateAccountRegistration() throws {
-        let signUpConsoleView = SignUpConsoleView()
-        guard let username = signUpConsoleView.promptUsername() else {
-            return
-        }
+        guard let username = UserPrompter.getUserInput(prompt: "Enter new username: ") else { return }
         
-        guard let password = signUpConsoleView.promptPassword() else {
-            return
-        }
+        guard let password = UserPrompter.getUserInput(prompt: "Enter new password: ") else { return }
         
         try createAccount(username: username, password: password, role: .manager)
     }
@@ -64,6 +59,8 @@ class SignUpController {
             print("Invalid input")*/
         }
     }
+    
+    
     
 }
 

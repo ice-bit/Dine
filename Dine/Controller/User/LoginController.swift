@@ -14,7 +14,7 @@ class LoginController {
         self.userManager = userManager
     }
     
-    func authenticateUserCredentials(username: String, password: String) -> Bool {
+    private func authenticateUserCredentials(username: String, password: String) -> Bool {
         guard userManager.checkUserPresence(username) else {
             print("No user found in this username!")
             return false
@@ -29,5 +29,14 @@ class LoginController {
         }
     }
     
-    // TODO: Write method to log user into the system...
+    func loginUser() -> Bool {
+        guard let username = UserPrompter.getUserInput(prompt: "Enter your username: ") else { return false }
+        guard let password = UserPrompter.getUserInput(prompt: "Enter you password: ") else { return false }
+        
+        if authenticateUserCredentials(username: username, password: password) {
+            return true
+        } else {
+            return false
+        }
+    }
 }

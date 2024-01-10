@@ -27,11 +27,10 @@
 		55081A912B46BE4C00D71B31 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A902B46BE4C00D71B31 /* LoginController.swift */; };
 		55081A932B46BE5800D71B31 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A922B46BE5800D71B31 /* SignUpController.swift */; };
 		55081A952B46C14A00D71B31 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A942B46C14A00D71B31 /* UserManager.swift */; };
-		55A7836D2B4BD25200E20DF9 /* AuthConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A7836C2B4BD25200E20DF9 /* AuthConsoleView.swift */; };
+		5545DAA12B4E749C007D31B6 /* LoginConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5545DAA02B4E749C007D31B6 /* LoginConsoleView.swift */; };
+		5545DAA62B4E77F3007D31B6 /* UserPrompter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5545DAA52B4E77F3007D31B6 /* UserPrompter.swift */; };
 		55A7836F2B4BFD0E00E20DF9 /* EditAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A7836E2B4BFD0E00E20DF9 /* EditAccountController.swift */; };
 		55A783732B4C009000E20DF9 /* AuthenticationValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A783722B4C009000E20DF9 /* AuthenticationValidator.swift */; };
-		55A783752B4C323800E20DF9 /* OnboardingConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A783742B4C323800E20DF9 /* OnboardingConsoleView.swift */; };
-		55A783772B4C343200E20DF9 /* ContentConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A783762B4C343200E20DF9 /* ContentConsoleView.swift */; };
 		55A783792B4D26F100E20DF9 /* SignUpConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A783782B4D26F100E20DF9 /* SignUpConsoleView.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,11 +68,10 @@
 		55081A902B46BE4C00D71B31 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		55081A922B46BE5800D71B31 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		55081A942B46C14A00D71B31 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
-		55A7836C2B4BD25200E20DF9 /* AuthConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthConsoleView.swift; sourceTree = "<group>"; };
+		5545DAA02B4E749C007D31B6 /* LoginConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginConsoleView.swift; sourceTree = "<group>"; };
+		5545DAA52B4E77F3007D31B6 /* UserPrompter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrompter.swift; sourceTree = "<group>"; };
 		55A7836E2B4BFD0E00E20DF9 /* EditAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountController.swift; sourceTree = "<group>"; };
 		55A783722B4C009000E20DF9 /* AuthenticationValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationValidator.swift; sourceTree = "<group>"; };
-		55A783742B4C323800E20DF9 /* OnboardingConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingConsoleView.swift; sourceTree = "<group>"; };
-		55A783762B4C343200E20DF9 /* ContentConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentConsoleView.swift; sourceTree = "<group>"; };
 		55A783782B4D26F100E20DF9 /* SignUpConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpConsoleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				55081A5F2B467AF800D71B31 /* main.swift */,
+				5545DAA22B4E77C4007D31B6 /* Utilities */,
 				55081A672B467B1300D71B31 /* View */,
 				55081A682B467B1700D71B31 /* Controller */,
 				55081A662B467B0F00D71B31 /* Modal */,
@@ -130,10 +129,8 @@
 		55081A672B467B1300D71B31 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				55A7836C2B4BD25200E20DF9 /* AuthConsoleView.swift */,
-				55A783742B4C323800E20DF9 /* OnboardingConsoleView.swift */,
-				55A783762B4C343200E20DF9 /* ContentConsoleView.swift */,
 				55A783782B4D26F100E20DF9 /* SignUpConsoleView.swift */,
+				5545DAA02B4E749C007D31B6 /* LoginConsoleView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -197,12 +194,20 @@
 			path = Person;
 			sourceTree = "<group>";
 		};
+		5545DAA22B4E77C4007D31B6 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				55081A942B46C14A00D71B31 /* UserManager.swift */,
+				5545DAA52B4E77F3007D31B6 /* UserPrompter.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		55A783692B48324A00E20DF9 /* User */ = {
 			isa = PBXGroup;
 			children = (
 				55081A902B46BE4C00D71B31 /* LoginController.swift */,
 				55081A922B46BE5800D71B31 /* SignUpController.swift */,
-				55081A942B46C14A00D71B31 /* UserManager.swift */,
 				55A7836E2B4BFD0E00E20DF9 /* EditAccountController.swift */,
 				55A783722B4C009000E20DF9 /* AuthenticationValidator.swift */,
 			);
@@ -285,14 +290,13 @@
 				55081A792B46881900D71B31 /* MenuItem.swift in Sources */,
 				55081A912B46BE4C00D71B31 /* LoginController.swift in Sources */,
 				55081A892B4694E000D71B31 /* WaitStaff.swift in Sources */,
+				5545DAA12B4E749C007D31B6 /* LoginConsoleView.swift in Sources */,
 				55081A7B2B46887900D71B31 /* MealItem.swift in Sources */,
 				55081A772B4687DE00D71B31 /* MenuSection.swift in Sources */,
 				55081A952B46C14A00D71B31 /* UserManager.swift in Sources */,
-				55A783772B4C343200E20DF9 /* ContentConsoleView.swift in Sources */,
 				55A783732B4C009000E20DF9 /* AuthenticationValidator.swift in Sources */,
-				55A7836D2B4BD25200E20DF9 /* AuthConsoleView.swift in Sources */,
 				55081A722B46817E00D71B31 /* Account.swift in Sources */,
-				55A783752B4C323800E20DF9 /* OnboardingConsoleView.swift in Sources */,
+				5545DAA62B4E77F3007D31B6 /* UserPrompter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

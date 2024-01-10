@@ -12,25 +12,38 @@ import Foundation
 
 class Main {
     private let userManager: UserManagabale
-    private var isUserLoggedIn: Bool = false
+    private var isUserLoggedIn: Bool = false {
+        didSet {
+            print("Login state changed -> \(isUserLoggedIn)")
+        }
+    }
     
     init(userManager: UserManagabale) {
         self.userManager = userManager
     }
     
     func start() {
-        startSignUp()
+        //signUp()
+        login()
     }
     
-    func startSignUp() {
+    func signUp() {
         let signUpController = SignUpController(userManager: userManager)
         do {
             try signUpController.initiateAccountRegistration()
-            isUserLoggedIn = true
         } catch let error as SignUpError {
             signUpController.handleSignUpError(error)
         } catch {
             print("Unknown error: \(error)")
+        }
+    }
+    
+    func login() {
+        let loginController = LoginController(userManager: userManager)
+        if loginController.loginUser() {
+            isUserLoggedIn = true
+        } else {
+            isUserLoggedIn = false
         }
     }
 }
