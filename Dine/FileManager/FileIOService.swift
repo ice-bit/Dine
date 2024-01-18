@@ -24,10 +24,11 @@ enum FileIOError: Error {
     case encodingError
     case decodingError
     case documentDirectoryUnavailable
+    case writeError(Error)
+    case readError(Error)
 }
 
 class FileIOService {
-    
     func write(data: Data, into fileName: String) throws {
         guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             throw FileIOError.documentDirectoryUnavailable
@@ -40,6 +41,7 @@ class FileIOService {
             print("Data written to \(fileName) successfully!")
         } catch {
             print("Error writing JSON to file: \(error)")
+            throw FileIOError.writeError(error)
         }
     }
     
@@ -56,7 +58,7 @@ class FileIOService {
             return modal
         } catch {
             print("Error decoding JSON: \(error)")
-            throw FileIOError.decodingError
+            throw FileIOError.readError(error)
         }
     }
     
@@ -76,6 +78,10 @@ class FileIOService {
             print("Error decoding file content.")
         case .documentDirectoryUnavailable:
             print("Unable to access the document directory.")
+        case .writeError(_):
+            print("Error encountered while writing: \(error).")
+        case .readError(_):
+            print("Error encountered while reading: \(error)")
         }
     }
 }
