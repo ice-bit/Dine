@@ -16,10 +16,8 @@ import Foundation
 /// - `decodingError`: An error occurred while decoding data.
 /// - `documentDirectoryUnavailable`: The document directory, a common location for file operations,
 ///    is not available.
-/// - `writeError(originalError)`: An error occurred during a write operation.
-///    - Parameter originalError: The underlying error that occurred during the write operation.
-/// - `readError(originalError)`: An error occurred during a read operation.
-///    - Parameter originalError: The underlying error that occurred during the read operation.
+/// - `writeError`: An error occurred while writing to a file, encapsulating the specific error.
+/// - `readError`: An error occurred while reading from a file, encapsulating the specific error.
 enum FileIOError: Error {
     case permissionDenied
     case fileNotFound
