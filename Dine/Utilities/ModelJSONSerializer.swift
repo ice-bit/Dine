@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+class ModelJSONSerializer {
+    func modelToJSON<T: Codable>(model: T) throws -> Data {
+        let encoder = JSONEncoder()
+        return try encoder.encode(model)
+    }
+}
