@@ -7,22 +7,18 @@
 
 import Foundation
 
-enum AccountStatus: Int {
+enum AccountStatus: Int, Codable {
     case active = 1
     case closed = 2
     case cancelled = 3
 }
 
-enum UserRole {
+enum UserRole: Codable {
     case manager, waitStaff, chef
 }
 
-class Account {
-    private var id: String {
-        didSet {
-            print("Value changed to \(id)")
-        }
-    }
+class Account: Codable {
+    private var id: String
     private var password: String
     private var accountStatus: AccountStatus
     private var userRole: UserRole
@@ -36,6 +32,10 @@ class Account {
     
     func getId() -> String {
         return id
+    }
+    
+    func getPassword() -> String {
+        return password
     }
     
     func verifyPassword(_ password: String) -> Bool {
