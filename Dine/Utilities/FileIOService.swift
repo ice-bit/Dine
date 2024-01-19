@@ -47,22 +47,26 @@ class FileIOService {
         }
     }
     
-    func read<T: Codable>(from fileName: String) throws -> T {
+    func read<T: Codable>(from fileName: String) throws -> T? {
         guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             throw FileIOError.documentDirectoryUnavailable
         }
         
-        let fileURL = documentDirectory.appending(path: fileName)
+        let fileURL = documentDirectory.appendingPathComponent(fileName)
         
         do {
             let savedJSONData = try Data(contentsOf: fileURL)
             let modal = try JSONDecoder().decode(T.self, from: savedJSONData)
             return modal
+        } catch CocoaError.fileReadNoSuchFile {
+            // File doesn't exist, return nil or handle accordingly
+            return nil
         } catch {
             print("Error decoding JSON: \(error)")
             throw FileIOError.readError(error)
         }
     }
+
     
     private func handleFileError(_ error: FileIOError) {
         switch error {
