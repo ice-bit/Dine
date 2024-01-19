@@ -47,6 +47,10 @@ class UserManager: UserManagabale {
         }
     }
     
+    func isValidLogin(username: String, password: String) -> Bool {
+        return users.contains(where: {$0.getId() == username && $0.getPassword() == password })
+    }
+    
     func getNumberOfUsers() -> Int {
         return users.count
     }

@@ -23,28 +23,13 @@ class Main {
     }
     
     func start() {
-        //signUp()
-        login()
+        startAuth()
     }
-    
-    func signUp() {
-        let signUpController = SignUpController(userManager: userManager)
-        do {
-            try signUpController.initiateAccountRegistration()
-        } catch let error as SignUpError {
-            signUpController.handleSignUpError(error)
-        } catch {
-            print("Unknown error: \(error)")
-        }
-    }
-    
-    func login() {
-        let loginController = LoginController(userManager: userManager)
-        if loginController.loginUser() {
-            isUserLoggedIn = true
-        } else {
-            isUserLoggedIn = false
-        }
+
+    func startAuth() {
+        let consoleView: ConsoleViewable = AuthConsoleView()
+        let authCon = AuthController(authConsoleView: consoleView)
+        authCon.run()
     }
 }
 

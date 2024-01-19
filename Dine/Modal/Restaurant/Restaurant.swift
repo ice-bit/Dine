@@ -7,12 +7,6 @@
 
 import Foundation
 
-class Restaurant {
+struct Restaurant {
     private var name: String
-    private var branches: [Branch]
-    
-    init(name: String, branches: [Branch]) {
-        self.name = name
-        self.branches = branches
-    }
 }

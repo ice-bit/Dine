@@ -8,7 +8,7 @@
 import Foundation
 
 class Menu {
-    private var menuId: Int
+    /*private var menuId: Int
     private var title: String
     private var description: String
     private var menuSections: [MenuSection]
@@ -22,5 +22,21 @@ class Menu {
     
     func addMenuSection() {
         
+    }*/
+    
+    var items: [MenuItem]
+    
+    init() {
+        self.items = []
+    }
+    
+    init(items: [MenuItem]) {
+        self.items = items
+    }
+    
+    func displayMenu() {
+        for (index, item) in items.enumerated() {
+            print("\(index + 1). \(item.name) - $\(item.price)")
+        }
     }
 }

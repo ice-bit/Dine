@@ -14,7 +14,7 @@ class LoginController {
         self.userManager = userManager
     }
     
-    private func authenticateUserCredentials(username: String, password: String) -> Bool {
+    func authenticateUserCredentials(username: String, password: String) -> Bool {
         guard userManager.checkUserPresence(username) else {
             print("No user found in this username!")
             return false

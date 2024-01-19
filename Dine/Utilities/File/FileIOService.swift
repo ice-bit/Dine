@@ -31,25 +31,28 @@ enum FileIOError: Error {
 }
 
 class FileIOService {
-    func write(data: Data, into fileName: String) throws {
+    func write(data: Data, into fileName: String, completion: @escaping (Result<Void, FileIOError>) -> Void)  {
         guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            throw FileIOError.documentDirectoryUnavailable
+            completion(.failure(.documentDirectoryUnavailable))
+            return
         }
         
         let fileURL = documentDirectory.appending(path: fileName)
         
         do {
             try data.write(to: fileURL)
+            completion(.success(()))
             print("Data written to \(fileName) successfully!")
         } catch {
             print("Error writing JSON to file: \(error)")
-            throw FileIOError.writeError(error)
+            completion(.failure(.writeError(error)))
         }
     }
     
-    func read<T: Codable>(from fileName: String) throws -> T? {
+    func read<T: Codable>(from fileName: String, completion: (Result<T?, FileIOError>) -> Void) {
         guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            throw FileIOError.documentDirectoryUnavailable
+            completion(.failure(.documentDirectoryUnavailable))
+            return
         }
         
         let fileURL = documentDirectory.appendingPathComponent(fileName)
@@ -57,13 +60,13 @@ class FileIOService {
         do {
             let savedJSONData = try Data(contentsOf: fileURL)
             let modal = try JSONDecoder().decode(T.self, from: savedJSONData)
-            return modal
+            completion(.success(modal))
         } catch CocoaError.fileReadNoSuchFile {
             // File doesn't exist, return nil or handle accordingly
-            return nil
+            completion(.failure(.fileNotFound))
         } catch {
             print("Error decoding JSON: \(error)")
-            throw FileIOError.readError(error)
+            completion(.failure(.readError(error)))
         }
     }
 

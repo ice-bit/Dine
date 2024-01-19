@@ -12,17 +12,13 @@ protocol AuthStateObserver: AnyObject {
     func didLogout()
 }
 
-class AuthController {
-    let authConsoleView: ConsoleViewable
+struct AuthController {
     private var isUserLoggedIn: Bool = false
     
     weak var authState: AuthStateObserver?
     
-    init(authConsoleView: ConsoleViewable) {
-        self.authConsoleView = authConsoleView
-    }
-    
-    private func signUp() {
+    private mutating func signUp() {
+        let authConsoleView = AuthConsoleView()
         // Get credentials from the user
         let (username, password) = authConsoleView.prompt()
 
@@ -60,8 +56,9 @@ class AuthController {
     }
 
     
-    private func login() {
+    private mutating func login() {
         let fileIO = FileIOService()
+        let authConsoleView = AuthConsoleView()
         let (username, password) = authConsoleView.prompt()
 
         let fileService = FileService()
@@ -107,8 +104,9 @@ class AuthController {
         }
     }*/
     
-    func run() {
+    mutating func run() {
         print("1. Sign Up\n2. Login\n3. Forgot Password\n4. Exit")
+        let authConsoleView = AuthConsoleView()
         let choice = authConsoleView.getInput()
         
         switch choice {
@@ -124,9 +122,5 @@ class AuthController {
         default:
             authConsoleView.show(message: "Invalid choice. Please try again.")
         }
-    }
-    
-    deinit {
-        print("AuthController is deinitialized!")
     }
 }

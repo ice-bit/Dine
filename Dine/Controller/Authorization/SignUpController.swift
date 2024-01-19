@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum SignUpError: Error {
+enum AuthenticationError: Error {
     case invalidUsername
     case invalidPassword
     //case invalidInput
@@ -21,17 +21,17 @@ class SignUpController {
         self.userManager = userManager
     }
     
-    private func createAccount(username: String, password: String, role: UserRole) throws {
-        guard AuthenticationValidator.isValidUsername(username) else {
-            throw SignUpError.invalidUsername
+    func createAccount(username: String, password: String, role: UserRole) throws {
+        guard !userManager.checkUserPresence(username) else {
+            throw AuthenticationError.userAlreadyExists
         }
         
-        guard !userManager.checkUserPresence(username) else {
-            throw SignUpError.userAlreadyExists
+        guard AuthenticationValidator.isValidUsername(username) else {
+            throw AuthenticationError.invalidUsername
         }
         
         guard AuthenticationValidator.isStrongPassword(password) else {
-            throw SignUpError.invalidPassword
+            throw AuthenticationError.invalidPassword
         }
         
         let newAccount = Account(id: username, password: password, accountStatus: .active, userRole: role)
@@ -47,7 +47,7 @@ class SignUpController {
         try createAccount(username: username, password: password, role: .manager)
     }
     
-    func handleSignUpError(_ error: SignUpError) {
+    func handleSignUpError(_ error: AuthenticationError) {
         switch error {
         case .invalidUsername:
             print("Invalid username. Please follow the username criteria.")

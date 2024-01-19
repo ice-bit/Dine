@@ -23,5 +23,17 @@ class FileService {
         let fileURL = documentDirectory.appendingPathComponent(fileName)
         return FileManager.default.fileExists(atPath: fileURL.path)
     }
+    
+    func saveModal<T: Codable>(_ modal: T, fileName: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        do {
+            let fileIO = FileIOService()
+            let modalJSONSerializer = ModelJSONSerializer()
+            let data = try modalJSONSerializer.modelToJSON(model: modal)
+            try fileIO.write(data: data, into: "\(fileName).json")
+            completion(.success(()))
+        } catch {
+            completion(.failure(error))
+        }
+    }
 
 }

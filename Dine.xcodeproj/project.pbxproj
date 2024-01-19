@@ -27,11 +27,24 @@
 		55081A912B46BE4C00D71B31 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A902B46BE4C00D71B31 /* LoginController.swift */; };
 		55081A932B46BE5800D71B31 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A922B46BE5800D71B31 /* SignUpController.swift */; };
 		55081A952B46C14A00D71B31 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A942B46C14A00D71B31 /* UserManager.swift */; };
-		5545DAA12B4E749C007D31B6 /* LoginConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5545DAA02B4E749C007D31B6 /* LoginConsoleView.swift */; };
+		554396492B5168F8004D08ED /* FileIOService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554396482B5168F8004D08ED /* FileIOService.swift */; };
+		554396522B58FECD004D08ED /* ModelJSONSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554396512B58FECD004D08ED /* ModelJSONSerializer.swift */; };
+		554396562B5A4664004D08ED /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554396552B5A4664004D08ED /* FileService.swift */; };
+		5543965A2B5A73B0004D08ED /* RestaurantSetupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554396592B5A73B0004D08ED /* RestaurantSetupController.swift */; };
+		5543965E2B5A9976004D08ED /* ConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5543965D2B5A9976004D08ED /* ConsoleView.swift */; };
+		554396632B5A9C40004D08ED /* ConsolePrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554396622B5A9C40004D08ED /* ConsolePrinter.swift */; };
+		554396672B5AAD31004D08ED /* CommandLineInputHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554396662B5AAD31004D08ED /* CommandLineInputHandler.swift */; };
 		5545DAA62B4E77F3007D31B6 /* UserPrompter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5545DAA52B4E77F3007D31B6 /* UserPrompter.swift */; };
+		5545DAAC2B4EAF49007D31B6 /* AuthConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5545DAAB2B4EAF49007D31B6 /* AuthConsoleView.swift */; };
+		5545DAAE2B4EBD00007D31B6 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5545DAAD2B4EBD00007D31B6 /* AuthController.swift */; };
+		5545DAB32B4EEF1E007D31B6 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5545DAB22B4EEF1E007D31B6 /* HomeController.swift */; };
+		5545DAB52B4FBABE007D31B6 /* HomeConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5545DAB42B4FBABE007D31B6 /* HomeConsoleView.swift */; };
+		5545DABA2B4FD2FD007D31B6 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5545DAB92B4FD2FD007D31B6 /* AppConstants.swift */; };
+		5545DABC2B5021B7007D31B6 /* RestaurantMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5545DABB2B5021B7007D31B6 /* RestaurantMenu.swift */; };
+		5545DAC22B502C50007D31B6 /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5545DAC12B502C50007D31B6 /* FoodItem.swift */; };
+		559843502B5AB02A00930AF8 /* RestaurantConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598434F2B5AB02A00930AF8 /* RestaurantConsoleView.swift */; };
 		55A7836F2B4BFD0E00E20DF9 /* EditAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A7836E2B4BFD0E00E20DF9 /* EditAccountController.swift */; };
 		55A783732B4C009000E20DF9 /* AuthenticationValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A783722B4C009000E20DF9 /* AuthenticationValidator.swift */; };
-		55A783792B4D26F100E20DF9 /* SignUpConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A783782B4D26F100E20DF9 /* SignUpConsoleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -68,11 +81,24 @@
 		55081A902B46BE4C00D71B31 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		55081A922B46BE5800D71B31 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		55081A942B46C14A00D71B31 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
-		5545DAA02B4E749C007D31B6 /* LoginConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginConsoleView.swift; sourceTree = "<group>"; };
+		554396482B5168F8004D08ED /* FileIOService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileIOService.swift; sourceTree = "<group>"; };
+		554396512B58FECD004D08ED /* ModelJSONSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelJSONSerializer.swift; sourceTree = "<group>"; };
+		554396552B5A4664004D08ED /* FileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileService.swift; sourceTree = "<group>"; };
+		554396592B5A73B0004D08ED /* RestaurantSetupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSetupController.swift; sourceTree = "<group>"; };
+		5543965D2B5A9976004D08ED /* ConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleView.swift; sourceTree = "<group>"; };
+		554396622B5A9C40004D08ED /* ConsolePrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsolePrinter.swift; sourceTree = "<group>"; };
+		554396662B5AAD31004D08ED /* CommandLineInputHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandLineInputHandler.swift; sourceTree = "<group>"; };
 		5545DAA52B4E77F3007D31B6 /* UserPrompter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrompter.swift; sourceTree = "<group>"; };
+		5545DAAB2B4EAF49007D31B6 /* AuthConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthConsoleView.swift; sourceTree = "<group>"; };
+		5545DAAD2B4EBD00007D31B6 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
+		5545DAB22B4EEF1E007D31B6 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		5545DAB42B4FBABE007D31B6 /* HomeConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeConsoleView.swift; sourceTree = "<group>"; };
+		5545DAB92B4FD2FD007D31B6 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		5545DABB2B5021B7007D31B6 /* RestaurantMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantMenu.swift; sourceTree = "<group>"; };
+		5545DAC12B502C50007D31B6 /* FoodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItem.swift; sourceTree = "<group>"; };
+		5598434F2B5AB02A00930AF8 /* RestaurantConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantConsoleView.swift; sourceTree = "<group>"; };
 		55A7836E2B4BFD0E00E20DF9 /* EditAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountController.swift; sourceTree = "<group>"; };
 		55A783722B4C009000E20DF9 /* AuthenticationValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationValidator.swift; sourceTree = "<group>"; };
-		55A783782B4D26F100E20DF9 /* SignUpConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpConsoleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +131,7 @@
 		55081A5E2B467AF800D71B31 /* Dine */ = {
 			isa = PBXGroup;
 			children = (
+				5545DAB82B4FD2EE007D31B6 /* Constants */,
 				55081A5F2B467AF800D71B31 /* main.swift */,
 				5545DAA22B4E77C4007D31B6 /* Utilities */,
 				55081A672B467B1300D71B31 /* View */,
@@ -117,6 +144,7 @@
 		55081A662B467B0F00D71B31 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				5545DAC12B502C50007D31B6 /* FoodItem.swift */,
 				55081A8D2B46973400D71B31 /* Person */,
 				55081A8C2B46972D00D71B31 /* Account */,
 				55081A8B2B46972600D71B31 /* Order */,
@@ -129,8 +157,10 @@
 		55081A672B467B1300D71B31 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				55A783782B4D26F100E20DF9 /* SignUpConsoleView.swift */,
-				5545DAA02B4E749C007D31B6 /* LoginConsoleView.swift */,
+				5598434E2B5AB01000930AF8 /* Restaurant */,
+				5598434A2B5AAFC100930AF8 /* Home */,
+				559843472B5AAF4C00930AF8 /* Authorization */,
+				554396612B5A9C1A004D08ED /* ViewProtocols */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -138,7 +168,9 @@
 		55081A682B467B1700D71B31 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				55A783692B48324A00E20DF9 /* User */,
+				5598434D2B5AAFF900930AF8 /* Restaurant */,
+				559843492B5AAFA900930AF8 /* Home */,
+				55A783692B48324A00E20DF9 /* Authorization */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -151,6 +183,7 @@
 				55081A782B46881900D71B31 /* MenuItem.swift */,
 				55081A7A2B46887900D71B31 /* MealItem.swift */,
 				55081A7C2B4688AD00D71B31 /* Meal.swift */,
+				5545DABB2B5021B7007D31B6 /* RestaurantMenu.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -194,24 +227,102 @@
 			path = Person;
 			sourceTree = "<group>";
 		};
+		554396612B5A9C1A004D08ED /* ViewProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				5543965D2B5A9976004D08ED /* ConsoleView.swift */,
+				554396622B5A9C40004D08ED /* ConsolePrinter.swift */,
+				554396662B5AAD31004D08ED /* CommandLineInputHandler.swift */,
+			);
+			path = ViewProtocols;
+			sourceTree = "<group>";
+		};
 		5545DAA22B4E77C4007D31B6 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				55081A942B46C14A00D71B31 /* UserManager.swift */,
-				5545DAA52B4E77F3007D31B6 /* UserPrompter.swift */,
+				5598434C2B5AAFD900930AF8 /* File */,
+				5598434B2B5AAFCA00930AF8 /* User */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		55A783692B48324A00E20DF9 /* User */ = {
+		5545DAB82B4FD2EE007D31B6 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				5545DAB92B4FD2FD007D31B6 /* AppConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		559843472B5AAF4C00930AF8 /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				5545DAAB2B4EAF49007D31B6 /* AuthConsoleView.swift */,
+			);
+			path = Authorization;
+			sourceTree = "<group>";
+		};
+		559843492B5AAFA900930AF8 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				5545DAB22B4EEF1E007D31B6 /* HomeController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		5598434A2B5AAFC100930AF8 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				5545DAB42B4FBABE007D31B6 /* HomeConsoleView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		5598434B2B5AAFCA00930AF8 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				55A783722B4C009000E20DF9 /* AuthenticationValidator.swift */,
+				55081A942B46C14A00D71B31 /* UserManager.swift */,
+				5545DAA52B4E77F3007D31B6 /* UserPrompter.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		5598434C2B5AAFD900930AF8 /* File */ = {
+			isa = PBXGroup;
+			children = (
+				554396482B5168F8004D08ED /* FileIOService.swift */,
+				554396512B58FECD004D08ED /* ModelJSONSerializer.swift */,
+				554396552B5A4664004D08ED /* FileService.swift */,
+			);
+			path = File;
+			sourceTree = "<group>";
+		};
+		5598434D2B5AAFF900930AF8 /* Restaurant */ = {
+			isa = PBXGroup;
+			children = (
+				554396592B5A73B0004D08ED /* RestaurantSetupController.swift */,
+			);
+			path = Restaurant;
+			sourceTree = "<group>";
+		};
+		5598434E2B5AB01000930AF8 /* Restaurant */ = {
+			isa = PBXGroup;
+			children = (
+				5598434F2B5AB02A00930AF8 /* RestaurantConsoleView.swift */,
+			);
+			path = Restaurant;
+			sourceTree = "<group>";
+		};
+		55A783692B48324A00E20DF9 /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				5545DAAD2B4EBD00007D31B6 /* AuthController.swift */,
 				55081A902B46BE4C00D71B31 /* LoginController.swift */,
 				55081A922B46BE5800D71B31 /* SignUpController.swift */,
 				55A7836E2B4BFD0E00E20DF9 /* EditAccountController.swift */,
-				55A783722B4C009000E20DF9 /* AuthenticationValidator.swift */,
 			);
-			path = User;
+			path = Authorization;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,28 +383,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5545DABC2B5021B7007D31B6 /* RestaurantMenu.swift in Sources */,
+				554396522B58FECD004D08ED /* ModelJSONSerializer.swift in Sources */,
+				554396632B5A9C40004D08ED /* ConsolePrinter.swift in Sources */,
 				55081A932B46BE5800D71B31 /* SignUpController.swift in Sources */,
 				55081A6A2B467BF300D71B31 /* Restaurant.swift in Sources */,
 				55081A6C2B467C7000D71B31 /* Branch.swift in Sources */,
 				55081A872B46938F00D71B31 /* Order.swift in Sources */,
+				5545DAAE2B4EBD00007D31B6 /* AuthController.swift in Sources */,
 				55081A752B46877B00D71B31 /* Menu.swift in Sources */,
 				55081A6E2B467CF400D71B31 /* Person.swift in Sources */,
+				5545DAC22B502C50007D31B6 /* FoodItem.swift in Sources */,
 				55081A7D2B4688AD00D71B31 /* Meal.swift in Sources */,
 				55A7836F2B4BFD0E00E20DF9 /* EditAccountController.swift in Sources */,
+				5543965E2B5A9976004D08ED /* ConsoleView.swift in Sources */,
+				554396562B5A4664004D08ED /* FileService.swift in Sources */,
+				559843502B5AB02A00930AF8 /* RestaurantConsoleView.swift in Sources */,
 				55081A832B468E3100D71B31 /* Chef.swift in Sources */,
+				5545DAB52B4FBABE007D31B6 /* HomeConsoleView.swift in Sources */,
+				554396492B5168F8004D08ED /* FileIOService.swift in Sources */,
 				55081A702B467D9D00D71B31 /* Employee.swift in Sources */,
+				554396672B5AAD31004D08ED /* CommandLineInputHandler.swift in Sources */,
+				5543965A2B5A73B0004D08ED /* RestaurantSetupController.swift in Sources */,
 				55081A852B4690E900D71B31 /* Kitchen.swift in Sources */,
 				55081A7F2B468D1800D71B31 /* Address.swift in Sources */,
-				55A783792B4D26F100E20DF9 /* SignUpConsoleView.swift in Sources */,
+				5545DAAC2B4EAF49007D31B6 /* AuthConsoleView.swift in Sources */,
 				55081A812B468DF300D71B31 /* Manager.swift in Sources */,
 				55081A602B467AF800D71B31 /* main.swift in Sources */,
+				5545DABA2B4FD2FD007D31B6 /* AppConstants.swift in Sources */,
 				55081A792B46881900D71B31 /* MenuItem.swift in Sources */,
 				55081A912B46BE4C00D71B31 /* LoginController.swift in Sources */,
 				55081A892B4694E000D71B31 /* WaitStaff.swift in Sources */,
-				5545DAA12B4E749C007D31B6 /* LoginConsoleView.swift in Sources */,
 				55081A7B2B46887900D71B31 /* MealItem.swift in Sources */,
 				55081A772B4687DE00D71B31 /* MenuSection.swift in Sources */,
 				55081A952B46C14A00D71B31 /* UserManager.swift in Sources */,
+				5545DAB32B4EEF1E007D31B6 /* HomeController.swift in Sources */,
 				55A783732B4C009000E20DF9 /* AuthenticationValidator.swift in Sources */,
 				55081A722B46817E00D71B31 /* Account.swift in Sources */,
 				5545DAA62B4E77F3007D31B6 /* UserPrompter.swift in Sources */,

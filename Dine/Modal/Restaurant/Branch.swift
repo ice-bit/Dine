@@ -7,14 +7,9 @@
 
 import Foundation
 
-class Branch {
-    private var branchNAme: String
+struct Branch {
+    private var branchName: String
     private var location: String
     private var kitchen: Kitchen
-    
-    init(branchNAme: String, location: String, kitchen: Kitchen) {
-        self.branchNAme = branchNAme
-        self.location = location
-        self.kitchen = kitchen
-    }
+    private var restaurant: Restaurant
 }
