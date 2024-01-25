@@ -31,7 +31,7 @@ enum FileIOError: Error {
 }
 
 class FileIOService {
-    func write(data: Data, into fileName: String, completion: @escaping (Result<Void, FileIOError>) -> Void)  {
+    /*func write(data: Data, into fileName: String, completion: @escaping (Result<Void, FileIOError>) -> Void)  {
         guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             completion(.failure(.documentDirectoryUnavailable))
             return
@@ -68,10 +68,9 @@ class FileIOService {
             print("Error decoding JSON: \(error)")
             completion(.failure(.readError(error)))
         }
-    }
+    }*/
 
-    
-    private func handleFileError(_ error: FileIOError) {
+   /*private func handleFileError(_ error: FileIOError) {
         switch error {
         case .permissionDenied:
             print("Permission denied. Unable to perform file operation.")
