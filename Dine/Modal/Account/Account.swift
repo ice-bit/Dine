@@ -14,24 +14,30 @@ enum AccountStatus: Int, Codable {
 }
 
 enum UserRole: Codable {
-    case manager, waitStaff, chef
+    case admin, manager, waitStaff, chef
 }
 
 class Account: Codable {
-    private var id: String
+    private let userId: UUID
+    private var username: String
     private var password: String
     private var accountStatus: AccountStatus
     private var userRole: UserRole
     
-    init(id: String, password: String, accountStatus: AccountStatus, userRole: UserRole) {
-        self.id = id
+    init(username: String, password: String, accountStatus: AccountStatus, userRole: UserRole) {
+        self.userId = UUID()
+        self.username = username
         self.password = password
         self.accountStatus = accountStatus
         self.userRole = userRole
     }
     
-    func getId() -> String {
-        return id
+    func getUserId() -> UUID {
+        return userId
+    }
+    
+    func getUsername() -> String {
+        return username
     }
     
     func getPassword() -> String {
@@ -43,7 +49,7 @@ class Account: Codable {
     }
     
     func updateUsername(_ username: String) {
-        self.id = username
+        self.username = username
     }
     
     func updatePassword(_ password: String) {
@@ -55,6 +61,6 @@ class Account: Codable {
 
 extension Account: Equatable {
     static func == (lhs: Account, rhs: Account) -> Bool {
-        return lhs.id == rhs.id
+        return lhs.username == rhs.username
     }
 }

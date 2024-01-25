@@ -7,6 +7,16 @@
 
 import Foundation
 
-struct Restaurant {
+struct Restaurant: Codable {
     private var name: String
+    private var branches: [Branch]
+    
+    init(name: String, branches: [Branch]) {
+        self.name = name
+        self.branches = branches
+    }
+    
+    mutating func addBranch(_ branch: Branch) {
+        branches.append(branch)
+    }
 }

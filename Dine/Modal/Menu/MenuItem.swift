@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MenuItem {
+class MenuItem: Codable {
     /*private var menuItemId: UUID
     private var title: String
     private var description: String

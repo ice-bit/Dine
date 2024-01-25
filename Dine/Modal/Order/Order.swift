@@ -15,6 +15,24 @@ enum OrderStatus: Int {
     case none = 5
 }
 
+class Check {
+    
+}
+
 class Order {
+    
+    private let table: Table
+    private let orderStatus: OrderStatus
+    private let menuItems: [MenuItem]
+    
+    convenience init(table: Table, orderStatus: OrderStatus) {
+        self.init(table: table, orderStatus: orderStatus, menuItems: [])
+    }
+    
+    init(table: Table, orderStatus: OrderStatus, menuItems: [MenuItem]) {
+        self.table = table
+        self.orderStatus = orderStatus
+        self.menuItems = menuItems
+    }
     
 }

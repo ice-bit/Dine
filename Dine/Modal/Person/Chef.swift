@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Chef: Employee {
+class Chef: Employee  {
     func takeOrder() {
         
     }

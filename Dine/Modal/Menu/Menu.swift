@@ -7,36 +7,44 @@
 
 import Foundation
 
-class Menu {
-    /*private var menuId: Int
-    private var title: String
-    private var description: String
-    private var menuSections: [MenuSection]
+class Menu: Codable {
+    private var items: [MenuItem]
     
-    init(menuId: Int, title: String, description: String, menuSections: [MenuSection]) {
-        self.menuId = menuId
-        self.title = title
-        self.description = description
-        self.menuSections = menuSections
-    }
-    
-    func addMenuSection() {
-        
-    }*/
-    
-    var items: [MenuItem]
-    
-    init() {
-        self.items = []
+    /// Creates an instance of `Menu` with empty array of `MenuItem`.
+    convenience init() {
+        self.init(items: [])
     }
     
     init(items: [MenuItem]) {
         self.items = items
     }
     
+    subscript(index: Int) -> MenuItem {
+        get {
+            return items[index]
+        }
+    }
+    
     func displayMenu() {
         for (index, item) in items.enumerated() {
             print("\(index + 1). \(item.name) - $\(item.price)")
+        }
+    }
+    
+    func itemsCount() -> Int {
+        return items.count
+    }
+    
+    func addItem(_ item: MenuItem) {
+        items.append(item)
+    }
+    
+    func removeItem(_ item: MenuItem) {
+        if let indexToRemove = items.firstIndex(where: { $0.itemId == item.itemId }) {
+            items.remove(at: indexToRemove)
+            print("\(item.name) removed from the menu.")
+        } else {
+            print("\(item.name) not found in the menu.")
         }
     }
 }

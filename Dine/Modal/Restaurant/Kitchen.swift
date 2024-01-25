@@ -7,12 +7,10 @@
 
 import Foundation
 
-class Kitchen {
-    private var kitchenName: String
-    private var chefs: [Chef]
+struct Kitchen: Codable {
+    private var chefs: [Chef] = []
     
-    init(kitchenName: String, chefs: [Chef]) {
-        self.kitchenName = kitchenName
-        self.chefs = chefs
+    mutating func addChef(_ chef: Chef) {
+        chefs.append(chef)
     }
 }
