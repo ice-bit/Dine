@@ -7,10 +7,19 @@
 
 import Foundation
 
-struct Kitchen: Codable {
+class Kitchen: Codable {
     private var chefs: [Chef] = []
     
-    mutating func addChef(_ chef: Chef) {
+    /// Creates `Kitchen` with empty array of `Chef`s.
+    convenience init() {
+        self.init(chefs: [])
+    }
+    
+    init(chefs: [Chef]) {
+        self.chefs = chefs
+    }
+    
+    func addChef(_ chef: Chef) {
         chefs.append(chef)
     }
 }
