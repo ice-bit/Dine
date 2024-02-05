@@ -30,69 +30,11 @@ enum FileIOError: Error {
     case readError(Error)
 }
 
-class FileIOService {
-    /*func write(data: Data, into fileName: String, completion: @escaping (Result<Void, FileIOError>) -> Void)  {
-        guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            completion(.failure(.documentDirectoryUnavailable))
-            return
-        }
-        
-        let fileURL = documentDirectory.appending(path: fileName)
-        
-        do {
-            try data.write(to: fileURL)
-            completion(.success(()))
-            print("Data written to \(fileName) successfully!")
-        } catch {
-            print("Error writing JSON to file: \(error)")
-            completion(.failure(.writeError(error)))
-        }
-    }
-    
-    func read<T: Codable>(from fileName: String, completion: (Result<T?, FileIOError>) -> Void) {
-        guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            completion(.failure(.documentDirectoryUnavailable))
-            return
-        }
-        
-        let fileURL = documentDirectory.appendingPathComponent(fileName)
-        
-        do {
-            let savedJSONData = try Data(contentsOf: fileURL)
-            let modal = try JSONDecoder().decode(T.self, from: savedJSONData)
-            completion(.success(modal))
-        } catch CocoaError.fileReadNoSuchFile {
-            // File doesn't exist, return nil or handle accordingly
-            completion(.failure(.fileNotFound))
-        } catch {
-            print("Error decoding JSON: \(error)")
-            completion(.failure(.readError(error)))
-        }
-    }*/
+@frozen enum CustomDirectories: String {
+    case folderPath = "orders"
+}
 
-   /*private func handleFileError(_ error: FileIOError) {
-        switch error {
-        case .permissionDenied:
-            print("Permission denied. Unable to perform file operation.")
-        case .fileNotFound:
-            print("File not found.")
-        case .fileAlreadyExists:
-            print("File with the same name already exists.")
-        case .invalidFileURL:
-            print("Invalid file URL.")
-        case .encodingError:
-            print("Error encoding file content.")
-        case .decodingError:
-            print("Error decoding file content.")
-        case .documentDirectoryUnavailable:
-            print("Unable to access the document directory.")
-        case .writeError(_):
-            print("Error encountered while writing: \(error).")
-        case .readError(_):
-            print("Error encountered while reading: \(error)")
-        }
-    }*/
-    
+class FileIOService {
     /// Saves Codable data to a file in the document directory.
     /// - Parameters:
     ///   - data: The Codable data to be saved.
@@ -170,5 +112,58 @@ class FileIOService {
         guard let filePath = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first?.appending(path: fileName).absoluteString else { return false }
         
         return fileManager.fileExists(atPath: filePath)
+    }
+    
+    /// Function to get the document directory path
+    func getDocumentDirectory() -> URL {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    }
+
+    func writeOrderToFile(order: Order) {
+        let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let ordersDirectory = documentDirectory.appendingPathComponent("Orders")
+
+        if !FileManager.default.fileExists(atPath: ordersDirectory.path) {
+            do {
+                try FileManager.default.createDirectory(at: ordersDirectory, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                print("Error creating Orders directory: \(error.localizedDescription)")
+                return
+            }
+        }
+
+        let orderURL = ordersDirectory.appendingPathComponent("myOrder.json")
+
+        do {
+            let data = try JSONEncoder().encode(order)
+            try data.write(to: orderURL)
+            print("Order successfully written to file.")
+        } catch {
+            print("Error saving Order: \(error.localizedDescription)")
+        }
+    }
+    
+    func readAllOrdersFromDirectory() -> [Order] {
+        var orders: [Order] = []
+
+        let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let ordersDirectory = documentDirectory.appendingPathComponent("Orders")
+
+        guard let directoryContents = try? FileManager.default.contentsOfDirectory(at: ordersDirectory, includingPropertiesForKeys: nil, options: []) else {
+            print("Error reading Orders directory.")
+            return orders
+        }
+
+        for orderURL in directoryContents {
+            do {
+                let data = try Data(contentsOf: orderURL)
+                let order = try JSONDecoder().decode(Order.self, from: data)
+                orders.append(order)
+            } catch {
+                print("Error reading Order from file: \(error.localizedDescription)")
+            }
+        }
+
+        return orders
     }
 }
