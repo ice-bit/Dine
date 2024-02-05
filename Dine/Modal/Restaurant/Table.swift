@@ -7,18 +7,37 @@
 
 import Foundation
 
-enum TableStatus {
+enum TableStatus: Codable, CaseIterable {
     case free, reserved, occupied, other
 }
 
-class Table {
-    private let status: TableStatus
+class Table: Codable {
+    private let tableId: UUID
+    private var _tableStatus: TableStatus
     private let maxCapacity: Int
     private let locationIdentifier: Int
     
+    var tableStatus: TableStatus {
+        return _tableStatus
+    }
+    
     init(status: TableStatus, maxCapacity: Int, locationIdentifier: Int) {
-        self.status = status
+        self.tableId = UUID()
+        self._tableStatus = status
         self.maxCapacity = maxCapacity
         self.locationIdentifier = locationIdentifier
     }
+    
+    func getTableId() -> String {
+        return tableId.uuidString
+    }
+    
+    func getTableLocationId() -> Int {
+        return locationIdentifier
+    }
+    
+    func changeTableStatus(to status: TableStatus) {
+        _tableStatus = status
+    }
+    
 }
