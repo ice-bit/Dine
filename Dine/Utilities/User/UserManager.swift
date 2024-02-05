@@ -18,7 +18,7 @@ protocol UserManagabale {
 
 class UserManager: UserManagabale {
     private var users: [Account] = [
-        Account(id: "TechDev_123", password: "StrongP@ss123", accountStatus: .active, userRole: .manager)
+//        Account(username: "TechDev_123", password: "StrongP@ss123", accountStatus: .active, userRole: .manager, branch: nil)
     ]
     
     func addUser(_ account: Account) {
@@ -36,11 +36,11 @@ class UserManager: UserManagabale {
     }
     
     func checkUserPresence(_ username: String) -> Bool {
-        return users.contains(where: { $0.getId() == username })
+        return users.contains(where: { $0.getUsername() == username })
     }
     
     func searchUser(_ username: String) -> Account? {
-        if let account = users.first(where: { $0.getId() == username }) {
+        if let account = users.first(where: { $0.getUsername() == username }) {
             return account
         } else {
             return nil
@@ -48,7 +48,7 @@ class UserManager: UserManagabale {
     }
     
     func isValidLogin(username: String, password: String) -> Bool {
-        return users.contains(where: {$0.getId() == username && $0.getPassword() == password })
+        return users.contains(where: {$0.getUsername() == username && $0.getPassword() == password })
     }
     
     func getNumberOfUsers() -> Int {

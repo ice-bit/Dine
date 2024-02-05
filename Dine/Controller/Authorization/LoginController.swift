@@ -8,7 +8,7 @@
 import Foundation
 
 class LoginController {
-    private let userManager: UserManagabale
+    /*private let userManager: UserManagabale
     
     init(userManager: UserManagabale) {
         self.userManager = userManager
@@ -38,5 +38,26 @@ class LoginController {
         } else {
             return false
         }
+    }*/
+    func authenticateUser(username: String, password: String) -> Employee? {
+        guard FileIOService.fileExists(withName: "\(username).json") else {
+            print("User with \(username) doesn't exists.")
+            return nil
+        }
+        
+        do {
+            if let user: Employee = try FileIOService.readDataFromFile(fileName: "\(username).json") {
+                if user.fetchPassword() == password {
+                    print("Logged in")
+                    return user
+                } else {
+                    print("Incorrect password")
+                }
+            }
+        } catch {
+            print("Error occured: \(error)")
+        }
+        
+        return nil
     }
 }

@@ -2,17 +2,23 @@
 //  AuthConsoleView.swift
 //  Dine
 //
-//  Created by doss-zstch1212 on 10/01/24.
+//  Created by doss-zstch1212 on 23/01/24.
 //
 
 import Foundation
 
-class AuthConsoleView: ConsolePrinter, CommandLineInputHandler  {
-    func prompt() -> (String, String) {
-        print("Enter username: ", terminator: "")
+struct AuthConsoleView {
+    func promptAdminCredentials() {
+        print("Enter new username:")
         let username = readLine() ?? ""
-        print("Enter password: ", terminator: "")
+        print("Enter new password:")
         let password = readLine() ?? ""
-        return (username, password)
+        
+        let authController = AuthController()
+        let adminAccount = authController.createAccount(username: username, password: password, userRole: .admin)
+    }
+    
+    func mapConsoleView() {
+        
     }
 }

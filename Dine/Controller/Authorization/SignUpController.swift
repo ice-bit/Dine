@@ -34,9 +34,9 @@ class SignUpController {
             throw AuthenticationError.invalidPassword
         }
         
-        let newAccount = Account(id: username, password: password, accountStatus: .active, userRole: role)
-        
-        userManager.addUser(newAccount)
+//        let newAccount = Account(username: username, password: password, accountStatus: .active, userRole: role)
+//        
+//        userManager.addUser(newAccount)
     }
     
     func initiateAccountRegistration() throws {

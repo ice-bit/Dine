@@ -16,9 +16,10 @@ class HomeConsoleView {
     
     func displayHomeOptions() {
         print("Home")
-        print("1. Place order")
-        print("2. Customize menu")
-        print("3. Add items to menu")
+        print("1. Place Order")
+        print("2. Customize Menu")
+        print("3. Generate Bill")
+        print("4. Update Order Status")
         handleHomeOptions()
     }
     
@@ -65,14 +66,20 @@ class HomeConsoleView {
         let choice = readLine() ?? ""
         switch choice {
         case "1":
-            let orderConsoleView = OrderConsoleView()
-            
+            let orderConsoleView = OrderConsoleView(branch: branch)
+            orderConsoleView.displayMenu()
         case "2":
-            print()
-        case "3":
             displayEditMenuOptions()
+        case "3":
+            let billConsoleView = BillingConsoleView(branch: branch)
+            billConsoleView.generatebill()
+        case "4":
+            print()
+            
         default:
             print("Invalid input")
         }
+        
+        displayHomeOptions()
     }
 }
