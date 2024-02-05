@@ -20,9 +20,7 @@ class Menu: Codable {
     }
     
     subscript(index: Int) -> MenuItem {
-        get {
-            return items[index]
-        }
+        return items[index]
     }
     
     func displayMenu() {
