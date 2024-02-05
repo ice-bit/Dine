@@ -8,37 +8,33 @@
 import Foundation
 
 class Branch: Codable {
+    private var _branchId: UUID
     private var branchName: String
     private var location: String
+    
     private var kitchen: Kitchen
     private var menu: Menu
     
-    init(branchName: String, location: String, kitchen: Kitchen, menu: Menu) {
+    private var tables: [Table]
+    
+    var branchId: UUID {
+        return _branchId
+    }
+    
+    var availableTables: [Table] {
+        return tables.filter { $0.tableStatus == .free }
+    }
+    
+    init(_branchId: UUID, branchName: String, location: String, kitchen: Kitchen, menu: Menu, tables: [Table]) {
+        self._branchId = _branchId
         self.branchName = branchName
         self.location = location
         self.kitchen = kitchen
         self.menu = menu
+        self.tables = tables
     }
     
-    func menuItemsCount() -> Int {
-        return menu.itemsCount()
-    }
-    
-    func getMenuItem(at index: Int) -> MenuItem {
-        return menu[index]
-    }
-    
-    // Method to add an item to the menu
-    func addItemToMenu(_ item: MenuItem) {
-        menu.addItem(item)
-    }
-    
-    // Method to remove an item from the menu
-    func removeItemFromMenu(_ item: MenuItem) {
-        menu.removeItem(item)
-    }
-    
-    func displayMenu() {
-        menu.displayMenu()
+    convenience init(branchName: String, location: String) {
+        self.init(_branchId: UUID(), branchName: branchName, location: location, kitchen: Kitchen(), menu: Menu(), tables: [])
     }
 }
