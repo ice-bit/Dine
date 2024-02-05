@@ -13,9 +13,10 @@ class Employee: Person {
     private let account: Account
     private let branch: Branch
     
-    init(name: String, email: String, phoneNumber: String, account: Account) {
+    init(name: String, email: String, phoneNumber: String, account: Account, branch: Branch) {
         self.employeeId = UUID()
         self.account = account
+        self.branch = branch
         super.init(name: name, email: email, phoneNumber: phoneNumber)
     }
     
