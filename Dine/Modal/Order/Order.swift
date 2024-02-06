@@ -26,7 +26,7 @@ class Order: Codable {
     }
     
     var tableLocationId: Int {
-        return table.getTableLocationId()
+        return table.locationId
     }
     
     var orderId: UUID {

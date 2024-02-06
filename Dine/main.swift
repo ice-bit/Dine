@@ -45,15 +45,18 @@ class Main {
     let table2 = Table(status: .occupied, maxCapacity: 6, locationIdentifier: 102)
     let table3 = Table(status: .free, maxCapacity: 2, locationIdentifier: 103)
 
-    
-    
+    let tables = [
+        Table(status: .free, maxCapacity: 4, locationIdentifier: 101),
+        Table(status: .occupied, maxCapacity: 6, locationIdentifier: 102),
+        Table(status: .free, maxCapacity: 2, locationIdentifier: 103)
+    ]
     let orderManager = OrderManager()
     let billManager = BillManager()
     
     
     
     
-    func testHomeMenu() {
+    /*func testHomeMenu() {
         let menu = Menu(items: menuItems)
         
         let order = Order(table: Table(status: .occupied, maxCapacity: 10, locationIdentifier: 01), orderStatus: .preparing, menuItems: menuItems)
@@ -68,9 +71,9 @@ class Main {
         
         let homeConsoleView = HomeConsoleView(branch: testBranch)
         homeConsoleView.displayHomeOptions()
-    }
+    }*/
     
-    func testChef() {
+    /*func testChef() {
         let menu = Menu(items: menuItems)
         
         let order = Order(table: Table(status: .occupied, maxCapacity: 10, locationIdentifier: 01), orderStatus: .received, menuItems: testMenu)
@@ -89,11 +92,19 @@ class Main {
     
     func testAdminControls() {
         
+    }*/
+    
+    func testFlow() {
+        let menu = Menu(items: menuItems)
+        let testBranch = Branch(branchName: "KFC UK", location: "London, UK", kitchen: Kitchen(), menu: menu, tables: tables)
+        
+        let homeConsoleView = HomeConsoleView(branch: testBranch)
+        homeConsoleView.displayHomeOptions()
     }
 }
 
 let main = Main()
-main.testChef()
+main.testFlow()
 
 
 

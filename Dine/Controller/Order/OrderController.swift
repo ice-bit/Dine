@@ -15,9 +15,12 @@ class OrderController {
     }
     
     func createOrder(for table: Table, menuItem: [MenuItem]) {
-        let order = Order(table: table, orderStatus: .received, menuItems: menuItem)
-        orderManager.addOrder(order: order)
+        let order = Order(table: table, orderStatus: .completed, menuItems: menuItem)
+        // Change table status
         table.changeTableStatus(to: .occupied)
+        
+        // Adding to OrderManager
+        orderManager.addOrder(order: order)
     }
     
     

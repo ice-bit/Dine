@@ -12,28 +12,28 @@ enum TableStatus: Codable, CaseIterable {
 }
 
 class Table: Codable {
-    private let tableId: UUID
+    private let _tableId: UUID
     private var _tableStatus: TableStatus
     private let maxCapacity: Int
-    private let locationIdentifier: Int
+    private let _locationIdentifier: Int
+    
+    var tableId: UUID {
+        return _tableId
+    }
     
     var tableStatus: TableStatus {
         return _tableStatus
     }
     
+    var locationId: Int {
+        return _locationIdentifier
+    }
+    
     init(status: TableStatus, maxCapacity: Int, locationIdentifier: Int) {
-        self.tableId = UUID()
+        self._tableId = UUID()
         self._tableStatus = status
         self.maxCapacity = maxCapacity
-        self.locationIdentifier = locationIdentifier
-    }
-    
-    func getTableId() -> String {
-        return tableId.uuidString
-    }
-    
-    func getTableLocationId() -> Int {
-        return locationIdentifier
+        self._locationIdentifier = locationIdentifier
     }
     
     func changeTableStatus(to status: TableStatus) {

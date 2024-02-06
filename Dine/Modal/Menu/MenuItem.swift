@@ -9,8 +9,8 @@ import Foundation
 
 class MenuItem: Codable {
     let itemId: UUID
-    let name: String
-    let price: Double
+    var name: String
+    var price: Double
     
     init(name: String, price: Double) {
         self.itemId = UUID()

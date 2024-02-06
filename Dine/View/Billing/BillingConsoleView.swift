@@ -8,21 +8,27 @@
 import Foundation
 
 class BillingConsoleView {
-    private let branch: Branch
+    private let billManager: BillManager
+    private let orderManager: OrderManager
     
-    init(branch: Branch) {
-        self.branch = branch
+    init(billManager: BillManager, orderManager: OrderManager) {
+        self.billManager = billManager
+        self.orderManager = orderManager
     }
     
-    func displayUnbilledOrdersAndChoose() -> Order? {
-        let billingController = BillingController(billManager: branch.billManager)
-        guard let unbilledOrders = billingController.getUnbilledOrders(from: branch.orderManager) else {
+    private func displayUnbilledOrdersAndChoose() -> Order? {
+        let billingController = BillingController(billManager: billManager, orderManager: orderManager)
+        
+        guard let unbilledOrders = billingController.getUnbilledOrders() else {
+            print("No billed order available.")
             return nil
         }
         
         print("Unbilled Orders")
         for (index, order) in unbilledOrders.enumerated() {
-            print("\(index + 1). Order: \(order.orderId)\n\(order.displayOrderItems())")
+            print("\(index + 1). Order: \(order.orderId)")
+            print("Ordered Items:")
+            print(" - \(order.displayOrderItems())")
         }
         
         print("Enter the number of the order you want to choose (or 0 to cancel):")
@@ -39,8 +45,15 @@ class BillingConsoleView {
     func generatebill() {
         guard let order = displayUnbilledOrdersAndChoose() else { return }
         
-        let billingController = BillingController(billManager: branch.billManager)
+        let billingController = BillingController(billManager: billManager, orderManager: orderManager)
         billingController.createBill(for: order)
         print("Bill created successfully.")
+    }
+    
+    func viewBill() {
+        let bills = billManager.bills
+        for (index, bill) in bills.enumerated() {
+            print("\(index). Bill: \(bill.billId)")
+        }
     }
 }

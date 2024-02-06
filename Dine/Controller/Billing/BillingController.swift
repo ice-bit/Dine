@@ -9,9 +9,11 @@ import Foundation
 
 class BillingController {
     private let billManager: BillManager
+    private let orderManager: OrderManager
     
-    init(billManager: BillManager) {
+    init(billManager: BillManager, orderManager: OrderManager) {
         self.billManager = billManager
+        self.orderManager = orderManager
     }
     
     func createBill(for order: Order, tip: Double? = nil) {
@@ -29,7 +31,7 @@ class BillingController {
         billManager.addBill(bill)
     }
     
-    func getUnbilledOrders(from orderManager: OrderManager) -> [Order]? {
+    func getUnbilledOrders() -> [Order]? {
         return orderManager.getUnbilledOrders()
     }
 }

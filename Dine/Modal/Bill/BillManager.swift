@@ -8,15 +8,19 @@
 import Foundation
 
 class BillManager: Codable {
-    private var bills: [Bill] = []
+    private var _bills: [Bill] = []
     
+    var bills: [Bill] {
+        return _bills
+    }
+     
     func addBill(_ bill: Bill) {
-        bills.append(bill)
+        _bills.append(bill)
     }
     
     func removeBill(_ bill: Bill) {
-        if let billIndex = bills.firstIndex(where: { $0.billId == bill.billId }) {
-            bills.remove(at: billIndex)
+        if let billIndex = _bills.firstIndex(where: { $0.billId == bill.billId }) {
+            _bills.remove(at: billIndex)
         }
     }
 }

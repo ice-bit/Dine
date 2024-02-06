@@ -3,4 +3,22 @@
    uuid = "FBFA17CE-848D-432F-99EF-E955FDE8FEA9"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0FC3C2ED-A2EB-4055-92B8-5CA98C566170"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dine/View/Billing/BillingConsoleView.swift"
+            startingColumnNumber = "67"
+            endingColumnNumber = "67"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "BillingConsoleView"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

@@ -13,28 +13,33 @@ class Branch: Codable {
     private var location: String
     
     private var kitchen: Kitchen
-    private var menu: Menu
     
-    private var tables: [Table]
+    var menu: Menu
+    
+    private var _tables: [Table]
     
     var branchId: UUID {
         return _branchId
     }
     
-    var availableTables: [Table] {
-        return tables.filter { $0.tableStatus == .free }
+    var tablesCount: Int {
+        return _tables.count
     }
     
-    init(_branchId: UUID, branchName: String, location: String, kitchen: Kitchen, menu: Menu, tables: [Table]) {
-        self._branchId = _branchId
+    var tables: [Table] {
+        return _tables
+    }
+    
+    var availableTables: [Table] {
+        return _tables.filter { $0.tableStatus == .free }
+    }
+    
+    init(branchName: String, location: String, kitchen: Kitchen, menu: Menu, tables: [Table]) {
+        self._branchId = UUID()
         self.branchName = branchName
         self.location = location
         self.kitchen = kitchen
         self.menu = menu
-        self.tables = tables
-    }
-    
-    convenience init(branchName: String, location: String) {
-        self.init(_branchId: UUID(), branchName: branchName, location: location, kitchen: Kitchen(), menu: Menu(), tables: [])
+        self._tables = tables
     }
 }

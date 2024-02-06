@@ -14,6 +14,10 @@ class TableManager: Codable {
         return tables
     }
     
+    var tableCount: Int {
+        return tables.count
+    }
+    
     func addTable(_ table: Table) {
         tables.append(table)
     }

@@ -8,14 +8,14 @@
 import Foundation
 
 class ChefConsoleView {
-    private let branch: Branch
+    private let orderManager: OrderManager
     
-    init(branch: Branch) {
-        self.branch = branch
+    init(orderManager: OrderManager) {
+        self.orderManager = orderManager
     }
     
     func manageReceivedOrders() {
-        let chefController = ChefController(orderManager: branch.orderManager)
+        let chefController = ChefController(orderManager: orderManager)
         
         guard let receivedOrders = chefController.fetchReceivedOrders() else { return }
         

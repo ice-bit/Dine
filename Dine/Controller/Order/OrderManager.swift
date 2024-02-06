@@ -14,6 +14,14 @@ class OrderManager: Codable {
         return _orders
     }
     
+    var ordersCount: Int {
+        return _orders.count
+    }
+    
+    subscript(_ index: Int) -> Order {
+        return _orders[index]
+    }
+    
     func addOrder( order: Order) {
         _orders.append(order)
         
@@ -31,7 +39,7 @@ class OrderManager: Codable {
     
     // Orders that are completed
     func getUnbilledOrders() -> [Order]? {
-        let unbilledOrders = _orders.filter { $0.orderStatus == .received }
+        let unbilledOrders = _orders.filter { $0.orderStatus == .completed }
         
         guard !unbilledOrders.isEmpty else { return nil }
         

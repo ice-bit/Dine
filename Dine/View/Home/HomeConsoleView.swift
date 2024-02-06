@@ -10,6 +10,10 @@ import Foundation
 class HomeConsoleView {
     private let branch: Branch
     
+    private let orderManager = OrderManager()
+    private let tableManager = TableManager()
+    private let billManager = BillManager()
+    
     init(branch: Branch) {
         self.branch = branch
     }
@@ -20,62 +24,35 @@ class HomeConsoleView {
         print("2. Customize Menu")
         print("3. Generate Bill")
         print("4. Update Order Status")
+        print("5. View Bills")
+        print("6. View Orders")
+        print("7. View Menu")
         handleHomeOptions()
     }
     
-    func displayEditMenuOptions() {
-        print("Edit menu")
-        print("1. Add food item")
-        print("2. Remove item")
-        handleEditMenuOptions()
-    }
-    
-    func promptFoodItem() {
-        print("Enter food item name:")
-        let name = readLine() ?? ""
-        print("Enter price:")
-        let strPrice = readLine()
-        guard let unwrappedStrPrice = strPrice else {
-            print("Failed to unwrap - \(#function)")
-            return
-        }
-        
-        guard let price = Double(unwrappedStrPrice) else {
-            print("Failed to convert string to double - \(#function)")
-            return
-        }
-        
-        let menuController = MenuController(branch: branch)
-        menuController.addItemToMenu(name: name, price: price)
-        FileIOService.saveDataToFile(data: branch, fileName: "\(branch)")
-    }
-    
-    func handleEditMenuOptions() {
+    private func handleHomeOptions() {
         let choice = readLine() ?? ""
         switch choice {
         case "1":
-            promptFoodItem()
-        case "2":
-            print()
-        default:
-            print("Invalid input")
-        }
-    }
-    
-    func handleHomeOptions() {
-        let choice = readLine() ?? ""
-        switch choice {
-        case "1":
-            let orderConsoleView = OrderConsoleView(branch: branch)
+            let orderConsoleView = OrderConsoleView(branch: branch, orderManager: orderManager, tableManager: tableManager)
             orderConsoleView.displayMenu()
         case "2":
-            displayEditMenuOptions()
+            let menuConsoleView = MenuConsoleView(menu: branch.menu)
+            menuConsoleView.displayAndHandleMenuOptions()
         case "3":
-            let billConsoleView = BillingConsoleView(branch: branch)
+            let billConsoleView = BillingConsoleView(billManager: billManager, orderManager: orderManager)
             billConsoleView.generatebill()
         case "4":
             print()
-            
+        case "5":
+            let billConsoleView = BillingConsoleView(billManager: billManager, orderManager: orderManager)
+            billConsoleView.viewBill()
+        case "6":
+            let orderConsoleView = OrderConsoleView(branch: branch, orderManager: orderManager, tableManager: tableManager)
+            orderConsoleView.viewOrders()
+        case "7":
+            let menuConsoleView = MenuConsoleView(menu: branch.menu)
+            menuConsoleView.viewMenu()
         default:
             print("Invalid input")
         }
