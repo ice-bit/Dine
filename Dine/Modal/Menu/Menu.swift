@@ -8,7 +8,15 @@
 import Foundation
 
 class Menu: Codable {
-    private var items: [MenuItem]
+    private var _items: [MenuItem]
+    
+    var itemsCount: Int {
+        return _items.count
+    }
+    
+    var menuItems: [MenuItem] {
+        return _items
+    }
     
     /// Creates an instance of `Menu` with empty array of `MenuItem`.
     convenience init() {
@@ -16,30 +24,26 @@ class Menu: Codable {
     }
     
     init(items: [MenuItem]) {
-        self.items = items
+        self._items = items
     }
     
     subscript(index: Int) -> MenuItem {
-        return items[index]
+        return _items[index]
     }
     
-    func displayMenu() {
-        for (index, item) in items.enumerated() {
+    func displayMenuItems() {
+        for (index, item) in _items.enumerated() {
             print("\(index + 1). \(item.name) - $\(item.price)")
         }
     }
     
-    func itemsCount() -> Int {
-        return items.count
-    }
-    
     func addItem(_ item: MenuItem) {
-        items.append(item)
+        _items.append(item)
     }
     
     func removeItem(_ item: MenuItem) {
-        if let indexToRemove = items.firstIndex(where: { $0.itemId == item.itemId }) {
-            items.remove(at: indexToRemove)
+        if let indexToRemove = _items.firstIndex(where: { $0.itemId == item.itemId }) {
+            _items.remove(at: indexToRemove)
             print("\(item.name) removed from the menu.")
         } else {
             print("\(item.name) not found in the menu.")
