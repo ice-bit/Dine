@@ -35,7 +35,7 @@ class HomeConsoleView {
         switch choice {
         case "1":
             let orderConsoleView = OrderConsoleView(branch: branch, orderManager: orderManager, tableManager: tableManager)
-            orderConsoleView.displayMenu()
+            orderConsoleView.promptMenuItemsSelection()
         case "2":
             let menuConsoleView = MenuConsoleView(menu: branch.menu)
             menuConsoleView.displayAndHandleMenuOptions()

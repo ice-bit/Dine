@@ -18,12 +18,6 @@ class OrderConsoleView {
         self.tableManager = tableManager
     }
     
-    func displayMenu() {
-//        menu.displayMenu()
-        takeOrder()
-        
-    }
-    
     func displayTablesAndChoose() -> Table? {
         let availableTables = branch.availableTables
         
@@ -39,16 +33,16 @@ class OrderConsoleView {
         
         print("Enter the number of the table you want to choose (or 0 to cancel):")
         if let choice = readLine(), let tableNumber = Int(choice), tableNumber >= 1, tableNumber <= branch.tablesCount {
-            let chosenTable = branch.tables[tableNumber - 1]
+            let chosenTable = branch.availableTables[tableNumber - 1]
             print("You chose Table \(chosenTable.tableId)")
-            return chosenTable
+            return branch.tables.first(where: { $0.tableId == chosenTable.tableId })
         } else {
             print("Invalid choice or canceled.")
             return nil
         }
     }
     
-    func takeOrder() {
+    func promptMenuItemsSelection() {
         var orderItems: [MenuItem] = []
         
         // Display menu items

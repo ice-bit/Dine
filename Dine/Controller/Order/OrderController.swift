@@ -22,6 +22,4 @@ class OrderController {
         // Adding to OrderManager
         orderManager.addOrder(order: order)
     }
-    
-    
 }
