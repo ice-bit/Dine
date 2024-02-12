@@ -36,6 +36,10 @@ class Table: Codable {
         self._locationIdentifier = locationIdentifier
     }
     
+    convenience init(maxCapacity: Int, locationIdentifier: Int) {
+        self.init(status: .free, maxCapacity: maxCapacity, locationIdentifier: locationIdentifier)
+    }
+    
     func changeTableStatus(to status: TableStatus) {
         _tableStatus = status
     }

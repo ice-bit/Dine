@@ -17,8 +17,8 @@ class SetupController {
     func createRestaurant(name: String, locationName: String) {
         let restaurant = Restaurant(name: name, location: locationName)
         restaurantManager.setRestaurant(restaurant)
-        // Initial setup finished
-        UserDefaults.standard.setValue(false, forKey: "isInitialSetupTest")
+        // Restaurnat setup finished
+        UserStatus.restaurantSetup.updateStatus(true)
     }
 }
 

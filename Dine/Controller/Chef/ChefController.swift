@@ -28,6 +28,4 @@ class ChefController {
         
         return receivedOrders
     }
-    
-    
 }

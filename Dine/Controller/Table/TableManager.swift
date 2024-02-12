@@ -14,12 +14,24 @@ class TableManager: Codable {
         return tables
     }
     
-    var tableCount: Int {
+    var tablesCount: Int {
         return tables.count
+    }
+    
+    var availableTables: [Table] {
+        return tables.filter { $0.tableStatus == .free }
     }
     
     func addTable(_ table: Table) {
         tables.append(table)
+    }
+    
+    func removeTable(_ table: Table) {
+        if let index = tables.firstIndex(where: {$0.tableId == table.tableId }) {
+            tables.remove(at: index)
+        } else {
+            print("No tables found")
+        }
     }
     
 }

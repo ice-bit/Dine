@@ -11,6 +11,21 @@
 
 import Foundation
 
+@frozen enum UserStatus: String {
+    case userLoggedIn = "isUserLoggedInTest2"
+    case initialSetup = "isInitialStartUpTest2"
+    case restaurantSetup = "isRestaurantSetUpTest2"
+    
+    func getStatus() -> Bool {
+        return UserDefaults.standard.bool(forKey: self.rawValue)
+    }
+    
+    func updateStatus(_ status: Bool) {
+        UserDefaults.standard.set(status, forKey: self.rawValue)
+    }
+}
+
+
 func getMenu() -> Menu {
     let menuItems: [MenuItem] = [
         MenuItem(name: "Burger", price: 9.99),
@@ -118,8 +133,11 @@ class Main {
     
     // MARK: - Starting point...
     func start() {
-        updateInitialSetupToTrue()
-        while getInitialSetupStatus() {
+        while !UserStatus.restaurantSetup.getStatus() {
+            setupRestaurant()
+        }
+        
+        while UserStatus.initialSetup.getStatus() {
             onboardUser()
         }
         
@@ -129,7 +147,7 @@ class Main {
     // MARK: - Normal flow
     private func startNormalFlow() {
         
-        while !getLoginStatus() {
+        while !UserStatus.userLoggedIn.getStatus() {
             authenticateUser()
         }
         
@@ -141,14 +159,11 @@ class Main {
     private func authenticateUser() {
         let authConsoleView = AuthConsoleView(userRepository: userRepository)
         authConsoleView.startLogin()
-        updateLoginStatus()
     }
     
     private func onboardUser() {
         let authConsoleView = AuthConsoleView(userRepository: userRepository)
         authConsoleView.startSignUp()
-        
-        updateInitialSetup()
     }
     
     private func setupRestaurant() {
@@ -167,33 +182,6 @@ class Main {
     }
 }
 
-// MARK: - Onboarding UserDefaults
-extension Main: AppOnboardingProtocol {
-    func getLoginStatus() -> Bool {
-        return UserDefaults.standard.bool(forKey: "isUserLoggedInTest")
-    }
-    
-    func updateLoginStatus() {
-        UserDefaults.standard.set(true, forKey: "isUserLoggedInTest")
-    }
-    
-    func getInitialSetupStatus() -> Bool {
-        return UserDefaults.standard.bool(forKey: "isInitialSetupTest")
-    }
-    
-    func updateInitialSetup() {
-        UserDefaults.standard.setValue(false, forKey: "isInitialSetupTest")
-    }
-    
-    func updateInitialSetupToTrue() {
-        UserDefaults.standard.setValue(true, forKey: "isInitialSetupTest")
-    }
-}
-
 // MARK: - Caller
 let main = Main()
 main.start()
-
-
-
-

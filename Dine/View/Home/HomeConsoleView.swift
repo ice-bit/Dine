@@ -30,6 +30,8 @@ class HomeConsoleView {
         print("6. View Orders")
         print("7. View Menu")
         print("8. Add Employee")
+        print("9. Customize Table")
+        print("10. Sign Out")
         print("0. Quit")
         handleHomeOptions()
     }
@@ -47,7 +49,8 @@ class HomeConsoleView {
             let billConsoleView = BillingConsoleView(billManager: billManager, orderManager: orderManager)
             billConsoleView.generatebill()
         case "4":
-            print()
+            let chefConsoleView = ChefConsoleView(orderManager: orderManager)
+            chefConsoleView.manageReceivedOrders()
         case "5":
             let billConsoleView = BillingConsoleView(billManager: billManager, orderManager: orderManager)
             billConsoleView.viewBill()
@@ -60,6 +63,12 @@ class HomeConsoleView {
         case "8":
             let authConsoleView = AuthConsoleView(userRepository: userRepository)
             authConsoleView.createEmployee()
+        case "9":
+            let tableConsoleView = TableConsoleView(tableManager: tableManager)
+            tableConsoleView.displayOptions()
+        case "10":
+            UserStatus.userLoggedIn.updateStatus(false)
+            return
         case "0":
             exit(0)
         default:

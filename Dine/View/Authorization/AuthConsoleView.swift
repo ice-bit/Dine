@@ -40,10 +40,17 @@ class AuthConsoleView {
         let password = readLine() ?? ""
         
         let authController = AuthController(userRepository: userRepository)
-        if authController.createAccount(username: username, password: password, userRole: userRole) {
+        do {
+            try authController.createAccount(username: username, password: password, userRole: userRole)
             print("Account successfully created")
-        } else {
-            print("Failed to create account")
+        } catch AuthenticationError.userAlreadyExists {
+            print("Failed to create account. User already exists.")
+        } catch AuthenticationError.invalidUsername {
+            print("Invalid username. Please enter a valid username.")
+        } catch AuthenticationError.invalidPassword {
+            print("Invalid password. Password must be at least 8 characters long and contain a combination of letters, numbers, and special characters.")
+        } catch {
+            print("An unexpected error occurred: \(error)")
         }
     }
     

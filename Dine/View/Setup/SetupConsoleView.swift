@@ -18,18 +18,18 @@ class SetupConsoleView {
         print("Enter restaurant name")
         let restaurantName = readLine() ?? ""
         
-        if restaurantName.isEmpty {
+        /*if restaurantName.isEmpty {
             print("Enter a valid name")
             promptRestaurantSetup()
-        }
+        }*/
         
         print("Enter location name:")
         let locationName = readLine() ?? ""
         
-        if locationName.isEmpty {
+        /*if locationName.isEmpty {
             print("Enter a valid name")
             promptRestaurantSetup()
-        }
+        }*/
         
         let setupController = SetupController(restaurantManager: restaurantManager)
         setupController.createRestaurant(name: restaurantName, locationName: locationName)

@@ -19,7 +19,7 @@ class OrderConsoleView {
     }
     
     func displayTablesAndChoose() -> Table? {
-        let availableTables = restaurant.availableTables
+        let availableTables = tableManager.availableTables
         
         guard !availableTables.isEmpty else {
             print("No tables available.")
@@ -32,10 +32,10 @@ class OrderConsoleView {
         }
         
         print("Enter the number of the table you want to choose (or 0 to cancel):")
-        if let choice = readLine(), let tableNumber = Int(choice), tableNumber >= 1, tableNumber <= restaurant.tablesCount {
-            let chosenTable = restaurant.availableTables[tableNumber - 1]
+        if let choice = readLine(), let tableNumber = Int(choice), tableNumber >= 1, tableNumber <= tableManager.availableTables.count {
+            let chosenTable = tableManager.availableTables[tableNumber - 1]
             print("You chose Table \(chosenTable.tableId)")
-            return restaurant.tables.first(where: { $0.tableId == chosenTable.tableId })
+            return tableManager.getTables.first(where: { $0.tableId == chosenTable.tableId })
         } else {
             print("Invalid choice or canceled.")
             return nil
