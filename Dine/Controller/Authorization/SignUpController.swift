@@ -10,7 +10,7 @@ import Foundation
 enum AuthenticationError: Error {
     case invalidUsername
     case invalidPassword
-    //case invalidInput
+    case inactiveAccount
     case userAlreadyExists
 }
 
@@ -47,18 +47,18 @@ class SignUpController {
         try createAccount(username: username, password: password, role: .manager)
     }
     
-    func handleSignUpError(_ error: AuthenticationError) {
-        switch error {
-        case .invalidUsername:
-            print("Invalid username. Please follow the username criteria.")
-        case .invalidPassword:
-            print("Password is not strong enough. Please follow the password requirements.")
-        case .userAlreadyExists:
-            print("Username already exists!")
-        /*case .invalidInput:
-            print("Invalid input")*/
-        }
-    }
+//    func handleSignUpError(_ error: AuthenticationError) {
+//        switch error {
+//        case .invalidUsername:
+//            print("Invalid username. Please follow the username criteria.")
+//        case .invalidPassword:
+//            print("Password is not strong enough. Please follow the password requirements.")
+//        case .userAlreadyExists:
+//            print("Username already exists!")
+//        /*case .invalidInput:
+//            print("Invalid input")*/
+//        }
+//    }
     
     
     

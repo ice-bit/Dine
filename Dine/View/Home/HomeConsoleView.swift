@@ -8,14 +8,16 @@
 import Foundation
 
 class HomeConsoleView {
-    private let branch: Branch
+    private let restaurant: Restaurant
+    private let userRepository: UserRepository
     
     private let orderManager = OrderManager()
     private let tableManager = TableManager()
     private let billManager = BillManager()
     
-    init(branch: Branch) {
-        self.branch = branch
+    init(restaurant: Restaurant, userRepository: UserRepository) {
+        self.restaurant = restaurant
+        self.userRepository = userRepository
     }
     
     func displayHomeOptions() {
@@ -27,6 +29,8 @@ class HomeConsoleView {
         print("5. View Bills")
         print("6. View Orders")
         print("7. View Menu")
+        print("8. Add Employee")
+        print("0. Quit")
         handleHomeOptions()
     }
     
@@ -34,10 +38,10 @@ class HomeConsoleView {
         let choice = readLine() ?? ""
         switch choice {
         case "1":
-            let orderConsoleView = OrderConsoleView(branch: branch, orderManager: orderManager, tableManager: tableManager)
+            let orderConsoleView = OrderConsoleView(restaurant: restaurant, orderManager: orderManager, tableManager: tableManager)
             orderConsoleView.promptMenuItemsSelection()
         case "2":
-            let menuConsoleView = MenuConsoleView(menu: branch.menu)
+            let menuConsoleView = MenuConsoleView(menu: restaurant.menu)
             menuConsoleView.displayAndHandleMenuOptions()
         case "3":
             let billConsoleView = BillingConsoleView(billManager: billManager, orderManager: orderManager)
@@ -48,11 +52,16 @@ class HomeConsoleView {
             let billConsoleView = BillingConsoleView(billManager: billManager, orderManager: orderManager)
             billConsoleView.viewBill()
         case "6":
-            let orderConsoleView = OrderConsoleView(branch: branch, orderManager: orderManager, tableManager: tableManager)
+            let orderConsoleView = OrderConsoleView(restaurant: restaurant, orderManager: orderManager, tableManager: tableManager)
             orderConsoleView.viewOrders()
         case "7":
-            let menuConsoleView = MenuConsoleView(menu: branch.menu)
+            let menuConsoleView = MenuConsoleView(menu: restaurant.menu)
             menuConsoleView.viewMenu()
+        case "8":
+            let authConsoleView = AuthConsoleView(userRepository: userRepository)
+            authConsoleView.createEmployee()
+        case "0":
+            exit(0)
         default:
             print("Invalid input")
         }

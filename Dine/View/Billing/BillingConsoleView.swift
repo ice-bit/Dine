@@ -28,7 +28,8 @@ class BillingConsoleView {
         for (index, order) in unbilledOrders.enumerated() {
             print("\(index + 1). Order: \(order.orderId)")
             print("Ordered Items:")
-            print(" - \(order.displayOrderItems())")
+            print(" - ")
+            order.displayOrderItems()
         }
         
         print("Enter the number of the order you want to choose (or 0 to cancel):")
@@ -41,7 +42,7 @@ class BillingConsoleView {
             return nil
         }
     }
-    
+
     func generatebill() {
         guard let order = displayUnbilledOrdersAndChoose() else { return }
         

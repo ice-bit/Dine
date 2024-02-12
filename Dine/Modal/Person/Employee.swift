@@ -11,12 +11,12 @@ class Employee: Person {
     private var employeeId: UUID
     private var dateJoined = Date()
     private let account: Account
-    private let branch: Branch
+    private let restaurantId: UUID
     
-    init(name: String, email: String, phoneNumber: String, account: Account, branch: Branch) {
+    init(name: String, email: String, phoneNumber: String, account: Account, restaurantId: UUID) {
         self.employeeId = UUID()
         self.account = account
-        self.branch = branch
+        self.restaurantId = restaurantId
         super.init(name: name, email: email, phoneNumber: phoneNumber)
     }
     
@@ -25,10 +25,10 @@ class Employee: Person {
     }
     
     func fetchPassword() -> String {
-        return account.getPassword()
+        return account.password
     }
     
     func fetchUsername() -> String {
-        return account.getUsername()
+        return account.username
     }
 }

@@ -16,9 +16,9 @@ protocol UserManagabale {
     func getNumberOfUsers() -> Int
 }
 
-class UserManager: UserManagabale {
+/*class UserManager: UserManagabale {
     private var users: [Account] = [
-//        Account(username: "TechDev_123", password: "StrongP@ss123", accountStatus: .active, userRole: .manager, branch: nil)
+        Account(username: "TechDev_123", password: "StrongP@ss123", accountStatus: .active, userRole: .manager)
     ]
     
     func addUser(_ account: Account) {
@@ -53,5 +53,37 @@ class UserManager: UserManagabale {
     
     func getNumberOfUsers() -> Int {
         return users.count
+    }
+}*/
+
+class UserManager {
+    private let userRepository: UserRepository
+    
+    init(userRepository: UserRepository) {
+        self.userRepository = userRepository
+    }
+    
+    func addUser(_ user: Account) {
+        userRepository.addUser(user)
+    }
+    
+    func removeUser(_ user: Account) throws {
+        try userRepository.removeUser(user)
+    }
+    
+    func checkUserPresence(username: String) -> Bool {
+        return userRepository.checkUserPresence(username: username)
+    }
+    
+    func searchUser(username: String) -> Account? {
+        return userRepository.searchUser(username: username)
+    }
+    
+    func isUserActive(username: String) -> Bool {
+        return userRepository.isUserActive(username: username)
+    }
+    
+    func isManager(username: String) -> Bool {
+        return userRepository.isManager(username: username)
     }
 }

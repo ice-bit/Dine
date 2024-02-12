@@ -8,18 +8,18 @@
 import Foundation
 
 class OrderConsoleView {
-    private let branch: Branch
+    private let restaurant: Restaurant
     private let orderManager: OrderManager
     private let tableManager: TableManager
     
-    init(branch: Branch, orderManager: OrderManager, tableManager: TableManager) {
-        self.branch = branch
+    init(restaurant: Restaurant, orderManager: OrderManager, tableManager: TableManager) {
+        self.restaurant = restaurant
         self.orderManager = orderManager
         self.tableManager = tableManager
     }
     
     func displayTablesAndChoose() -> Table? {
-        let availableTables = branch.availableTables
+        let availableTables = restaurant.availableTables
         
         guard !availableTables.isEmpty else {
             print("No tables available.")
@@ -32,10 +32,10 @@ class OrderConsoleView {
         }
         
         print("Enter the number of the table you want to choose (or 0 to cancel):")
-        if let choice = readLine(), let tableNumber = Int(choice), tableNumber >= 1, tableNumber <= branch.tablesCount {
-            let chosenTable = branch.availableTables[tableNumber - 1]
+        if let choice = readLine(), let tableNumber = Int(choice), tableNumber >= 1, tableNumber <= restaurant.tablesCount {
+            let chosenTable = restaurant.availableTables[tableNumber - 1]
             print("You chose Table \(chosenTable.tableId)")
-            return branch.tables.first(where: { $0.tableId == chosenTable.tableId })
+            return restaurant.tables.first(where: { $0.tableId == chosenTable.tableId })
         } else {
             print("Invalid choice or canceled.")
             return nil
@@ -46,16 +46,16 @@ class OrderConsoleView {
         var orderItems: [MenuItem] = []
         
         // Display menu items
-        branch.menu.displayMenuItems()
+        restaurant.menu.displayMenuItems()
         
         while true {
             print("Enter the item number to add to your order (0 to finish):")
             
-            if let input = readLine(), let choice = Int(input), choice >= 0 && choice <= branch.menu.itemsCount {
+            if let input = readLine(), let choice = Int(input), choice >= 0 && choice <= restaurant.menu.itemsCount {
                 if choice == 0 {
                     break
                 } else {
-                    let selectedItem = branch.menu[choice - 1]
+                    let selectedItem = restaurant.menu[choice - 1]
                     orderItems.append(selectedItem)
                     print("Added \(selectedItem.name) to your order.")
                 }

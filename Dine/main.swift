@@ -11,7 +11,7 @@
 
 import Foundation
 
-class Main {
+func getMenu() -> Menu {
     let menuItems: [MenuItem] = [
         MenuItem(name: "Burger", price: 9.99),
         MenuItem(name: "Pizza", price: 12.99),
@@ -34,6 +34,11 @@ class Main {
         MenuItem(name: "Calzone", price: 11.49),
         MenuItem(name: "Chicken Wings", price: 9.99)
     ]
+    
+    return Menu(items: menuItems)
+}
+
+/*class Main {
     
     let testMenu: [MenuItem] = [
         MenuItem(name: "Shrimp Scampi", price: 14.99),
@@ -104,7 +109,91 @@ class Main {
 }
 
 let main = Main()
-main.testFlow()
+main.testFlow()*/
+
+
+class Main {
+    private var restaurantManager = RestaurantManager()
+    let userRepository: UserRepository = InMemoryUserRepository()
+    
+    // MARK: - Starting point...
+    func start() {
+        updateInitialSetupToTrue()
+        while getInitialSetupStatus() {
+            onboardUser()
+        }
+        
+        startNormalFlow()
+    }
+    
+    // MARK: - Normal flow
+    private func startNormalFlow() {
+        
+        while !getLoginStatus() {
+            authenticateUser()
+        }
+        
+        // Navigate to home screen
+        displayHomeScreen()
+    }
+    
+    // MARK: - Supporting methods
+    private func authenticateUser() {
+        let authConsoleView = AuthConsoleView(userRepository: userRepository)
+        authConsoleView.startLogin()
+        updateLoginStatus()
+    }
+    
+    private func onboardUser() {
+        let authConsoleView = AuthConsoleView(userRepository: userRepository)
+        authConsoleView.startSignUp()
+        
+        updateInitialSetup()
+    }
+    
+    private func setupRestaurant() {
+        let setupConsoleView = SetupConsoleView(restaurantManager: restaurantManager)
+        setupConsoleView.promptRestaurantSetup()
+    }
+    
+    private func displayHomeScreen() {
+        guard let restaurant = restaurantManager.getRestaurant() else {
+            print("No restaurants found")
+            return
+        }
+        
+        let homeConsoleView = HomeConsoleView(restaurant: restaurant, userRepository: userRepository)
+        homeConsoleView.displayHomeOptions()
+    }
+}
+
+// MARK: - Onboarding UserDefaults
+extension Main: AppOnboardingProtocol {
+    func getLoginStatus() -> Bool {
+        return UserDefaults.standard.bool(forKey: "isUserLoggedInTest")
+    }
+    
+    func updateLoginStatus() {
+        UserDefaults.standard.set(true, forKey: "isUserLoggedInTest")
+    }
+    
+    func getInitialSetupStatus() -> Bool {
+        return UserDefaults.standard.bool(forKey: "isInitialSetupTest")
+    }
+    
+    func updateInitialSetup() {
+        UserDefaults.standard.setValue(false, forKey: "isInitialSetupTest")
+    }
+    
+    func updateInitialSetupToTrue() {
+        UserDefaults.standard.setValue(true, forKey: "isInitialSetupTest")
+    }
+}
+
+// MARK: - Caller
+let main = Main()
+main.start()
+
 
 
 

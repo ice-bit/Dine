@@ -7,56 +7,32 @@
 
 import Foundation
 
-struct SetupConsoleView {
-    func promptAdminSetup() {
-        print("Create administrator.")
-        print("Enter admin username:")
-        let adminUsername = readLine() ?? ""
-        print("Create new password:")
-        let password = readLine() ?? ""
-        
-        let authController = AuthController()
-        if authController.createAccount(username: adminUsername, password: password, userRole: .admin) {
-            displaySetupOption()
-        } else {
-            // TODO: handle exit case
-        }
-    }
+class SetupConsoleView {
+    private let restaurantManager: RestaurantManager
     
-    func displaySetupOption() {
-        print("Start setting your Restaurant?")
-        print("1. Yes")
-        print("2. No")
-        handleSetupSelection()
-    }
-    
-    func startSetup() {
-        promptAdminSetup()
+    init(restaurantManager: RestaurantManager) {
+        self.restaurantManager = restaurantManager
     }
     
     func promptRestaurantSetup() {
-        print("Enter restaurant details.")
-        print("Enter restaurant name: ")
+        print("Enter restaurant name")
         let restaurantName = readLine() ?? ""
-        print("Enter initial branch name:")
-        let branchName = readLine() ?? ""
-        print("Enter the location:")
-        let location = readLine() ?? ""
         
-        let restaurantController = RestaurantController()
-        /*restaurantController.createRestaurant(name: restaurantName, branchName: branchName, location: location)*/
-    }
-    
-    func handleSetupSelection() {
-        let choice = readLine()
-        switch choice {
-        case "1":
+        if restaurantName.isEmpty {
+            print("Enter a valid name")
             promptRestaurantSetup()
-        case "2":
-            exit(0)
-        default:
-            print("Invalid input")
-            handleSetupSelection()
         }
+        
+        print("Enter location name:")
+        let locationName = readLine() ?? ""
+        
+        if locationName.isEmpty {
+            print("Enter a valid name")
+            promptRestaurantSetup()
+        }
+        
+        let setupController = SetupController(restaurantManager: restaurantManager)
+        setupController.createRestaurant(name: restaurantName, locationName: locationName)
     }
 }
+

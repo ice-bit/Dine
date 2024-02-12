@@ -14,46 +14,54 @@ enum AccountStatus: Int, Codable {
 }
 
 enum UserRole: Codable {
-    case admin, manager, waitStaff, chef
+    case admin, manager, waitStaff, chef, employee
 }
 
 class Account: Codable {
-    private let userId: UUID
-    private var username: String
-    private var password: String
-    private var accountStatus: AccountStatus
-    private var userRole: UserRole
+    private let _userId: UUID
+    private var _username: String
+    private var _password: String
+    private var _accountStatus: AccountStatus
+    private var _userRole: UserRole
+    
+    var username: String {
+        return _username
+    }
+    
+    var accountStatus: AccountStatus {
+        return _accountStatus
+    }
+    
+    var userRole: UserRole {
+        return _userRole
+    }
+    
+    var password: String {
+        return _password
+    }
+    
+    var userId: UUID {
+        return _userId
+    }
     
     init(username: String, password: String, accountStatus: AccountStatus, userRole: UserRole) {
-        self.userId = UUID()
-        self.username = username
-        self.password = password
-        self.accountStatus = accountStatus
-        self.userRole = userRole
-    }
-    
-    func getUserId() -> UUID {
-        return userId
-    }
-    
-    func getUsername() -> String {
-        return username
-    }
-    
-    func getPassword() -> String {
-        return password
+        self._userId = UUID()
+        self._username = username
+        self._password = password
+        self._accountStatus = accountStatus
+        self._userRole = userRole
     }
     
     func verifyPassword(_ password: String) -> Bool {
-        return self.password == password
+        return self._password == password
     }
     
     func updateUsername(_ username: String) {
-        self.username = username
+        self._username = username
     }
     
     func updatePassword(_ password: String) {
-        self.password = password
+        self._password = password
     }
     
     // TODO: Add a hashed password and then compare the hashed input password with the stored hashed password(CryptoKit)
@@ -61,6 +69,6 @@ class Account: Codable {
 
 extension Account: Equatable {
     static func == (lhs: Account, rhs: Account) -> Bool {
-        return lhs.username == rhs.username
+        return lhs._username == rhs._username
     }
 }

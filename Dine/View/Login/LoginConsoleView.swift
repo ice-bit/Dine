@@ -20,7 +20,8 @@ class LoginConsoleView {
         let choice = readLine() ?? ""
         switch choice {
         case "1":
-            promptCredentailsForAdmin()
+            //promptCredentailsForAdmin()
+            print()
         case "2":
             promptCredentailsForEmployee()
         default:
@@ -31,22 +32,22 @@ class LoginConsoleView {
     
     func promptCredentailsForEmployee() {
         print("Enter your credentials")
-        print("Username:")
-        let username = readLine() ?? ""
-        print("Password:")
-        let password = readLine() ?? ""
+               print("Username:")
+               let username = readLine() ?? ""
+               print("Password:")
+               let password = readLine() ?? ""
         
-        let loginController = LoginController()
-        if let user = loginController.authenticateUser(username: username, password: password) {
-            print("Logging successfull")
-            // Navigating to next console view (Employee specific)
-            
-        } else {
-            print("Failed to login")
-        }
+//        let loginController = LoginController()
+//        if let user = loginController.authenticateUser(username: username, password: password) {
+//            print("Logging successfull")
+//            // Navigating to next console view (Employee specific)
+//            
+//        } else {
+//            print("Failed to login")
+//        }
     }
     
-    func promptCredentailsForAdmin() {
+    /*func promptCredentailsForAdmin() {
         print("Enter your credentials")
         print("Username:")
         let username = readLine() ?? ""
@@ -61,6 +62,6 @@ class LoginConsoleView {
         } else {
             print("Failed to login")
         }
-    }
+    }*/
     
 }
