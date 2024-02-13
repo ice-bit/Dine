@@ -54,7 +54,6 @@
 		557D5E942B5FE69100A402D3 /* SetupConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557D5E932B5FE69100A402D3 /* SetupConsoleView.swift */; };
 		55881AC82B7A242000422051 /* TableConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55881AC72B7A242000422051 /* TableConsoleView.swift */; };
 		55881ACB2B7A246C00422051 /* TableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55881ACA2B7A246C00422051 /* TableController.swift */; };
-		55881ACD2B7B710600422051 /* CSVFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55881ACC2B7B710600422051 /* CSVFileManager.swift */; };
 		55881AD02B7B72B600422051 /* AccountDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55881ACF2B7B72B600422051 /* AccountDataManager.swift */; };
 		55881AD22B7B8DB600422051 /* CSVLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55881AD12B7B8DB600422051 /* CSVLoader.swift */; };
 		558B05BD2B73AE15009159BA /* AppOnboardingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558B05BC2B73AE15009159BA /* AppOnboardingProtocol.swift */; };
@@ -135,7 +134,6 @@
 		557D5E932B5FE69100A402D3 /* SetupConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupConsoleView.swift; sourceTree = "<group>"; };
 		55881AC72B7A242000422051 /* TableConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableConsoleView.swift; sourceTree = "<group>"; };
 		55881ACA2B7A246C00422051 /* TableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableController.swift; sourceTree = "<group>"; };
-		55881ACC2B7B710600422051 /* CSVFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVFileManager.swift; sourceTree = "<group>"; };
 		55881ACF2B7B72B600422051 /* AccountDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDataManager.swift; sourceTree = "<group>"; };
 		55881AD12B7B8DB600422051 /* CSVLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVLoader.swift; sourceTree = "<group>"; };
 		558B05BC2B73AE15009159BA /* AppOnboardingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOnboardingProtocol.swift; sourceTree = "<group>"; };
@@ -388,9 +386,9 @@
 		5545DAA22B4E77C4007D31B6 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				55881AD12B7B8DB600422051 /* CSVLoader.swift */,
 				553BA4A42B6A535900B2F7E3 /* Save */,
 				5598434B2B5AAFCA00930AF8 /* User */,
-				55881AD12B7B8DB600422051 /* CSVLoader.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -477,7 +475,6 @@
 			children = (
 				554396482B5168F8004D08ED /* FileIOService.swift */,
 				554396512B58FECD004D08ED /* ModelJSONSerializer.swift */,
-				55881ACC2B7B710600422051 /* CSVFileManager.swift */,
 			);
 			path = File;
 			sourceTree = "<group>";
@@ -635,7 +632,6 @@
 				557D5E922B5FD6DD00A402D3 /* AuthConsoleView.swift in Sources */,
 				55081A792B46881900D71B31 /* MenuItem.swift in Sources */,
 				55081A912B46BE4C00D71B31 /* LoginController.swift in Sources */,
-				55881ACD2B7B710600422051 /* CSVFileManager.swift in Sources */,
 				558B05CA2B75FDE2009159BA /* AuthenticationManager.swift in Sources */,
 				55A65CA52B6246C500776D03 /* OrderConsoleView.swift in Sources */,
 				55081A892B4694E000D71B31 /* WaitStaff.swift in Sources */,
