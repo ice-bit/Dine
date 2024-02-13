@@ -27,4 +27,11 @@ class Restaurant {
         self.init(name: name, location: location, menu: Menu())
     }
     
+    func toCSV() -> String {
+        var csvString = "Name,RestaurantID,Location,Menu\n"
+        let menuCSV = menu.toCSV()
+        csvString += "\(name),\(restaurantId.uuidString),\(location),\(menuCSV)\n"
+        return csvString
+    }
+    
 }

@@ -49,4 +49,13 @@ class Menu: Codable {
             print("\(item.name) not found in the menu.")
         }
     }
+    
+    func toCSV() -> String  {
+        var csvString = "Name,Price\n"
+        for item in _items {
+            csvString += "\(item.name),\(item.price)\n"
+        }
+        
+        return csvString
+    }
 }

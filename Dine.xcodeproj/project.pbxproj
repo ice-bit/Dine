@@ -54,6 +54,9 @@
 		557D5E942B5FE69100A402D3 /* SetupConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557D5E932B5FE69100A402D3 /* SetupConsoleView.swift */; };
 		55881AC82B7A242000422051 /* TableConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55881AC72B7A242000422051 /* TableConsoleView.swift */; };
 		55881ACB2B7A246C00422051 /* TableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55881ACA2B7A246C00422051 /* TableController.swift */; };
+		55881ACD2B7B710600422051 /* CSVFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55881ACC2B7B710600422051 /* CSVFileManager.swift */; };
+		55881AD02B7B72B600422051 /* AccountDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55881ACF2B7B72B600422051 /* AccountDataManager.swift */; };
+		55881AD22B7B8DB600422051 /* CSVLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55881AD12B7B8DB600422051 /* CSVLoader.swift */; };
 		558B05BD2B73AE15009159BA /* AppOnboardingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558B05BC2B73AE15009159BA /* AppOnboardingProtocol.swift */; };
 		558B05BF2B74AAE5009159BA /* SetupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558B05BE2B74AAE5009159BA /* SetupController.swift */; };
 		558B05C32B74B7AE009159BA /* RestaurantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558B05C22B74B7AE009159BA /* RestaurantManager.swift */; };
@@ -132,6 +135,9 @@
 		557D5E932B5FE69100A402D3 /* SetupConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupConsoleView.swift; sourceTree = "<group>"; };
 		55881AC72B7A242000422051 /* TableConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableConsoleView.swift; sourceTree = "<group>"; };
 		55881ACA2B7A246C00422051 /* TableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableController.swift; sourceTree = "<group>"; };
+		55881ACC2B7B710600422051 /* CSVFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVFileManager.swift; sourceTree = "<group>"; };
+		55881ACF2B7B72B600422051 /* AccountDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDataManager.swift; sourceTree = "<group>"; };
+		55881AD12B7B8DB600422051 /* CSVLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVLoader.swift; sourceTree = "<group>"; };
 		558B05BC2B73AE15009159BA /* AppOnboardingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOnboardingProtocol.swift; sourceTree = "<group>"; };
 		558B05BE2B74AAE5009159BA /* SetupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupController.swift; sourceTree = "<group>"; };
 		558B05C22B74B7AE009159BA /* RestaurantManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantManager.swift; sourceTree = "<group>"; };
@@ -179,6 +185,8 @@
 		55081A5E2B467AF800D71B31 /* Dine */ = {
 			isa = PBXGroup;
 			children = (
+				55881ACE2B7B72A600422051 /* Manager */,
+				5598434C2B5AAFD900930AF8 /* File */,
 				558B05C82B75FDCD009159BA /* Authentication */,
 				55C660902B6BBE8900E7FFFB /* Extension */,
 				55081A662B467B0F00D71B31 /* Modal */,
@@ -381,8 +389,8 @@
 			isa = PBXGroup;
 			children = (
 				553BA4A42B6A535900B2F7E3 /* Save */,
-				5598434C2B5AAFD900930AF8 /* File */,
 				5598434B2B5AAFCA00930AF8 /* User */,
+				55881AD12B7B8DB600422051 /* CSVLoader.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -436,6 +444,14 @@
 			path = Table;
 			sourceTree = "<group>";
 		};
+		55881ACE2B7B72A600422051 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				55881ACF2B7B72B600422051 /* AccountDataManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		558B05C82B75FDCD009159BA /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -461,6 +477,7 @@
 			children = (
 				554396482B5168F8004D08ED /* FileIOService.swift */,
 				554396512B58FECD004D08ED /* ModelJSONSerializer.swift */,
+				55881ACC2B7B710600422051 /* CSVFileManager.swift */,
 			);
 			path = File;
 			sourceTree = "<group>";
@@ -591,6 +608,7 @@
 				55081A6A2B467BF300D71B31 /* Restaurant.swift in Sources */,
 				55081A6C2B467C7000D71B31 /* Branch.swift in Sources */,
 				55081A872B46938F00D71B31 /* Order.swift in Sources */,
+				55881AD22B7B8DB600422051 /* CSVLoader.swift in Sources */,
 				55881ACB2B7A246C00422051 /* TableController.swift in Sources */,
 				5545DAAE2B4EBD00007D31B6 /* AuthController.swift in Sources */,
 				55A65C9B2B613AD300776D03 /* MenuController.swift in Sources */,
@@ -617,6 +635,7 @@
 				557D5E922B5FD6DD00A402D3 /* AuthConsoleView.swift in Sources */,
 				55081A792B46881900D71B31 /* MenuItem.swift in Sources */,
 				55081A912B46BE4C00D71B31 /* LoginController.swift in Sources */,
+				55881ACD2B7B710600422051 /* CSVFileManager.swift in Sources */,
 				558B05CA2B75FDE2009159BA /* AuthenticationManager.swift in Sources */,
 				55A65CA52B6246C500776D03 /* OrderConsoleView.swift in Sources */,
 				55081A892B4694E000D71B31 /* WaitStaff.swift in Sources */,
@@ -635,6 +654,7 @@
 				553BA49E2B69018800B2F7E3 /* Bill.swift in Sources */,
 				557D5E892B5FA63D00A402D3 /* RestaurantController.swift in Sources */,
 				558B05C52B74E86B009159BA /* UserRepository.swift in Sources */,
+				55881AD02B7B72B600422051 /* AccountDataManager.swift in Sources */,
 				553BA49A2B68DB2800B2F7E3 /* TableManager.swift in Sources */,
 				558B05C32B74B7AE009159BA /* RestaurantManager.swift in Sources */,
 				55A65C9E2B62375300776D03 /* HomeConsoleView.swift in Sources */,
