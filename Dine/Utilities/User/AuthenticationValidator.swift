@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AuthenticationValidator {
+struct AuthenticationValidator {
     static func isStrongPassword(_ password: String) -> Bool {
         let passwordRegex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$"
         let predicate = NSPredicate(format: "SELF MATCHES %@", passwordRegex)

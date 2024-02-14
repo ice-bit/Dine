@@ -25,7 +25,7 @@ class AccountDataManager {
         }
     }
     
-    func loadAccounts() -> [Account]? {
+    /*func loadAccounts() -> [Account]? {
         guard let encodedAccounts = userDefaults.data(forKey: accountsKey) else { return nil }
         do {
             let decoder = JSONDecoder()
@@ -34,5 +34,5 @@ class AccountDataManager {
             print("Error decoding accounts: \(error)")
             return nil
         }
-    }
+    }*/
 }

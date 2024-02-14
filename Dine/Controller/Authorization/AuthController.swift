@@ -54,3 +54,10 @@ class AuthController {
     }
     
 }
+
+enum AuthenticationError: Error {
+    case invalidUsername
+    case invalidPassword
+    case inactiveAccount
+    case userAlreadyExists
+}
