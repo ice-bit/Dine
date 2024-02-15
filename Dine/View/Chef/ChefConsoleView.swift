@@ -17,11 +17,20 @@ class ChefConsoleView {
     func manageReceivedOrders() {
         let chefController = ChefController(orderManager: orderManager)
         
-        guard let receivedOrders = chefController.fetchReceivedOrders() else { return }
+        guard let receivedOrders = chefController.fetchReceivedOrders() else { 
+            print("No recieved orders found!")
+            return
+        }
         
-        guard let order = promptForOrderSelection(from: receivedOrders) else { return }
+        guard let order = promptForOrderSelection(from: receivedOrders) else {
+            print("Invalid selection!")
+            return
+        }
         
-        guard let status = promptForTableStatusSelection() else { return }
+        guard let status = promptForOrderStatusSelection() else { 
+            print("Invalid selection")
+            return
+        }
         
         chefController.changeStatus(for: order, to: status)
         
@@ -51,7 +60,7 @@ class ChefConsoleView {
     }
 
     
-    private func promptForTableStatusSelection() -> OrderStatus? {
+    private func promptForOrderStatusSelection() -> OrderStatus? {
         let allTableStatusCases = OrderStatus.allCases
 
         while true {
@@ -63,7 +72,7 @@ class ChefConsoleView {
             if let choiceString = readLine(), let statusNumber = Int(choiceString) {
                 if statusNumber >= 1 && statusNumber <= allTableStatusCases.count {
                     let chosenStatus = allTableStatusCases[statusNumber - 1]
-                    print("You have chosen: \(chosenStatus)")
+                    print("Status changed: \(chosenStatus)")
                     return chosenStatus
                 } else {
                     print("Invalid choice. Please enter a number between 1 and \(allTableStatusCases.count) or 0 to cancel.")

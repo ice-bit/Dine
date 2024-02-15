@@ -22,7 +22,7 @@ class OrderConsoleView {
         let availableTables = tableManager.availableTables
         
         guard !availableTables.isEmpty else {
-            print("No tables available.")
+            print("No tables available or try adding new tables.")
             return nil
         }
         
@@ -85,7 +85,7 @@ class OrderConsoleView {
         print("Order created successfully!")
     }
     
-    func viewOrders() {
+    /*func viewOrders() {
         let orders = orderManager.orders
         
         for (index, order) in orders.enumerated() {
@@ -93,5 +93,14 @@ class OrderConsoleView {
             print(" - Ordered Items:")
             print(" - \(order.displayOrderItems())")
         }
+    }*/
+    
+    func viewOrders() {
+        guard orderManager.ordersCount > 0 else {
+            print("No orders recieved. Please place orders.")
+            return
+        }
+        
+        orderManager.displayOrders()
     }
 }

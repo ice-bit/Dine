@@ -30,7 +30,7 @@ class AuthController {
             let authenticationManager = AuthenticationManager(userRespository: userRepository)
             let isValidLogin =  try authenticationManager.isLoginValid(username: username, password: password)
             if isValidLogin {
-                UserStatus.userLoggedIn.updateStatus(true)
+                //UserStatus.userLoggedIn.updateStatus(true)
                 return true
             }
         } catch {
@@ -44,6 +44,8 @@ class AuthController {
                     print("User already exist")
                 case .inactiveAccount:
                     print("Inactive account")
+                case .noUserFound:
+                    print("No user found under username: \(username)")
                 }
             } else {
                 print("An error occurred: \(error.localizedDescription)")

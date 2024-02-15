@@ -53,86 +53,14 @@ func getMenu() -> Menu {
     return Menu(items: menuItems)
 }
 
-/*class Main {
-    
-    let testMenu: [MenuItem] = [
-        MenuItem(name: "Shrimp Scampi", price: 14.99),
-        MenuItem(name: "Calzone", price: 11.49),
-        MenuItem(name: "Chicken Wings", price: 9.99)
-    ]
-    
-    let table1 = Table(status: .free, maxCapacity: 4, locationIdentifier: 101)
-    let table2 = Table(status: .occupied, maxCapacity: 6, locationIdentifier: 102)
-    let table3 = Table(status: .free, maxCapacity: 2, locationIdentifier: 103)
-
-    let tables = [
-        Table(status: .free, maxCapacity: 4, locationIdentifier: 101),
-        Table(status: .occupied, maxCapacity: 6, locationIdentifier: 102),
-        Table(status: .free, maxCapacity: 2, locationIdentifier: 103)
-    ]
-    let orderManager = OrderManager()
-    let billManager = BillManager()
-    
-    
-    
-    
-    /*func testHomeMenu() {
-        let menu = Menu(items: menuItems)
-        
-        let order = Order(table: Table(status: .occupied, maxCapacity: 10, locationIdentifier: 01), orderStatus: .preparing, menuItems: menuItems)
-        let order2 = Order(table: Table(status: .occupied, maxCapacity: 10, locationIdentifier: 01), orderStatus: .received, menuItems: menuItems)
-        
-        let testBranch = Branch(branchName: "KFC UK", location: "London, UK")
-        
-        let restaurant = Restaurant(name: "KFC", branches: [testBranch])
-        
-        orderManager.addOrder(order: order)
-        orderManager.addOrder(order: order2)
-        
-        let homeConsoleView = HomeConsoleView(branch: testBranch)
-        homeConsoleView.displayHomeOptions()
-    }*/
-    
-    /*func testChef() {
-        let menu = Menu(items: menuItems)
-        
-        let order = Order(table: Table(status: .occupied, maxCapacity: 10, locationIdentifier: 01), orderStatus: .received, menuItems: testMenu)
-        let order2 = Order(table: Table(status: .occupied, maxCapacity: 10, locationIdentifier: 01), orderStatus: .received, menuItems: menuItems)
-        
-        let testBranch = Branch(branchName: "KFC UK", location: "London, UK")
-        
-        let restaurant = Restaurant(name: "KFC", branches: [testBranch])
-                                                   
-        orderManager.addOrder(order: order)
-        //orderManager.addOrder(order: order2)
-        
-        let chefView = ChefConsoleView(branch: testBranch)
-        chefView.manageReceivedOrders()
-    }
-    
-    func testAdminControls() {
-        
-    }*/
-    
-    func testFlow() {
-        let menu = Menu(items: menuItems)
-        let testBranch = Branch(branchName: "KFC UK", location: "London, UK", kitchen: Kitchen(), menu: menu, tables: tables)
-        
-        let homeConsoleView = HomeConsoleView(branch: testBranch)
-        homeConsoleView.displayHomeOptions()
-    }
-}
-
-let main = Main()
-main.testFlow()*/
-
-
 class Main {
     private var restaurantManager = RestaurantManager()
     let userRepository: UserRepository = InMemoryUserRepository()
     
+    private var isUserLoggedIn: Bool = false
+    
     // MARK: - Starting point...
-    func start() {
+    /*func start() {
         while !UserStatus.restaurantSetup.getStatus() {
             setupRestaurant()
         }
@@ -142,10 +70,10 @@ class Main {
         }
         
         startNormalFlow()
-    }
+    }*/
     
     // MARK: - Normal flow
-    private func startNormalFlow() {
+    /*private func startNormalFlow() {
         
         while !UserStatus.userLoggedIn.getStatus() {
             authenticateUser()
@@ -153,12 +81,24 @@ class Main {
         
         // Navigate to home screen
         displayHomeScreen()
+    }*/
+    
+    func start() {
+        setupRestaurant()
+        
+        onboardUser()
+        
+        authenticateUser()
+        
+        while isUserLoggedIn {
+            displayHomeScreen()
+        }
     }
     
     // MARK: - Supporting methods
-    private func authenticateUser() {
-        let authConsoleView = AuthConsoleView(userRepository: userRepository)
-        authConsoleView.startLogin()
+    private func setupRestaurant() {
+        let setupConsoleView = SetupConsoleView(restaurantManager: restaurantManager)
+        setupConsoleView.promptRestaurantSetup()
     }
     
     private func onboardUser() {
@@ -166,9 +106,10 @@ class Main {
         authConsoleView.startSignUp()
     }
     
-    private func setupRestaurant() {
-        let setupConsoleView = SetupConsoleView(restaurantManager: restaurantManager)
-        setupConsoleView.promptRestaurantSetup()
+    private func authenticateUser() {
+        let authConsoleView = AuthConsoleView(userRepository: userRepository)
+        authConsoleView.delegate = self
+        authConsoleView.startLogin()
     }
     
     private func displayHomeScreen() {
@@ -178,7 +119,14 @@ class Main {
         }
         
         let homeConsoleView = HomeConsoleView(restaurant: restaurant, userRepository: userRepository)
+        homeConsoleView.delegate = self
         homeConsoleView.displayHomeOptions()
+    }
+}
+
+extension Main: LoginStateDelegate {
+    func isUserLoggedIn(_ state: Bool) {
+        isUserLoggedIn = state
     }
 }
 

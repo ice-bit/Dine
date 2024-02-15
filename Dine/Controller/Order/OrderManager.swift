@@ -10,12 +10,16 @@ import Foundation
 class OrderManager: Codable {
     private var _orders: [Order] = []
     
-    var orders: [Order] {
+    /*var orders: [Order] {
         return _orders
-    }
+    }*/
     
     var ordersCount: Int {
         return _orders.count
+    }
+    
+    var recievedOrders: [Order] {
+        _orders.filter({ $0.orderStatus == .received })
     }
     
     subscript(_ index: Int) -> Order {
@@ -44,5 +48,13 @@ class OrderManager: Codable {
         guard !unbilledOrders.isEmpty else { return nil }
         
         return unbilledOrders
+    }
+    
+    func displayOrders() {
+        for (index, order) in _orders.enumerated() {
+            print("\(index). Order: \(order.orderId)")
+            print(" - Ordered Items:")
+            print(" - \(order.displayOrderItems())")
+        }
     }
 }

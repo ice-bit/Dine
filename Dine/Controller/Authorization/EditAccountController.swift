@@ -8,14 +8,14 @@
 import Foundation
 
 class EditAccountController {
-    private let userManager: UserManagabale
+    private let userRepository: UserRepository
     
-    init(userManager: UserManagabale) {
-        self.userManager = userManager
+    init(userRepository: UserRepository) {
+        self.userRepository = userRepository
     }
     
     func changePassword(username: String, password: String) -> Bool {
-        guard userManager.checkUserPresence(username) else {
+        guard userRepository.checkUserPresence(username: username) else {
             print("No users found under this usernamec")
             return false
         }
@@ -25,7 +25,7 @@ class EditAccountController {
             return false
         }
         
-        if let user = userManager.searchUser(username) {
+        if let user = userRepository.searchUser(username: username) {
             user.updatePassword(password)
             return true
         } else {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5501FB3E2B7E1AD900A8311B /* AuthenticationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5501FB3D2B7E1AD900A8311B /* AuthenticationError.swift */; };
 		55081A602B467AF800D71B31 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A5F2B467AF800D71B31 /* main.swift */; };
 		55081A6A2B467BF300D71B31 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A692B467BF300D71B31 /* Restaurant.swift */; };
 		55081A6C2B467C7000D71B31 /* Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A6B2B467C7000D71B31 /* Branch.swift */; };
@@ -24,8 +25,6 @@
 		55081A852B4690E900D71B31 /* Kitchen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A842B4690E900D71B31 /* Kitchen.swift */; };
 		55081A872B46938F00D71B31 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A862B46938F00D71B31 /* Order.swift */; };
 		55081A892B4694E000D71B31 /* WaitStaff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A882B4694E000D71B31 /* WaitStaff.swift */; };
-		55081A912B46BE4C00D71B31 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A902B46BE4C00D71B31 /* LoginController.swift */; };
-		55081A932B46BE5800D71B31 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A922B46BE5800D71B31 /* SignUpController.swift */; };
 		55081A952B46C14A00D71B31 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A942B46C14A00D71B31 /* UserManager.swift */; };
 		551E9BDA2B6D2AB6003C57E3 /* Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551E9BD92B6D2AB6003C57E3 /* Admin.swift */; };
 		551E9BDD2B720D88003C57E3 /* MenuConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551E9BDC2B720D88003C57E3 /* MenuConsoleView.swift */; };
@@ -84,6 +83,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5501FB3D2B7E1AD900A8311B /* AuthenticationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationError.swift; sourceTree = "<group>"; };
 		55081A5C2B467AF800D71B31 /* Dine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Dine; sourceTree = BUILT_PRODUCTS_DIR; };
 		55081A5F2B467AF800D71B31 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		55081A692B467BF300D71B31 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
@@ -102,8 +102,6 @@
 		55081A842B4690E900D71B31 /* Kitchen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kitchen.swift; sourceTree = "<group>"; };
 		55081A862B46938F00D71B31 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		55081A882B4694E000D71B31 /* WaitStaff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitStaff.swift; sourceTree = "<group>"; };
-		55081A902B46BE4C00D71B31 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
-		55081A922B46BE5800D71B31 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		55081A942B46C14A00D71B31 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		551E9BD92B6D2AB6003C57E3 /* Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Admin.swift; sourceTree = "<group>"; };
 		551E9BDC2B720D88003C57E3 /* MenuConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuConsoleView.swift; sourceTree = "<group>"; };
@@ -160,6 +158,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5501FB3C2B7E1AC700A8311B /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				5501FB3D2B7E1AD900A8311B /* AuthenticationError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
 		55081A532B467AF800D71B31 = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +185,7 @@
 		55081A5E2B467AF800D71B31 /* Dine */ = {
 			isa = PBXGroup;
 			children = (
+				5501FB3C2B7E1AC700A8311B /* Error */,
 				558B05C82B75FDCD009159BA /* Authentication */,
 				55C660902B6BBE8900E7FFFB /* Extension */,
 				55081A662B467B0F00D71B31 /* Modal */,
@@ -510,8 +517,6 @@
 			isa = PBXGroup;
 			children = (
 				5545DAAD2B4EBD00007D31B6 /* AuthController.swift */,
-				55081A902B46BE4C00D71B31 /* LoginController.swift */,
-				55081A922B46BE5800D71B31 /* SignUpController.swift */,
 				55A7836E2B4BFD0E00E20DF9 /* EditAccountController.swift */,
 			);
 			path = Authorization;
@@ -587,7 +592,6 @@
 				554396522B58FECD004D08ED /* ModelJSONSerializer.swift in Sources */,
 				557D5E942B5FE69100A402D3 /* SetupConsoleView.swift in Sources */,
 				554396632B5A9C40004D08ED /* ConsolePrinter.swift in Sources */,
-				55081A932B46BE5800D71B31 /* SignUpController.swift in Sources */,
 				55081A6A2B467BF300D71B31 /* Restaurant.swift in Sources */,
 				55081A6C2B467C7000D71B31 /* Branch.swift in Sources */,
 				55081A872B46938F00D71B31 /* Order.swift in Sources */,
@@ -616,7 +620,6 @@
 				55081A602B467AF800D71B31 /* main.swift in Sources */,
 				557D5E922B5FD6DD00A402D3 /* AuthConsoleView.swift in Sources */,
 				55081A792B46881900D71B31 /* MenuItem.swift in Sources */,
-				55081A912B46BE4C00D71B31 /* LoginController.swift in Sources */,
 				558B05CA2B75FDE2009159BA /* AuthenticationManager.swift in Sources */,
 				55A65CA52B6246C500776D03 /* OrderConsoleView.swift in Sources */,
 				55081A892B4694E000D71B31 /* WaitStaff.swift in Sources */,
@@ -632,6 +635,7 @@
 				55C660922B6BBE9200E7FFFB /* String+OrderFormatting.swift in Sources */,
 				55A65CA02B623AC400776D03 /* Table.swift in Sources */,
 				551E9BDD2B720D88003C57E3 /* MenuConsoleView.swift in Sources */,
+				5501FB3E2B7E1AD900A8311B /* AuthenticationError.swift in Sources */,
 				553BA49E2B69018800B2F7E3 /* Bill.swift in Sources */,
 				557D5E892B5FA63D00A402D3 /* RestaurantController.swift in Sources */,
 				558B05C52B74E86B009159BA /* UserRepository.swift in Sources */,

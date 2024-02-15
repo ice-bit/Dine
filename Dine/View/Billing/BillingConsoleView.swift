@@ -20,7 +20,7 @@ class BillingConsoleView {
         let billingController = BillingController(billManager: billManager, orderManager: orderManager)
         
         guard let unbilledOrders = billingController.getUnbilledOrders() else {
-            print("No billed order available.")
+            print("No orders are ready to be billed.")
             return nil
         }
         
@@ -52,6 +52,11 @@ class BillingConsoleView {
     }
     
     func viewBill() {
+        guard !billManager.bills.isEmpty else {
+            print("No completed bills found.")
+            return
+        }
+        
         let bills = billManager.bills
         for (index, bill) in bills.enumerated() {
             print("\(index). Bill: \(bill.billId)")

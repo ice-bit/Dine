@@ -15,6 +15,8 @@ class HomeConsoleView {
     private let tableManager = TableManager()
     private let billManager = BillManager()
     
+    weak var delegate: LoginStateDelegate?
+    
     init(restaurant: Restaurant, userRepository: UserRepository) {
         self.restaurant = restaurant
         self.userRepository = userRepository
@@ -67,7 +69,8 @@ class HomeConsoleView {
             let tableConsoleView = TableConsoleView(tableManager: tableManager)
             tableConsoleView.displayOptions()
         case "10":
-            UserStatus.userLoggedIn.updateStatus(false)
+            //UserStatus.userLoggedIn.updateStatus(false)
+            delegate?.isUserLoggedIn(false)
             return
         case "0":
             exit(0)

@@ -7,8 +7,14 @@
 
 import Foundation
 
+protocol LoginStateDelegate: AnyObject {
+    func isUserLoggedIn(_ state: Bool)
+}
+
 class AuthConsoleView {
     private let userRepository: UserRepository
+    
+    weak var delegate: LoginStateDelegate?
     
     init(userRepository: UserRepository) {
         self.userRepository = userRepository
@@ -63,6 +69,7 @@ class AuthConsoleView {
         
         let authController = AuthController(userRepository: userRepository)
         if authController.login(username: username, password: password) {
+            delegate?.isUserLoggedIn(true)
             print("Logged in successfully.")
         } else {
             print("Login failed")

@@ -111,6 +111,7 @@ class MenuConsoleView {
     }
     
     func viewMenu() {
+        
         let menuController = MenuController(menu: menu)
         menuController.displayMenuItems()
     }

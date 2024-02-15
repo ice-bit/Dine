@@ -32,6 +32,10 @@ class Menu: Codable {
     }
     
     func displayMenuItems() {
+        guard !menuItems.isEmpty else {
+            print("Please add items to menu")
+            return
+        }
         for (index, item) in _items.enumerated() {
             print("\(index + 1). \(item.name) - $\(item.price)")
         }
