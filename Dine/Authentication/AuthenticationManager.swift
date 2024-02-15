@@ -15,8 +15,12 @@ class AuthenticationManager {
     }
     
     func isLoginValid(username: String, password: String) throws -> Bool {
-        guard let user = userRespository.searchUser(username: username) else {
+        guard userRespository.checkUserPresence(username: username) else {
             throw AuthenticationError.userAlreadyExists
+        }
+        
+        guard let user = userRespository.searchUser(username: username) else {
+            throw AuthenticationError.invalidUsername
         }
         
         guard user.accountStatus == .active else {

@@ -15,7 +15,7 @@ class Menu: Codable {
     }
     
     var menuItems: [MenuItem] {
-        return _items
+        _items
     }
     
     /// Creates an instance of `Menu` with empty array of `MenuItem`.
@@ -49,8 +49,10 @@ class Menu: Codable {
             print("\(item.name) not found in the menu.")
         }
     }
-    
-    func toCSV() -> String  {
+}
+
+extension Menu: CSVExportable {
+    func toCSVString() -> String {
         var csvString = "Name,Price\n"
         for item in _items {
             csvString += "\(item.name),\(item.price)\n"

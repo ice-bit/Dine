@@ -8,17 +8,24 @@
 import Foundation
 
 struct CSVLoader {
+    // MARK: - Restaurant load methods
     /// Loads a restaurant object from a CSV file.
     ///
     /// - Parameter filePath: The path to the CSV file.
     /// - Returns: A `Restaurant` object containing the data from the CSV file,
     ///           or nil if the file is invalid, empty, or an error occurs.
-    func loadRestaurants(filePath: String) throws -> Restaurant? {
-        let csvData = try String(contentsOfFile: filePath)
+    func loadRestaurants() throws -> Restaurant? {
+        guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            throw FileIOError.documentDirectoryUnavailable
+        }
+        
+        // Append filename to the document directory URL
+        let fileURL = documentDirectory.appendingPathComponent("restaurants.csv")
+        let csvData = try String(contentsOf: fileURL)
         
         // Parse the CSV data
         let (restaurant, error) = try parseRestaurant(from: csvData)
-        if let error = error {
+        if let error {
             throw error
         } else {
             return restaurant
@@ -61,7 +68,10 @@ struct CSVLoader {
         let menuCSV = restaurantComponents[3]
         
         // Parse the menu data
-        let menuItems = try parseMenuItems(from: menuCSV)
+        guard let menuItems = try parseMenuItems(from: menuCSV) else {
+            let menu = Menu()
+            return (Restaurant(name: name, location: location, menu: menu), nil)
+        }
         
         // Create and return the restaurant object
         let menu = Menu(items: menuItems)
@@ -73,13 +83,13 @@ struct CSVLoader {
     /// - Parameter menuCSV: The CSV string containing menu item data.
     /// - Throws: A `CSVError` if the format is invalid.
     /// - Returns: An array of parsed `MenuItem` objects.
-    private func parseMenuItems(from menuCSV: String) throws -> [MenuItem] {
+    private func parseMenuItems(from menuCSV: String) throws -> [MenuItem]? {
         // Split menu CSV into individual lines
         let menuLines = menuCSV.components(separatedBy: "\n")
         
         // Check if there's at least one line for the header and one line for menu items
         guard menuLines.count >= 2 else {
-            throw CSVError.invalidFormat
+            return []
         }
         
         // Extract the header line and remove it from the array
@@ -116,17 +126,12 @@ struct CSVLoader {
     }
 }
 
-enum CSVError: Error {
-    case invalidFormat
-    case invalidPriceFormat
-    case insufficientData
-    case invalidUUIDFormat
-}
-
 /// This is how the CSV looks like. Thank me later ;)
 /*
  Name,RestaurantID,Location,Menu
  Restaurant A,3C319306-C25F-4C85-9DF8-5E2D791FF80A,123 Main St,Name,Price
  Item A1,10.99
  Item A2,8.99
+ Item A3,10.98
+ Item A4,8.98
 */

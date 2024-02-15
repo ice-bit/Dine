@@ -18,3 +18,9 @@ class MenuItem: Codable {
         self.price = price
     }
 }
+
+extension MenuItem: CSVExportable {
+    func toCSVString() -> String {
+        return "\(name),\(price)"
+    }
+}

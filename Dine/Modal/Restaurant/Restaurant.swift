@@ -27,11 +27,36 @@ class Restaurant {
         self.init(name: name, location: location, menu: Menu())
     }
     
-    func toCSV() -> String {
+    func saveRestaurant() {
+        print("Saving restaurant")
+        let csvWriter = CSVWriter()
+        do {
+            try csvWriter.writeToCSVFile(self, fileName: "restaurant")
+        } catch {
+            print("Erro occured: \(error)")
+        }
+    }
+    
+    func loadRestaurant() -> Restaurant? {
+        do {
+            let csvLoader = CSVLoader()
+            if let loadedRestaurant = try csvLoader.loadRestaurants() {
+                return loadedRestaurant
+            }
+        } catch {
+            print("Error occured: \(error)")
+        }
+        
+        return nil
+    }
+    
+}
+
+extension Restaurant: CSVExportable {
+    func toCSVString() -> String {
         var csvString = "Name,RestaurantID,Location,Menu\n"
-        let menuCSV = menu.toCSV()
+        let menuCSV = menu.toCSVString()
         csvString += "\(name),\(restaurantId.uuidString),\(location),\(menuCSV)\n"
         return csvString
     }
-    
 }

@@ -20,5 +20,245 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "411075A5-2C0C-4331-8826-7E81061DAD1E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dine/Authentication/AuthenticationManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "isLoginValid(username:password:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "411075A5-2C0C-4331-8826-7E81061DAD1E - 758182f5f06eeb9e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dine.AuthenticationManager.isLoginValid(username: Swift.String, password: Swift.String) throws -&gt; Swift.Bool"
+                  moduleName = "Dine"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/doss-zstch1212/Developer/ConsoleApp/Dine/Dine/Authentication/AuthenticationManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "456">
+               </Location>
+               <Location
+                  uuid = "411075A5-2C0C-4331-8826-7E81061DAD1E - 758182f5f06eeb9e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dine.AuthenticationManager.isLoginValid(username: Swift.String, password: Swift.String) throws -&gt; Swift.Bool"
+                  moduleName = "Dine"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/doss-zstch1212/Developer/ConsoleApp/Dine/Dine/Authentication/AuthenticationManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "628">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3D503126-CF0E-4A4B-8AAF-8AA915FE096B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dine/Utilities/CSVLoader.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "parseRestaurant(from:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3D503126-CF0E-4A4B-8AAF-8AA915FE096B - 544966c6b72b247d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dine.CSVLoader.parseRestaurant(from: Swift.String) throws -&gt; (Swift.Optional&lt;Dine.Restaurant&gt;, Swift.Optional&lt;Swift.Error&gt;)"
+                  moduleName = "Dine"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/doss-zstch1212/Developer/ConsoleApp/Dine/Dine/Utilities/CSVLoader.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "2328">
+               </Location>
+               <Location
+                  uuid = "3D503126-CF0E-4A4B-8AAF-8AA915FE096B - 544966c6b72b247d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dine.CSVLoader.parseRestaurant(from: Swift.String) throws -&gt; (Swift.Optional&lt;Dine.Restaurant&gt;, Swift.Optional&lt;Swift.Error&gt;)"
+                  moduleName = "Dine"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/doss-zstch1212/Developer/ConsoleApp/Dine/Dine/Utilities/CSVLoader.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "2596">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F5FD0606-B6F9-4937-9C77-BF271081766E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dine/Utilities/CSVLoader.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "parseMenuItems(from:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F5FD0606-B6F9-4937-9C77-BF271081766E - 5314877a3d3ea3e8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dine.CSVLoader.parseMenuItems(from: Swift.String) throws -&gt; Swift.Array&lt;Dine.MenuItem&gt;"
+                  moduleName = "Dine"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/doss-zstch1212/Developer/ConsoleApp/Dine/Dine/Utilities/CSVLoader.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "1900">
+               </Location>
+               <Location
+                  uuid = "F5FD0606-B6F9-4937-9C77-BF271081766E - 3a7fa4d5d619eb63"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dine.CSVLoader.parseMenuItems(from: Swift.String) throws -&gt; Swift.Optional&lt;Swift.Array&lt;Dine.MenuItem&gt;&gt;"
+                  moduleName = "Dine"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/doss-zstch1212/Developer/ConsoleApp/Dine/Dine/Utilities/CSVLoader.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "1900">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F4A9ADD0-6093-4BD7-A6C1-B9E44E264250"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dine/Utilities/CSVLoader.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "parseMenuItems(from:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F4A9ADD0-6093-4BD7-A6C1-B9E44E264250 - 5314877a3d3eac5c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dine.CSVLoader.parseMenuItems(from: Swift.String) throws -&gt; Swift.Array&lt;Dine.MenuItem&gt;"
+                  moduleName = "Dine"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/doss-zstch1212/Developer/ConsoleApp/Dine/Dine/Utilities/CSVLoader.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "101"
+                  endingLineNumber = "101"
+                  offsetFromSymbolStart = "1808">
+               </Location>
+               <Location
+                  uuid = "F4A9ADD0-6093-4BD7-A6C1-B9E44E264250 - 3a7fa4d5d619e517"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dine.CSVLoader.parseMenuItems(from: Swift.String) throws -&gt; Swift.Optional&lt;Swift.Array&lt;Dine.MenuItem&gt;&gt;"
+                  moduleName = "Dine"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/doss-zstch1212/Developer/ConsoleApp/Dine/Dine/Utilities/CSVLoader.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "104"
+                  endingLineNumber = "104"
+                  offsetFromSymbolStart = "1804">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5569DB89-2C48-40C8-8E0D-BE8F2F9188AB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dine/Utilities/CSVLoader.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "parseMenuItems(from:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5569DB89-2C48-40C8-8E0D-BE8F2F9188AB - 5314877a3d3ead06"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dine.CSVLoader.parseMenuItems(from: Swift.String) throws -&gt; Swift.Array&lt;Dine.MenuItem&gt;"
+                  moduleName = "Dine"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/doss-zstch1212/Developer/ConsoleApp/Dine/Dine/Utilities/CSVLoader.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "1580">
+               </Location>
+               <Location
+                  uuid = "5569DB89-2C48-40C8-8E0D-BE8F2F9188AB - 3a7fa4d5d619e649"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dine.CSVLoader.parseMenuItems(from: Swift.String) throws -&gt; Swift.Optional&lt;Swift.Array&lt;Dine.MenuItem&gt;&gt;"
+                  moduleName = "Dine"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/doss-zstch1212/Developer/ConsoleApp/Dine/Dine/Utilities/CSVLoader.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "114"
+                  endingLineNumber = "114"
+                  offsetFromSymbolStart = "1580">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

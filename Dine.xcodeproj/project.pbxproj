@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5501FB0A2B7C945B00A8311B /* CSVExportable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5501FB092B7C945B00A8311B /* CSVExportable.swift */; };
+		5501FB0C2B7C950D00A8311B /* CSVWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5501FB0B2B7C950D00A8311B /* CSVWriter.swift */; };
+		5501FB0F2B7C96D000A8311B /* CSVError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5501FB0E2B7C96D000A8311B /* CSVError.swift */; };
+		5501FB112B7C96ED00A8311B /* AuthenticationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5501FB102B7C96ED00A8311B /* AuthenticationError.swift */; };
+		5501FB152B7C99E800A8311B /* String+AppendLineToFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5501FB142B7C99E800A8311B /* String+AppendLineToFile.swift */; };
+		5501FB392B7CDA8400A8311B /* FileIOError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5501FB382B7CDA8400A8311B /* FileIOError.swift */; };
+		5501FB3B2B7CF91100A8311B /* UserStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5501FB3A2B7CF91100A8311B /* UserStatus.swift */; };
 		55081A602B467AF800D71B31 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A5F2B467AF800D71B31 /* main.swift */; };
 		55081A6A2B467BF300D71B31 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A692B467BF300D71B31 /* Restaurant.swift */; };
 		55081A6C2B467C7000D71B31 /* Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A6B2B467C7000D71B31 /* Branch.swift */; };
@@ -82,6 +89,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5501FB092B7C945B00A8311B /* CSVExportable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVExportable.swift; sourceTree = "<group>"; };
+		5501FB0B2B7C950D00A8311B /* CSVWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVWriter.swift; sourceTree = "<group>"; };
+		5501FB0E2B7C96D000A8311B /* CSVError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVError.swift; sourceTree = "<group>"; };
+		5501FB102B7C96ED00A8311B /* AuthenticationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationError.swift; sourceTree = "<group>"; };
+		5501FB142B7C99E800A8311B /* String+AppendLineToFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+AppendLineToFile.swift"; sourceTree = "<group>"; };
+		5501FB382B7CDA8400A8311B /* FileIOError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileIOError.swift; sourceTree = "<group>"; };
+		5501FB3A2B7CF91100A8311B /* UserStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatus.swift; sourceTree = "<group>"; };
 		55081A5C2B467AF800D71B31 /* Dine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Dine; sourceTree = BUILT_PRODUCTS_DIR; };
 		55081A5F2B467AF800D71B31 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		55081A692B467BF300D71B31 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
@@ -156,6 +170,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5501FB0D2B7C96C600A8311B /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				5501FB0E2B7C96D000A8311B /* CSVError.swift */,
+				5501FB102B7C96ED00A8311B /* AuthenticationError.swift */,
+				5501FB382B7CDA8400A8311B /* FileIOError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
 		55081A532B467AF800D71B31 = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +199,7 @@
 		55081A5E2B467AF800D71B31 /* Dine */ = {
 			isa = PBXGroup;
 			children = (
+				5501FB0D2B7C96C600A8311B /* Error */,
 				55881ACE2B7B72A600422051 /* Manager */,
 				5598434C2B5AAFD900930AF8 /* File */,
 				558B05C82B75FDCD009159BA /* Authentication */,
@@ -186,6 +211,7 @@
 				55081A5F2B467AF800D71B31 /* main.swift */,
 				558B05BC2B73AE15009159BA /* AppOnboardingProtocol.swift */,
 				558B05C22B74B7AE009159BA /* RestaurantManager.swift */,
+				5501FB3A2B7CF91100A8311B /* UserStatus.swift */,
 			);
 			path = Dine;
 			sourceTree = "<group>";
@@ -200,6 +226,7 @@
 				55081A8B2B46972600D71B31 /* Order */,
 				55081A8A2B4696F500D71B31 /* Restaurant */,
 				55081A732B46877400D71B31 /* Menu */,
+				5501FB092B7C945B00A8311B /* CSVExportable.swift */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -380,6 +407,7 @@
 				55881AD12B7B8DB600422051 /* CSVLoader.swift */,
 				553BA4A42B6A535900B2F7E3 /* Save */,
 				5598434B2B5AAFCA00930AF8 /* User */,
+				5501FB0B2B7C950D00A8311B /* CSVWriter.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -523,6 +551,7 @@
 			isa = PBXGroup;
 			children = (
 				55C660912B6BBE9200E7FFFB /* String+OrderFormatting.swift */,
+				5501FB142B7C99E800A8311B /* String+AppendLineToFile.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -592,9 +621,11 @@
 				55081A6A2B467BF300D71B31 /* Restaurant.swift in Sources */,
 				55081A6C2B467C7000D71B31 /* Branch.swift in Sources */,
 				55081A872B46938F00D71B31 /* Order.swift in Sources */,
+				5501FB3B2B7CF91100A8311B /* UserStatus.swift in Sources */,
 				55881AD22B7B8DB600422051 /* CSVLoader.swift in Sources */,
 				55881ACB2B7A246C00422051 /* TableController.swift in Sources */,
 				5545DAAE2B4EBD00007D31B6 /* AuthController.swift in Sources */,
+				5501FB0F2B7C96D000A8311B /* CSVError.swift in Sources */,
 				55A65C9B2B613AD300776D03 /* MenuController.swift in Sources */,
 				55081A752B46877B00D71B31 /* Menu.swift in Sources */,
 				553BA4A12B69293400B2F7E3 /* ChefConsoleView.swift in Sources */,
@@ -607,11 +638,14 @@
 				55081A832B468E3100D71B31 /* Chef.swift in Sources */,
 				551E9BDA2B6D2AB6003C57E3 /* Admin.swift in Sources */,
 				55A65C982B61108F00776D03 /* OrderController.swift in Sources */,
+				5501FB0A2B7C945B00A8311B /* CSVExportable.swift in Sources */,
 				553BA4922B67A5BE00B2F7E3 /* BillingConsoleView.swift in Sources */,
 				554396492B5168F8004D08ED /* FileIOService.swift in Sources */,
 				55081A702B467D9D00D71B31 /* Employee.swift in Sources */,
 				554396672B5AAD31004D08ED /* CommandLineInputHandler.swift in Sources */,
+				5501FB152B7C99E800A8311B /* String+AppendLineToFile.swift in Sources */,
 				553BA4A32B6A3B0100B2F7E3 /* ChefController.swift in Sources */,
+				5501FB392B7CDA8400A8311B /* FileIOError.swift in Sources */,
 				55081A852B4690E900D71B31 /* Kitchen.swift in Sources */,
 				55081A7F2B468D1800D71B31 /* Address.swift in Sources */,
 				55081A812B468DF300D71B31 /* Manager.swift in Sources */,
@@ -643,7 +677,9 @@
 				558B05BD2B73AE15009159BA /* AppOnboardingProtocol.swift in Sources */,
 				553BA4972B67DA1400B2F7E3 /* OrderManager.swift in Sources */,
 				55081A722B46817E00D71B31 /* Account.swift in Sources */,
+				5501FB0C2B7C950D00A8311B /* CSVWriter.swift in Sources */,
 				558B05BF2B74AAE5009159BA /* SetupController.swift in Sources */,
+				5501FB112B7C96ED00A8311B /* AuthenticationError.swift in Sources */,
 				557D5E8F2B5FC0F100A402D3 /* AdminController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

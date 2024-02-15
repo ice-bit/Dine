@@ -8,12 +8,6 @@
 import Foundation
 
 class SetupConsoleView {
-    private let restaurantManager: RestaurantManager
-    
-    init(restaurantManager: RestaurantManager) {
-        self.restaurantManager = restaurantManager
-    }
-    
     func promptRestaurantSetup() {
         print("Enter restaurant name")
         let restaurantName = readLine() ?? ""
@@ -31,7 +25,7 @@ class SetupConsoleView {
             promptRestaurantSetup()
         }*/
         
-        let setupController = SetupController(restaurantManager: restaurantManager)
+        let setupController = SetupController()
         setupController.createRestaurant(name: restaurantName, locationName: locationName)
     }
 }
