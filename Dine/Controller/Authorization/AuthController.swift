@@ -7,120 +7,52 @@
 
 import Foundation
 
-protocol AuthStateObserver: AnyObject {
-    func didLogin(userId: String)
-    func didLogout()
-}
-
-struct AuthController {
-    private var isUserLoggedIn: Bool = false
+class AuthController {
+    private let userRepository: UserRepository
     
-    weak var authState: AuthStateObserver?
-    
-    private mutating func signUp() {
-        let authConsoleView = AuthConsoleView()
-        // Get credentials from the user
-        let (username, password) = authConsoleView.prompt()
-
-        // Validate username
-        guard AuthenticationValidator.isValidUsername(username) else {
-            print("Invalid username!")
-            return
-        }
-
-        // Validate password strength
-        guard AuthenticationValidator.isStrongPassword(password) else {
-            print("Password not strong enough!")
-            return
-        }
-
-        // Check if the username is already taken
-        let fileService = FileService()
-        let fileName = "\(username).json"
-        guard !fileService.doesFileExistInDocumentDirectory(fileName: fileName) else {
-            print("Username not available.")
-            return
-        }
-
-        // Create a new account
-        let account = Account(id: username, password: password, accountStatus: .active, userRole: .manager)
-
-        // Save the account
-        do {
-            try saveAccount(account)
-            print("Account created successfully!")
-            isUserLoggedIn = true
-        } catch {
-            print("Error saving account: \(error)")
-        }
+    init(userRepository: UserRepository) {
+        self.userRepository = userRepository
     }
-
     
-    private mutating func login() {
-        let fileIO = FileIOService()
-        let authConsoleView = AuthConsoleView()
-        let (username, password) = authConsoleView.prompt()
-
-        let fileService = FileService()
+    func createAccount(username: String, password: String, userRole: UserRole) throws {
+        guard !userRepository.checkUserPresence(username: username) else { throw AuthenticationError.userAlreadyExists }
+        guard AuthenticationValidator.isValidUsername(username) else { throw AuthenticationError.invalidUsername }
+        guard AuthenticationValidator.isStrongPassword(password) else { throw AuthenticationError.invalidPassword }
         
-        // Check if the user file exists
-        let userFileExists = fileService.doesFileExistInDocumentDirectory(fileName: "\(username).json")
-        guard userFileExists else {
-            print("User doesn't exist.")
-            return
-        }
-
-        // Attempt to read the account information
+        let account = Account(username: username, password: password, accountStatus: .active, userRole: userRole)
+        
+        userRepository.addUser(account)
+        UserStatus.userLoggedIn.updateStatus(true)
+    }
+    
+    func login(username: String, password: String) -> Bool {
         do {
-            if let account: Account = try fileIO.read(from: "\(username).json") {
-                // Check if the entered password matches the stored password
-                if account.getPassword() == password {
-                    print("Successfully logged in!")
-                    isUserLoggedIn = true
-                } else {
-                    print("Incorrect password.")
-                }
+            let authenticationManager = AuthenticationManager(userRespository: userRepository)
+            let isValidLogin =  try authenticationManager.isLoginValid(username: username, password: password)
+            if isValidLogin {
+                //UserStatus.userLoggedIn.updateStatus(true)
+                return true
             }
         } catch {
-            print("Error occurred while logging in: \(error)")
+            if let authError = error as? AuthenticationError {
+                switch authError {
+                case .invalidUsername:
+                    print("Invalid username")
+                case .invalidPassword:
+                    print("Invalid password")
+                case .userAlreadyExists:
+                    print("User already exist")
+                case .inactiveAccount:
+                    print("Inactive account")
+                case .noUserFound:
+                    print("No user found under username: \(username)")
+                }
+            } else {
+                print("An error occurred: \(error.localizedDescription)")
+            }
         }
-    }
-    
-    private func saveAccount(_ account: Account) throws {
-        let fileIO = FileIOService()
-        let modalJSONSerializer = ModelJSONSerializer()
-        let data = try modalJSONSerializer.modelToJSON(model: account)
-        try fileIO.write(data: data, into: "\(account.getId()).json")
-    }
-    
-    /*private func forgotPassword() {
-        let editCon = EditAccountController(userManager: userManager)
-        let (username, password) = authConsoleView.prompt()
-        if editCon.changePassword(username: username, password: password) {
-            print("Password changed!")
-        } else {
-            print("Sorry unable to change the password!")
-            run()
-        }
-    }*/
-    
-    mutating func run() {
-        print("1. Sign Up\n2. Login\n3. Forgot Password\n4. Exit")
-        let authConsoleView = AuthConsoleView()
-        let choice = authConsoleView.getInput()
         
-        switch choice {
-        case "1":
-            signUp()
-        case "2":
-            login()
-        case "3":
-            //forgotPassword()
-            print("yet to Implement")
-        case "4":
-            exit(0)
-        default:
-            authConsoleView.show(message: "Invalid choice. Please try again.")
-        }
+        return false
     }
+    
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum OrderStatus: Int {
+enum OrderStatus: Int, Codable, CaseIterable {
     case received = 1
     case preparing = 2
     case completed = 3
@@ -15,6 +15,44 @@ enum OrderStatus: Int {
     case none = 5
 }
 
-class Order {
+class Order: Codable {
+    private let _orderId: UUID
+    private let table: Table
+    private var _orderStatus: OrderStatus
+    private let menuItems: [MenuItem]
     
+    var orderStatus: OrderStatus {
+        return _orderStatus
+    }
+    
+    var tableLocationId: Int {
+        return table.locationId
+    }
+    
+    var orderId: UUID {
+        return _orderId
+    }
+    
+    init(table: Table, orderStatus: OrderStatus, menuItems: [MenuItem]) {
+        self._orderId = UUID()
+        self.table = table
+        self._orderStatus = orderStatus
+        self.menuItems = menuItems
+    }
+    
+    func displayOrderItems() {
+        for (index, item) in menuItems.enumerated() {
+            print("\(index + 1). \(item.name) - $\(item.price)")
+        }
+    }
+    
+    func orderedItems() -> [MenuItem] {
+        return menuItems
+    }
+    
+    func changeOrderStatus(_ status: OrderStatus) {
+        _orderStatus = status
+    }
 }
+
+

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Person {
+class Person: Codable {
     private var name: String
     private var email: String
     private var phoneNumber: String // format later
