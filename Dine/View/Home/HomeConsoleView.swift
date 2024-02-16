@@ -41,34 +41,34 @@ class HomeConsoleView {
     private func handleHomeOptions() {
         let choice = readLine() ?? ""
         switch choice {
-        case "1":
+        case "1": // Home
             let orderConsoleView = OrderConsoleView(restaurant: restaurant, orderManager: orderManager, tableManager: tableManager)
             orderConsoleView.promptMenuItemsSelection()
-        case "2":
+        case "2": // Customize menu
             let menuConsoleView = MenuConsoleView(menu: restaurant.menu)
             menuConsoleView.displayAndHandleMenuOptions()
-        case "3":
+        case "3": // Generate bill
             let billConsoleView = BillingConsoleView(billManager: billManager, orderManager: orderManager)
             billConsoleView.generatebill()
-        case "4":
+        case "4": // Update order status
             let chefConsoleView = ChefConsoleView(orderManager: orderManager)
             chefConsoleView.manageReceivedOrders()
-        case "5":
+        case "5": // View bills
             let billConsoleView = BillingConsoleView(billManager: billManager, orderManager: orderManager)
             billConsoleView.viewBill()
-        case "6":
+        case "6": // View orders
             let orderConsoleView = OrderConsoleView(restaurant: restaurant, orderManager: orderManager, tableManager: tableManager)
             orderConsoleView.viewOrders()
-        case "7":
+        case "7": // View menu
             let menuConsoleView = MenuConsoleView(menu: restaurant.menu)
             menuConsoleView.viewMenu()
-        case "8":
+        case "8": // Add employee
             let authConsoleView = AuthConsoleView(userRepository: userRepository)
             authConsoleView.createEmployee()
-        case "9":
+        case "9": // Customize Table
             let tableConsoleView = TableConsoleView(tableManager: tableManager)
             tableConsoleView.displayOptions()
-        case "10":
+        case "10": // Sign Out
             //UserStatus.userLoggedIn.updateStatus(false)
             delegate?.isUserLoggedIn(false)
             return
