@@ -14,11 +14,12 @@ class SetupController {
         self.restaurantManager = restaurantManager
     }
     
-    func createRestaurant(name: String, locationName: String) {
+    func createRestaurant(name: String, locationName: String) -> Bool {
         let restaurant = Restaurant(name: name, location: locationName)
         restaurantManager.setRestaurant(restaurant)
         // Restaurnat setup finished
-        UserStatus.restaurantSetup.updateStatus(true)
+        //UserStatus.restaurantSetup.updateStatus(true)
+        return true
     }
 }
 

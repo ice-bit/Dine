@@ -58,6 +58,7 @@ class Main {
     let userRepository: UserRepository = InMemoryUserRepository()
     
     private var isUserLoggedIn: Bool = false
+    private var isInitialSetup: Bool = true
     
     // MARK: - Starting point...
     /*func start() {
@@ -84,20 +85,25 @@ class Main {
     }*/
     
     func start() {
-        setupRestaurant()
-        
-        onboardUser()
+        while isInitialSetup {
+            setupRestaurant()
+            
+            onboardUser()
+        }
         
         authenticateUser()
         
         while isUserLoggedIn {
             displayHomeScreen()
         }
+        
+        start()
     }
     
     // MARK: - Supporting methods
     private func setupRestaurant() {
         let setupConsoleView = SetupConsoleView(restaurantManager: restaurantManager)
+        setupConsoleView.delegate = self
         setupConsoleView.promptRestaurantSetup()
     }
     
@@ -127,6 +133,12 @@ class Main {
 extension Main: LoginStateDelegate {
     func isUserLoggedIn(_ state: Bool) {
         isUserLoggedIn = state
+    }
+}
+
+extension Main: InitialSetupTogglable {
+    func toggleInitialSetup() {
+        isInitialSetup.toggle()
     }
 }
 
