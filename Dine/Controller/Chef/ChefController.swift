@@ -19,7 +19,7 @@ class ChefController {
     }
     
     func fetchReceivedOrders() -> [Order]? {
-        let receivedOrders = orderManager.recievedOrders
+        let receivedOrders = orderManager.getUncompletedOrders
         
         guard !receivedOrders.isEmpty else {
             print("No received orders found!")

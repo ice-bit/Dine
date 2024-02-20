@@ -59,7 +59,7 @@ class BillingConsoleView {
         
         let bills = billManager.bills
         for (index, bill) in bills.enumerated() {
-            print("\(index). Bill: \(bill.billId)")
+            print("\(index + 1). Bill: \(bill.billId)")
         }
     }
 }

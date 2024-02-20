@@ -28,6 +28,8 @@ class BillingController {
             bill = Bill(amount: totalAmount, tax: tax, isPaid: false)
         }
         
+        // Change bill status
+        order.isOrderBilled = true
         billManager.addBill(bill)
     }
     

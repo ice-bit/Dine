@@ -7,54 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "72B81AF2-479F-48E2-93C3-FBB7FEF1F9FD"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Dine/Controller/Chef/ChefController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "fetchReceivedOrders()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "72B81AF2-479F-48E2-93C3-FBB7FEF1F9FD - e72ef64d45e72e85"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Dine.ChefController.fetchReceivedOrders() -&gt; Swift.Optional&lt;Swift.Array&lt;Dine.Order&gt;&gt;"
-                  moduleName = "Dine"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/doss-zstch1212/Developer/ConsoleApp/Dine/Dine/Controller/Chef/ChefController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26"
-                  offsetFromSymbolStart = "476">
-               </Location>
-               <Location
-                  uuid = "72B81AF2-479F-48E2-93C3-FBB7FEF1F9FD - e72ef64d45e72e85"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Dine.ChefController.fetchReceivedOrders() -&gt; Swift.Optional&lt;Swift.Array&lt;Dine.Order&gt;&gt;"
-                  moduleName = "Dine"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/doss-zstch1212/Developer/ConsoleApp/Dine/Dine/Controller/Chef/ChefController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26"
-                  offsetFromSymbolStart = "400">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "F3B554EB-24C8-49AE-AC1D-AAFEA83EB765"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -81,22 +33,6 @@
             startingLineNumber = "31"
             endingLineNumber = "31"
             landmarkName = "searchUser(username:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D6868DC4-05EF-41B4-9673-6E23DAD11B3E"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Dine/Controller/Order/OrderManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "displayOrders()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

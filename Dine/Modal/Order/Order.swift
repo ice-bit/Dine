@@ -18,7 +18,15 @@ enum OrderStatus: Int, Codable, CaseIterable {
 class Order: Codable {
     private let _orderId: UUID
     private let table: Table
-    private var _orderStatus: OrderStatus
+    private var _orderStatus: OrderStatus {
+        didSet {
+            if _orderStatus == .completed {
+                table.changeTableStatus(to: .free)
+            }
+        }
+    }
+    
+    var isOrderBilled: Bool = false
     private let menuItems: [MenuItem]
     
     var orderStatus: OrderStatus {

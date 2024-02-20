@@ -18,8 +18,8 @@ class OrderManager: Codable {
         return _orders.count
     }
     
-    var recievedOrders: [Order] {
-        _orders.filter({ $0.orderStatus == .received })
+    var getUncompletedOrders: [Order] {
+        _orders.filter({ $0.orderStatus == .received || $0.orderStatus == .preparing })
     }
     
     subscript(_ index: Int) -> Order {
@@ -43,7 +43,7 @@ class OrderManager: Codable {
     
     // Orders that are completed
     func getUnbilledOrders() -> [Order]? {
-        let unbilledOrders = _orders.filter { $0.orderStatus == .completed }
+        let unbilledOrders = _orders.filter { $0.isOrderBilled == false && $0.orderStatus == .completed }
         
         guard !unbilledOrders.isEmpty else { return nil }
         
@@ -52,7 +52,7 @@ class OrderManager: Codable {
     
     func displayOrders() {
         for (index, order) in _orders.enumerated() {
-            print("\(index). Order: \(order.orderId)")
+            print("\(index + 1). Order: \(order.orderId)")
             print(" - Ordered Items:")
             print(" - \(order.displayOrderItems())")
         }

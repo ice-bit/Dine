@@ -33,5 +33,4 @@ class TableManager: Codable {
             print("No tables found")
         }
     }
-    
 }
