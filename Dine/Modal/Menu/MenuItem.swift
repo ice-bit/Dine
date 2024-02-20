@@ -18,3 +18,13 @@ class MenuItem: Codable {
         self.price = price
     }
 }
+
+extension MenuItem: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(itemId)
+    }
+    
+    static func == (lhs: MenuItem, rhs: MenuItem) -> Bool {
+        return lhs.itemId == rhs.itemId
+    }
+}

@@ -43,7 +43,7 @@ class OrderConsoleView {
     }
     
     func promptMenuItemsSelection() {
-        var orderItems: [MenuItem] = []
+        var orderQuantities: [MenuItem: Int] = [:]
         
         // Display menu items
         restaurant.menu.displayMenuItems()
@@ -56,7 +56,14 @@ class OrderConsoleView {
                     break
                 } else {
                     let selectedItem = restaurant.menu[choice - 1]
-                    orderItems.append(selectedItem)
+                    
+                    // Update quantity or add new item to the order
+                    if let quantity = orderQuantities[selectedItem] {
+                        orderQuantities[selectedItem] = quantity + 1
+                    } else {
+                        orderQuantities[selectedItem] = 1
+                    }
+                    
                     print("Added \(selectedItem.name) to your order.")
                 }
             } else {
@@ -64,36 +71,26 @@ class OrderConsoleView {
             }
         }
         
-        // Below code snippet is for test purposes
+        // Print order summary
         print("Your order:")
-        for item in orderItems {
-            print("\(item.name) - $\(item.price)")
+        for (item, quantity) in orderQuantities {
+            print("\(item.name) - \(quantity) x $\(item.price)")
         }
-        print("Total: $\(orderItems.reduce(0.0) { $0 + $1.price })")
+        let totalPrice = orderQuantities.reduce(0.0) { $0 + ($1.key.price * Double($1.value)) }
+        print("Total: $\(totalPrice)")
         
-        guard !orderItems.isEmpty else { return }
+        guard !orderQuantities.isEmpty else { return }
         
         // Process order
-        
         guard let table = displayTablesAndChoose() else {
             print("Table not found!")
             return
         }
         
         let orderController = OrderController(orderManager: orderManager)
-        orderController.createOrder(for: table, menuItem: orderItems)
+        orderController.createOrder(for: table, menuItem: Array(orderQuantities.keys))
         print("Order created successfully!")
     }
-    
-    /*func viewOrders() {
-        let orders = orderManager.orders
-        
-        for (index, order) in orders.enumerated() {
-            print("\(index). Order: \(order.orderId)")
-            print(" - Ordered Items:")
-            print(" - \(order.displayOrderItems())")
-        }
-    }*/
     
     func viewOrders() {
         guard orderManager.ordersCount > 0 else {
