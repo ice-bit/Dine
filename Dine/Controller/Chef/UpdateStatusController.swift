@@ -7,12 +7,13 @@
 
 import Foundation
 
-class ChefController {
-    private let orderManager: OrderManager
-    
-    init(orderManager: OrderManager) {
-        self.orderManager = orderManager
-    }
+protocol UpdateStatusService {
+    func changeStatus(for order: Order, to status: OrderStatus)
+    func fetchReceivedOrders() -> [Order]?
+}
+
+class UpdateStatusController: UpdateStatusService {
+    private let orderManager = OrderManager.shared
     
     func changeStatus(for order: Order, to status: OrderStatus) {
         order.changeOrderStatus(status)

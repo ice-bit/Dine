@@ -7,23 +7,31 @@
 
 import Foundation
 
-class ChefConsoleView {
-    private let orderManager: OrderManager
+class UpdateStatusConsoleView {
+    private let updateStatusService: UpdateStatusService
     
-    init(orderManager: OrderManager) {
-        self.orderManager = orderManager
+    init(updateStatusService: UpdateStatusService) {
+        self.updateStatusService = updateStatusService
     }
     
+    
     func manageReceivedOrders() {
+<<<<<<< Updated upstream:Dine/View/Chef/ChefConsoleView.swift
         let chefController = ChefController(orderManager: orderManager)
         
         guard let receivedOrders = chefController.fetchReceivedOrders() else { return }
+=======
+        guard let receivedOrders = updateStatusService.fetchReceivedOrders() else {
+            print("No recieved orders found!")
+            return
+        }
+>>>>>>> Stashed changes:Dine/View/Chef/UpdateStatusConsoleView.swift
         
         guard let order = promptForOrderSelection(from: receivedOrders) else { return }
         
         guard let status = promptForTableStatusSelection() else { return }
         
-        chefController.changeStatus(for: order, to: status)
+        updateStatusService.changeStatus(for: order, to: status)
         
     }
     
@@ -73,6 +81,5 @@ class ChefConsoleView {
             }
         }
     }
-
 }
 
