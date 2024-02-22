@@ -7,16 +7,15 @@
 
 import Foundation
 
-class BillingController {
-    private let billManager: BillManager
-    private let orderManager: OrderManager
+protocol BillService {
+    func createBill(for order: Order, tip: Double?)
+    func fetchBills() -> [Bill]?
+}
+
+class BillingController: BillService {
+    private let billManager = BillManager.shared
     
-    init(billManager: BillManager, orderManager: OrderManager) {
-        self.billManager = billManager
-        self.orderManager = orderManager
-    }
-    
-    func createBill(for order: Order, tip: Double? = nil) {
+    func createBill(for order: Order, tip: Double?) {
         let menuItems = order.orderedItems()
         let totalAmount = menuItems.reduce(0.0) { $0 + $1.price }
         let tax = totalAmount * 0.18
@@ -33,7 +32,12 @@ class BillingController {
         billManager.addBill(bill)
     }
     
-    func getUnbilledOrders() -> [Order]? {
-        return orderManager.getUnbilledOrders()
+    func fetchBills() -> [Bill]? {
+        guard billManager.bills.isEmpty else {
+            print("No completed bills found.")
+            return nil
+        }
+        
+        return billManager.bills
     }
 }

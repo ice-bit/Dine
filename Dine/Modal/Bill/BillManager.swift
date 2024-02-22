@@ -7,7 +7,11 @@
 
 import Foundation
 
-class BillManager: Codable {
+class BillManager {
+    static let shared = BillManager()
+    
+    private init() {}
+    
     private var _bills: [Bill] = []
     
     var bills: [Bill] {

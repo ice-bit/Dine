@@ -19,6 +19,10 @@ enum UserRepositoryError: Error {
 }
 
 class InMemoryUserRepository: UserRepository {
+    static let shared = InMemoryUserRepository()
+    
+    private init() {}
+
     private var accounts: [Account] = [
         Account(username: "TechDev_123", password: "StrongP@ss123", accountStatus: .active, userRole: .manager
                ),

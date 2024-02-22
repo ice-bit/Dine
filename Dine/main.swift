@@ -55,7 +55,6 @@ func getMenu() -> Menu {
 
 class Main {
     private var restaurantManager = RestaurantManager()
-    let userRepository: UserRepository = InMemoryUserRepository()
     
     private var isUserLoggedIn: Bool = false
     private var isInitialSetup: Bool = true
@@ -108,12 +107,12 @@ class Main {
     }
     
     private func onboardUser() {
-        let authConsoleView = AuthConsoleView(userRepository: userRepository)
+        let authConsoleView = AuthConsoleView()
         authConsoleView.startSignUp()
     }
     
     private func authenticateUser() {
-        let authConsoleView = AuthConsoleView(userRepository: userRepository)
+        let authConsoleView = AuthConsoleView()
         authConsoleView.delegate = self
         authConsoleView.startLogin()
     }
@@ -124,7 +123,7 @@ class Main {
             return
         }
         
-        let homeConsoleView = HomeConsoleView(restaurant: restaurant, userRepository: userRepository)
+        let homeConsoleView = HomeConsoleView(restaurant: restaurant)
         homeConsoleView.delegate = self
         homeConsoleView.displayHomeOptions()
     }

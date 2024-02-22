@@ -9,17 +9,15 @@ import Foundation
 
 class OrderConsoleView {
     private let restaurant: Restaurant
-    private let orderManager: OrderManager
-    private let tableManager: TableManager
+    private let orderService: OrderService = OrderController()
+    private let tableService: TableService = TableController()
     
-    init(restaurant: Restaurant, orderManager: OrderManager, tableManager: TableManager) {
+    init(restaurant: Restaurant) {
         self.restaurant = restaurant
-        self.orderManager = orderManager
-        self.tableManager = tableManager
     }
     
     func displayTablesAndChoose() -> Table? {
-        let availableTables = tableManager.availableTables
+        let availableTables = tableService.fetchAvailableTables()
         
         guard !availableTables.isEmpty else {
             print("No tables available or try adding new tables.")
@@ -32,10 +30,11 @@ class OrderConsoleView {
         }
         
         print("Enter the number of the table you want to choose (or 0 to cancel):")
-        if let choice = readLine(), let tableNumber = Int(choice), tableNumber >= 1, tableNumber <= tableManager.availableTables.count {
-            let chosenTable = tableManager.availableTables[tableNumber - 1]
+        if let choice = readLine(), let tableNumber = Int(choice), tableNumber >= 1, tableNumber <= availableTables.count {
+            let chosenTable = availableTables[tableNumber - 1]
             print("You chose Table \(chosenTable.tableId)")
-            return tableManager.getTables.first(where: { $0.tableId == chosenTable.tableId })
+            let tables: [Table] = tableService.fetchTables()
+            return tables.first(where: { $0.tableId == chosenTable.tableId })
         } else {
             print("Invalid choice or canceled.")
             return nil
@@ -87,17 +86,17 @@ class OrderConsoleView {
             return
         }
         
-        let orderController = OrderController(orderManager: orderManager)
-        orderController.createOrder(for: table, menuItem: Array(orderQuantities.keys))
+        orderService.createOrder(for: table, menuItem: Array(orderQuantities.keys))
         print("Order created successfully!")
     }
     
     func viewOrders() {
-        guard orderManager.ordersCount > 0 else {
+        let orderCount: Int = orderService.getOrdersCount()
+        guard orderCount > 0 else {
             print("No orders recieved. Please place orders.")
             return
         }
         
-        orderManager.displayOrders()
+        orderService.displayOrders()
     }
 }
