@@ -7,13 +7,16 @@
 
 import Foundation
 
-class TableController {
-    private let tableManager: TableManager
-    
-    init(tableManager: TableManager) {
-        self.tableManager = tableManager
-    }
-    
+protocol TableService {
+    func addTable(maxCapacity: Int, locationIdentifier: Int)
+    func removeTable(_ table: Table)
+    func fetchAvailableTables() -> [Table]
+    func fetchTables() -> [Table]
+}
+
+class TableController: TableService {
+    private let tableManager = TableManager.shared
+
     func addTable(maxCapacity: Int, locationIdentifier: Int) {
         let table = Table(maxCapacity: maxCapacity, locationIdentifier: locationIdentifier)
         tableManager.addTable(table)
@@ -22,5 +25,13 @@ class TableController {
     func removeTable(_ table: Table)  {
         // Check if table is available or not...
         tableManager.removeTable(table)
+    }
+    
+    func fetchAvailableTables() -> [Table] {
+        tableManager.availableTables
+    }
+    
+    func fetchTables() -> [Table] {
+        tableManager.getTables
     }
 }

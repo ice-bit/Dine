@@ -8,6 +8,10 @@
 import Foundation
 
 class TableManager: Codable {
+    static let shared = TableManager()
+    
+    private init() {}
+    
     private var tables: [Table] = []
     
     var getTables: [Table] {

@@ -7,17 +7,11 @@
 
 import Foundation
 
-class ChefConsoleView {
-    private let orderManager: OrderManager
-    
-    init(orderManager: OrderManager) {
-        self.orderManager = orderManager
-    }
+class UpdateStatusConsoleView {
+    private let updateStatusService: UpdateStatusService = UpdateStatusController()
     
     func manageReceivedOrders() {
-        let chefController = ChefController(orderManager: orderManager)
-        
-        guard let receivedOrders = chefController.fetchReceivedOrders() else { 
+        guard let receivedOrders = updateStatusService.fetchReceivedOrders() else {
             print("No recieved orders found!")
             return
         }
@@ -32,7 +26,7 @@ class ChefConsoleView {
             return
         }
         
-        chefController.changeStatus(for: order, to: status)
+        updateStatusService.changeStatus(for: order, to: status)
         
     }
     
@@ -82,6 +76,5 @@ class ChefConsoleView {
             }
         }
     }
-
 }
 

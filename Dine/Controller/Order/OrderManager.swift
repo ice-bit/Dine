@@ -8,11 +8,11 @@
 import Foundation
 
 class OrderManager: Codable {
-    private var _orders: [Order] = []
+    static let shared = OrderManager()
     
-    /*var orders: [Order] {
-        return _orders
-    }*/
+    private init() {}
+    
+    private var _orders: [Order] = []
     
     var ordersCount: Int {
         return _orders.count

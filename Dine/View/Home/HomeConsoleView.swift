@@ -9,17 +9,11 @@ import Foundation
 
 class HomeConsoleView {
     private let restaurant: Restaurant
-    private let userRepository: UserRepository
-    
-    private let orderManager = OrderManager()
-    private let tableManager = TableManager()
-    private let billManager = BillManager()
     
     weak var delegate: LoginStateDelegate?
     
-    init(restaurant: Restaurant, userRepository: UserRepository) {
+    init(restaurant: Restaurant) {
         self.restaurant = restaurant
-        self.userRepository = userRepository
     }
     
     func displayHomeOptions() {
@@ -42,31 +36,31 @@ class HomeConsoleView {
         let choice = readLine() ?? ""
         switch choice {
         case "1": // Home
-            let orderConsoleView = OrderConsoleView(restaurant: restaurant, orderManager: orderManager, tableManager: tableManager)
+            let orderConsoleView = OrderConsoleView(restaurant: restaurant)
             orderConsoleView.promptMenuItemsSelection()
         case "2": // Customize menu
             let menuConsoleView = MenuConsoleView(menu: restaurant.menu)
             menuConsoleView.displayAndHandleMenuOptions()
         case "3": // Generate bill
-            let billConsoleView = BillingConsoleView(billManager: billManager, orderManager: orderManager)
+            let billConsoleView = BillingConsoleView()
             billConsoleView.generatebill()
         case "4": // Update order status
-            let chefConsoleView = ChefConsoleView(orderManager: orderManager)
+            let chefConsoleView = UpdateStatusConsoleView()
             chefConsoleView.manageReceivedOrders()
         case "5": // View bills
-            let billConsoleView = BillingConsoleView(billManager: billManager, orderManager: orderManager)
-            billConsoleView.viewBill()
+            let billConsoleView = BillingConsoleView()
+            billConsoleView.displayBills()
         case "6": // View orders
-            let orderConsoleView = OrderConsoleView(restaurant: restaurant, orderManager: orderManager, tableManager: tableManager)
+            let orderConsoleView = OrderConsoleView(restaurant: restaurant)
             orderConsoleView.viewOrders()
         case "7": // View menu
             let menuConsoleView = MenuConsoleView(menu: restaurant.menu)
             menuConsoleView.viewMenu()
         case "8": // Add employee
-            let authConsoleView = AuthConsoleView(userRepository: userRepository)
+            let authConsoleView = AuthConsoleView()
             authConsoleView.createEmployee()
         case "9": // Customize Table
-            let tableConsoleView = TableConsoleView(tableManager: tableManager)
+            let tableConsoleView = TableConsoleView()
             tableConsoleView.displayOptions()
         case "10": // Sign Out
             //UserStatus.userLoggedIn.updateStatus(false)

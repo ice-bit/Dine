@@ -8,11 +8,7 @@
 import Foundation
 
 class TableConsoleView {
-    private let tableManager: TableManager
-    
-    init(tableManager: TableManager) {
-        self.tableManager = tableManager
-    }
+    private let tableService: TableService = TableController()
     
     func displayOptions() {
         print("Table Customization Menu")
@@ -50,13 +46,12 @@ class TableConsoleView {
             print("Invalid input for location identifier")
             return
         }
-        
-        let tableController = TableController(tableManager: tableManager)
-        tableController.addTable(maxCapacity: capacity, locationIdentifier: locationId)
+    
+        tableService.addTable(maxCapacity: capacity, locationIdentifier: locationId)
     }
     
     private func removeTablePrompt() {
-        let availableTables = tableManager.availableTables
+        let availableTables = tableService.fetchAvailableTables()
         
         guard !availableTables.isEmpty else {
             print("No tables available.")
@@ -69,13 +64,13 @@ class TableConsoleView {
         }
         
         print("Enter the number of the table you want to remove (or 0 to cancel):")
-        if let choice = readLine(), let tableNumber = Int(choice), tableNumber >= 1, tableNumber <= tableManager.availableTables.count {
-            let chosenTable = tableManager.availableTables[tableNumber - 1]
+        if let choice = readLine(), let tableNumber = Int(choice), tableNumber >= 1, tableNumber <= availableTables.count {
+            let chosenTable = availableTables[tableNumber - 1]
             print("You chose Table \(chosenTable.tableId)")
-            guard let table = tableManager.getTables.first(where: { $0.tableId == chosenTable.tableId }) else { return }
+            let tables = tableService.fetchTables()
+            guard let table = tables.first(where: { $0.tableId == chosenTable.tableId }) else { return }
             
-            let tableController = TableController(tableManager: tableManager)
-            tableController.removeTable(table)
+            tableService.removeTable(table)
         } else {
             print("Invalid choice or canceled.")
             return

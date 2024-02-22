@@ -12,14 +12,10 @@ protocol LoginStateDelegate: AnyObject {
 }
 
 class AuthConsoleView {
-    private let userRepository: UserRepository
+    private let userRepository: UserRepository = InMemoryUserRepository.shared
     
     weak var delegate: LoginStateDelegate?
-    
-    init(userRepository: UserRepository) {
-        self.userRepository = userRepository
-    }
-    
+
     func startSignUp() {
         promptSignUpCredentials(isInitial: true)
     }

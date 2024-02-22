@@ -26,6 +26,7 @@
 		55081A872B46938F00D71B31 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A862B46938F00D71B31 /* Order.swift */; };
 		55081A892B4694E000D71B31 /* WaitStaff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A882B4694E000D71B31 /* WaitStaff.swift */; };
 		55081A952B46C14A00D71B31 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55081A942B46C14A00D71B31 /* UserManager.swift */; };
+		5512D9FA2B875D1700E2CFCD /* FileIOError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5512D9F92B875D1700E2CFCD /* FileIOError.swift */; };
 		551E9BDA2B6D2AB6003C57E3 /* Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551E9BD92B6D2AB6003C57E3 /* Admin.swift */; };
 		551E9BDD2B720D88003C57E3 /* MenuConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551E9BDC2B720D88003C57E3 /* MenuConsoleView.swift */; };
 		5529B6342B73668B00B35D99 /* StartUpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5529B6332B73668B00B35D99 /* StartUpManager.swift */; };
@@ -34,8 +35,8 @@
 		553BA4972B67DA1400B2F7E3 /* OrderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553BA4962B67DA1400B2F7E3 /* OrderManager.swift */; };
 		553BA49A2B68DB2800B2F7E3 /* TableManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553BA4992B68DB2800B2F7E3 /* TableManager.swift */; };
 		553BA49E2B69018800B2F7E3 /* Bill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553BA49D2B69018800B2F7E3 /* Bill.swift */; };
-		553BA4A12B69293400B2F7E3 /* ChefConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553BA4A02B69293400B2F7E3 /* ChefConsoleView.swift */; };
-		553BA4A32B6A3B0100B2F7E3 /* ChefController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553BA4A22B6A3B0100B2F7E3 /* ChefController.swift */; };
+		553BA4A12B69293400B2F7E3 /* UpdateStatusConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553BA4A02B69293400B2F7E3 /* UpdateStatusConsoleView.swift */; };
+		553BA4A32B6A3B0100B2F7E3 /* UpdateStatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553BA4A22B6A3B0100B2F7E3 /* UpdateStatusController.swift */; };
 		553BA4A62B6B73FC00B2F7E3 /* BillManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553BA4A52B6B73FC00B2F7E3 /* BillManager.swift */; };
 		554396492B5168F8004D08ED /* FileIOService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554396482B5168F8004D08ED /* FileIOService.swift */; };
 		554396522B58FECD004D08ED /* ModelJSONSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554396512B58FECD004D08ED /* ModelJSONSerializer.swift */; };
@@ -103,6 +104,7 @@
 		55081A862B46938F00D71B31 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		55081A882B4694E000D71B31 /* WaitStaff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitStaff.swift; sourceTree = "<group>"; };
 		55081A942B46C14A00D71B31 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		5512D9F92B875D1700E2CFCD /* FileIOError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileIOError.swift; sourceTree = "<group>"; };
 		551E9BD92B6D2AB6003C57E3 /* Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Admin.swift; sourceTree = "<group>"; };
 		551E9BDC2B720D88003C57E3 /* MenuConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuConsoleView.swift; sourceTree = "<group>"; };
 		5529B6332B73668B00B35D99 /* StartUpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartUpManager.swift; sourceTree = "<group>"; };
@@ -111,8 +113,8 @@
 		553BA4962B67DA1400B2F7E3 /* OrderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderManager.swift; sourceTree = "<group>"; };
 		553BA4992B68DB2800B2F7E3 /* TableManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableManager.swift; sourceTree = "<group>"; };
 		553BA49D2B69018800B2F7E3 /* Bill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bill.swift; sourceTree = "<group>"; };
-		553BA4A02B69293400B2F7E3 /* ChefConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefConsoleView.swift; sourceTree = "<group>"; };
-		553BA4A22B6A3B0100B2F7E3 /* ChefController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefController.swift; sourceTree = "<group>"; };
+		553BA4A02B69293400B2F7E3 /* UpdateStatusConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStatusConsoleView.swift; sourceTree = "<group>"; };
+		553BA4A22B6A3B0100B2F7E3 /* UpdateStatusController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStatusController.swift; sourceTree = "<group>"; };
 		553BA4A52B6B73FC00B2F7E3 /* BillManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillManager.swift; sourceTree = "<group>"; };
 		554396482B5168F8004D08ED /* FileIOService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileIOService.swift; sourceTree = "<group>"; };
 		554396512B58FECD004D08ED /* ModelJSONSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelJSONSerializer.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				5501FB3D2B7E1AD900A8311B /* AuthenticationError.swift */,
+				5512D9F92B875D1700E2CFCD /* FileIOError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -336,7 +339,7 @@
 		553BA4932B67C0C400B2F7E3 /* Chef */ = {
 			isa = PBXGroup;
 			children = (
-				553BA4A22B6A3B0100B2F7E3 /* ChefController.swift */,
+				553BA4A22B6A3B0100B2F7E3 /* UpdateStatusController.swift */,
 			);
 			path = Chef;
 			sourceTree = "<group>";
@@ -362,7 +365,7 @@
 		553BA49F2B69291A00B2F7E3 /* Chef */ = {
 			isa = PBXGroup;
 			children = (
-				553BA4A02B69293400B2F7E3 /* ChefConsoleView.swift */,
+				553BA4A02B69293400B2F7E3 /* UpdateStatusConsoleView.swift */,
 			);
 			path = Chef;
 			sourceTree = "<group>";
@@ -599,7 +602,7 @@
 				5545DAAE2B4EBD00007D31B6 /* AuthController.swift in Sources */,
 				55A65C9B2B613AD300776D03 /* MenuController.swift in Sources */,
 				55081A752B46877B00D71B31 /* Menu.swift in Sources */,
-				553BA4A12B69293400B2F7E3 /* ChefConsoleView.swift in Sources */,
+				553BA4A12B69293400B2F7E3 /* UpdateStatusConsoleView.swift in Sources */,
 				553BA4A62B6B73FC00B2F7E3 /* BillManager.swift in Sources */,
 				55081A6E2B467CF400D71B31 /* Person.swift in Sources */,
 				5545DAC22B502C50007D31B6 /* FoodItem.swift in Sources */,
@@ -610,10 +613,11 @@
 				551E9BDA2B6D2AB6003C57E3 /* Admin.swift in Sources */,
 				55A65C982B61108F00776D03 /* OrderController.swift in Sources */,
 				553BA4922B67A5BE00B2F7E3 /* BillingConsoleView.swift in Sources */,
+				5512D9FA2B875D1700E2CFCD /* FileIOError.swift in Sources */,
 				554396492B5168F8004D08ED /* FileIOService.swift in Sources */,
 				55081A702B467D9D00D71B31 /* Employee.swift in Sources */,
 				554396672B5AAD31004D08ED /* CommandLineInputHandler.swift in Sources */,
-				553BA4A32B6A3B0100B2F7E3 /* ChefController.swift in Sources */,
+				553BA4A32B6A3B0100B2F7E3 /* UpdateStatusController.swift in Sources */,
 				55081A852B4690E900D71B31 /* Kitchen.swift in Sources */,
 				55081A7F2B468D1800D71B31 /* Address.swift in Sources */,
 				55081A812B468DF300D71B31 /* Manager.swift in Sources */,

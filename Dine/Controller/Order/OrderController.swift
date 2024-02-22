@@ -7,12 +7,15 @@
 
 import Foundation
 
-class OrderController {
-    private var orderManager: OrderManager
-    
-    init(orderManager: OrderManager) {
-        self.orderManager = orderManager
-    }
+protocol OrderService {
+    func createOrder(for table: Table, menuItem: [MenuItem])
+    func getOrdersCount() -> Int
+    func displayOrders()
+    func getUnbilledOrders() -> [Order]?
+}
+
+class OrderController: OrderService {
+    private let orderManager = OrderManager.shared
     
     func createOrder(for table: Table, menuItem: [MenuItem]) {
         let order = Order(table: table, orderStatus: .received, menuItems: menuItem)
@@ -21,5 +24,17 @@ class OrderController {
         
         // Adding to OrderManager
         orderManager.addOrder(order: order)
+    }
+    
+    func getOrdersCount() -> Int {
+        orderManager.ordersCount
+    }
+    
+    func displayOrders() {
+        orderManager.displayOrders()
+    }
+    
+    func getUnbilledOrders() -> [Order]? {
+        return orderManager.getUnbilledOrders()
     }
 }
