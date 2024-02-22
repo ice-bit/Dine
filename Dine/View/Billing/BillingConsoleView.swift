@@ -43,10 +43,6 @@ class BillingConsoleView {
     }
     
     func displayBills() {
-        if let bills = billService.fetchBills() {
-            for (index, bill) in bills.enumerated() {
-                print("\(index + 1). Bill: \(bill.billId)")
-            }
-        }
+        billService.displayBills()
     }
 }

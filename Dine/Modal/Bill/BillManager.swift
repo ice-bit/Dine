@@ -27,4 +27,10 @@ class BillManager {
             _bills.remove(at: billIndex)
         }
     }
+    
+    func displayBills() {
+        for (index, bill) in bills.enumerated() {
+            print("\(index + 1) - \(bill.displayBill())")
+        }
+    }
 }

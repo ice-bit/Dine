@@ -31,4 +31,22 @@ class Bill: Codable {
     convenience init(amount: Double, tax: Double, isPaid: Bool) {
         self.init(amount: amount, tip: 0.0, tax: tax, isPaid: isPaid)
     }
+    
+    func displayBill() -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        
+        let paidStatus = isPaid ? "Paid" : "Unpaid"
+        
+        let billDetails = """
+        Bill ID: \(_billId)
+        Amount: \(amount)
+        Date: \(formatter.string(from: date))
+        Tip: \(tip)
+        Tax: \(tax)
+        Status: \(paidStatus)
+        """
+        
+        return billDetails
+    }
 }

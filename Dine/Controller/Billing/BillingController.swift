@@ -9,7 +9,7 @@ import Foundation
 
 protocol BillService {
     func createBill(for order: Order, tip: Double?)
-    func fetchBills() -> [Bill]?
+    func displayBills()
 }
 
 class BillingController: BillService {
@@ -32,12 +32,7 @@ class BillingController: BillService {
         billManager.addBill(bill)
     }
     
-    func fetchBills() -> [Bill]? {
-        guard billManager.bills.isEmpty else {
-            print("No completed bills found.")
-            return nil
-        }
-        
-        return billManager.bills
+    func displayBills() {
+        billManager.displayBills()
     }
 }

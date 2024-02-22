@@ -188,6 +188,7 @@
 		55081A5E2B467AF800D71B31 /* Dine */ = {
 			isa = PBXGroup;
 			children = (
+				55D9E46E2B877D0100780B4F /* CSV */,
 				5501FB3C2B7E1AC700A8311B /* Error */,
 				558B05C82B75FDCD009159BA /* Authentication */,
 				55C660902B6BBE8900E7FFFB /* Extension */,
@@ -531,6 +532,13 @@
 				55C660912B6BBE9200E7FFFB /* String+OrderFormatting.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		55D9E46E2B877D0100780B4F /* CSV */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CSV;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
