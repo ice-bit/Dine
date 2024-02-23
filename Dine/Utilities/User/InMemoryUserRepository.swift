@@ -7,13 +7,6 @@
 
 import Foundation
 
-/*struct UserRepositoryError: Error {
-    enum ErrorType {
-        case userNotFound
-    }
-    
-    let type: ErrorType
-}*/
 enum UserRepositoryError: Error {
     case userNotFound
 }
@@ -22,13 +15,23 @@ class InMemoryUserRepository: UserRepository {
     static let shared = InMemoryUserRepository()
     
     private init() {}
-
+    
     private var accounts: [Account] = [
         Account(username: "TechDev_123", password: "StrongP@ss123", accountStatus: .active, userRole: .manager
                ),
         Account(username: "qwe", password: "zxc", accountStatus: .active, userRole: .manager
                )
-    ]
+    ] {
+        didSet {
+            let csvWriter = CSVWriter(fileName: "Test_Account")
+            do {
+                let isSuccess = try csvWriter.writeToCSV(csvDataModal: self)
+                print("\(isSuccess)")
+            } catch {
+                print("Error punk!")
+            }
+        }
+    }
     
     func addUser(_ user: Account) {
         accounts.append(user)
@@ -59,6 +62,17 @@ class InMemoryUserRepository: UserRepository {
         guard let user = searchUser(username: username) else { return false }
         return user.userRole == .manager
     }
-    
-    
+}
+
+extension InMemoryUserRepository: CSVWritable {
+    func toCSVString() -> String {
+        var csvString = "userId,username,password,accountStatus,userRole\n"
+        for account in self.accounts {
+            let row = account.toCSVString()
+            // print(row)
+            csvString.append(row)
+        }
+        
+        return csvString
+    }
 }

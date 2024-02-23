@@ -7,17 +7,15 @@
 
 import Foundation
 
-enum AccountStatus: Int, Codable {
-    case active = 1
-    case closed = 2
-    case cancelled = 3
+enum AccountStatus: String {
+    case active, closed, cancelled
 }
 
-enum UserRole: Codable {
+enum UserRole: String {
     case admin, manager, waitStaff, chef, employee
 }
 
-class Account: Codable {
+class Account {
     private let _userId: UUID
     private var _username: String
     private var _password: String
@@ -70,5 +68,12 @@ class Account: Codable {
 extension Account: Equatable {
     static func == (lhs: Account, rhs: Account) -> Bool {
         return lhs._username == rhs._username
+    }
+}
+
+extension Account: CSVWritable {
+    func toCSVString() -> String {
+        var csvText = "\(userId),\(username),\(password),\(accountStatus.rawValue),\(userRole.rawValue)\n"
+        return csvText
     }
 }

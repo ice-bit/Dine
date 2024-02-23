@@ -69,6 +69,9 @@
 		55A7836F2B4BFD0E00E20DF9 /* EditAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A7836E2B4BFD0E00E20DF9 /* EditAccountController.swift */; };
 		55A783732B4C009000E20DF9 /* AuthenticationValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A783722B4C009000E20DF9 /* AuthenticationValidator.swift */; };
 		55C660922B6BBE9200E7FFFB /* String+OrderFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C660912B6BBE9200E7FFFB /* String+OrderFormatting.swift */; };
+		55D9E4712B88746D00780B4F /* CSVWritable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E4702B88746D00780B4F /* CSVWritable.swift */; };
+		55D9E4732B88748D00780B4F /* CSVWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E4722B88748D00780B4F /* CSVWriter.swift */; };
+		55D9E4782B8892B000780B4F /* CSVReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E4772B8892B000780B4F /* CSVReader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -147,6 +150,9 @@
 		55A7836E2B4BFD0E00E20DF9 /* EditAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountController.swift; sourceTree = "<group>"; };
 		55A783722B4C009000E20DF9 /* AuthenticationValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationValidator.swift; sourceTree = "<group>"; };
 		55C660912B6BBE9200E7FFFB /* String+OrderFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+OrderFormatting.swift"; sourceTree = "<group>"; };
+		55D9E4702B88746D00780B4F /* CSVWritable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVWritable.swift; sourceTree = "<group>"; };
+		55D9E4722B88748D00780B4F /* CSVWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVWriter.swift; sourceTree = "<group>"; };
+		55D9E4772B8892B000780B4F /* CSVReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVReader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +194,7 @@
 		55081A5E2B467AF800D71B31 /* Dine */ = {
 			isa = PBXGroup;
 			children = (
+				55D9E4762B88927800780B4F /* Data */,
 				55D9E46E2B877D0100780B4F /* CSV */,
 				5501FB3C2B7E1AC700A8311B /* Error */,
 				558B05C82B75FDCD009159BA /* Authentication */,
@@ -537,8 +544,18 @@
 		55D9E46E2B877D0100780B4F /* CSV */ = {
 			isa = PBXGroup;
 			children = (
+				55D9E4702B88746D00780B4F /* CSVWritable.swift */,
+				55D9E4722B88748D00780B4F /* CSVWriter.swift */,
+				55D9E4772B8892B000780B4F /* CSVReader.swift */,
 			);
 			path = CSV;
+			sourceTree = "<group>";
+		};
+		55D9E4762B88927800780B4F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -618,6 +635,7 @@
 				55A7836F2B4BFD0E00E20DF9 /* EditAccountController.swift in Sources */,
 				5543965E2B5A9976004D08ED /* ConsoleView.swift in Sources */,
 				55081A832B468E3100D71B31 /* Chef.swift in Sources */,
+				55D9E4732B88748D00780B4F /* CSVWriter.swift in Sources */,
 				551E9BDA2B6D2AB6003C57E3 /* Admin.swift in Sources */,
 				55A65C982B61108F00776D03 /* OrderController.swift in Sources */,
 				553BA4922B67A5BE00B2F7E3 /* BillingConsoleView.swift in Sources */,
@@ -628,6 +646,7 @@
 				553BA4A32B6A3B0100B2F7E3 /* UpdateStatusController.swift in Sources */,
 				55081A852B4690E900D71B31 /* Kitchen.swift in Sources */,
 				55081A7F2B468D1800D71B31 /* Address.swift in Sources */,
+				55D9E4712B88746D00780B4F /* CSVWritable.swift in Sources */,
 				55081A812B468DF300D71B31 /* Manager.swift in Sources */,
 				55081A602B467AF800D71B31 /* main.swift in Sources */,
 				557D5E922B5FD6DD00A402D3 /* AuthConsoleView.swift in Sources */,
@@ -644,6 +663,7 @@
 				5529B6342B73668B00B35D99 /* StartUpManager.swift in Sources */,
 				55881AC82B7A242000422051 /* TableConsoleView.swift in Sources */,
 				553BA4902B67A5B300B2F7E3 /* BillingController.swift in Sources */,
+				55D9E4782B8892B000780B4F /* CSVReader.swift in Sources */,
 				55C660922B6BBE9200E7FFFB /* String+OrderFormatting.swift in Sources */,
 				55A65CA02B623AC400776D03 /* Table.swift in Sources */,
 				551E9BDD2B720D88003C57E3 /* MenuConsoleView.swift in Sources */,
