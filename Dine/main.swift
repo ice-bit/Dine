@@ -140,7 +140,36 @@ extension Main: InitialSetupTogglable {
         isInitialSetup.toggle()
     }
 }
+// MARK: - Test extension
+extension Main {
+    func printDataDictionary(_ dictionary: [[String: String]]) {
+        for row in dictionary {
+            for (key, value) in row {
+                print("\(key): \(value)")
+            }
+            print("") // Add a newline between rows for better readability
+        }
+    }
+    
+    func retrieveAccounts() {
+        let csvReader = CSVReader()
+        let csvParser = CSVParser()
+        
+        do {
+            let data = try csvReader.transformContents(from: "Test_Account")
+            print(data)
+            let accounts = csvParser.parseAccounts(from: data)
+            for account in accounts {
+                print(account.description)
+            }
+        } catch {
+            print("Same shit different error: \(error)")
+        }
+    }
+}
 
 // MARK: - Caller
 let main = Main()
-main.start()
+//main.start()
+main.retrieveAccounts()
+

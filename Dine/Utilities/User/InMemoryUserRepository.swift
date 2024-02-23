@@ -17,10 +17,7 @@ class InMemoryUserRepository: UserRepository {
     private init() {}
     
     private var accounts: [Account] = [
-        Account(username: "TechDev_123", password: "StrongP@ss123", accountStatus: .active, userRole: .manager
-               ),
-        Account(username: "qwe", password: "zxc", accountStatus: .active, userRole: .manager
-               )
+        
     ] {
         didSet {
             let csvWriter = CSVWriter(fileName: "Test_Account")
@@ -67,10 +64,15 @@ class InMemoryUserRepository: UserRepository {
 extension InMemoryUserRepository: CSVWritable {
     func toCSVString() -> String {
         var csvString = "userId,username,password,accountStatus,userRole\n"
-        for account in self.accounts {
+        for (index, account) in self.accounts.enumerated() {
             let row = account.toCSVString()
             // print(row)
             csvString.append(row)
+            
+            // Append a new line if it's not the last account
+            if index != self.accounts.count {
+                csvString.append("\n")
+            }
         }
         
         return csvString

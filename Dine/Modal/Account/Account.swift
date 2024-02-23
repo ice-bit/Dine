@@ -42,12 +42,25 @@ class Account {
         return _userId
     }
     
-    init(username: String, password: String, accountStatus: AccountStatus, userRole: UserRole) {
-        self._userId = UUID()
+    var description: String {
+        return """
+            User ID: \(_userId)
+            Username: \(_username)
+            Account Status: \(_accountStatus)
+            User Role: \(_userRole)\n\n
+            """
+    }
+    
+    init(userId: UUID, username: String, password: String, accountStatus: AccountStatus, userRole: UserRole) {
+        self._userId = userId
         self._username = username
         self._password = password
         self._accountStatus = accountStatus
         self._userRole = userRole
+    }
+    
+    convenience init(username: String, password: String, accountStatus: AccountStatus, userRole: UserRole) {
+        self.init(userId: UUID(), username: username, password: password, accountStatus: accountStatus, userRole: userRole)
     }
     
     func verifyPassword(_ password: String) -> Bool {
@@ -73,7 +86,7 @@ extension Account: Equatable {
 
 extension Account: CSVWritable {
     func toCSVString() -> String {
-        var csvText = "\(userId),\(username),\(password),\(accountStatus.rawValue),\(userRole.rawValue)\n"
+        var csvText = "\(userId),\(username),\(password),\(accountStatus.rawValue),\(userRole.rawValue)"
         return csvText
     }
 }

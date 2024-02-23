@@ -23,6 +23,7 @@ struct CSVReader {
         let headerComponents: [String] = rows[0].components(separatedBy: ",")
         
         for row in rows.dropFirst() {
+            print(rows.count)
             var rowData = [String: String]()
             let columnComponents: [String] = row.components(separatedBy: ",")
             for (index, columnComponent) in columnComponents.enumerated() {
