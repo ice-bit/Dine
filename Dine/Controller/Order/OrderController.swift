@@ -18,7 +18,7 @@ class OrderController: OrderService {
     private let orderManager = OrderManager.shared
     
     func createOrder(for table: Table, menuItem: [MenuItem]) {
-        let order = Order(table: table, orderStatus: .received, menuItems: menuItem)
+        let order = Order(tableId: table.tableId, orderStatus: .received, menuItems: menuItem)
         // Change table status
         table.changeTableStatus(to: .occupied)
         

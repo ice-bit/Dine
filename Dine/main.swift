@@ -11,21 +11,6 @@
 
 import Foundation
 
-@frozen enum UserStatus: String {
-    case userLoggedIn = "isUserLoggedInTest2"
-    case initialSetup = "isInitialStartUpTest2"
-    case restaurantSetup = "isRestaurantSetUpTest2"
-    
-    func getStatus() -> Bool {
-        return UserDefaults.standard.bool(forKey: self.rawValue)
-    }
-    
-    func updateStatus(_ status: Bool) {
-        UserDefaults.standard.set(status, forKey: self.rawValue)
-    }
-}
-
-
 func getMenu() -> Menu {
     let menuItems: [MenuItem] = [
         MenuItem(name: "Burger", price: 9.99),
@@ -54,92 +39,58 @@ func getMenu() -> Menu {
 }
 
 class Main {
-    private var restaurantManager = RestaurantManager()
-    
-    private var isUserLoggedIn: Bool = false
-    private var isInitialSetup: Bool = true
-    
-    // MARK: - Starting point...
-    /*func start() {
-        while !UserStatus.restaurantSetup.getStatus() {
-            setupRestaurant()
-        }
-        
-        while UserStatus.initialSetup.getStatus() {
-            onboardUser()
-        }
-        
-        startNormalFlow()
-    }*/
-    
-    // MARK: - Normal flow
-    /*private func startNormalFlow() {
-        
-        while !UserStatus.userLoggedIn.getStatus() {
-            authenticateUser()
-        }
-        
-        // Navigate to home screen
-        displayHomeScreen()
-    }*/
-    
     func start() {
-        while isInitialSetup {
+        let isUserLoggedIn = UserStatus.userLoggedIn.getStatus()
+        //let restaurantExists = UserStatus.restaurantExists.getStatus()
+        
+        // Restaurant setup
+        /*while isInitialSetup {
             setupRestaurant()
-            
+        }*/
+        
+        while !UserStatus.initialSetup.getStatus() {
             onboardUser()
         }
-        
-        authenticateUser()
         
         while isUserLoggedIn {
             displayHomeScreen()
         }
         
-        start()
+        print("Endpoint occured!")
+        
+        //start() // Ignore warning!
     }
     
     // MARK: - Supporting methods
     private func setupRestaurant() {
-        let setupConsoleView = SetupConsoleView(restaurantManager: restaurantManager)
-        setupConsoleView.delegate = self
+        let setupConsoleView = SetupConsoleView()
         setupConsoleView.promptRestaurantSetup()
     }
     
     private func onboardUser() {
-        let authConsoleView = AuthConsoleView()
+        let authController = AuthController()
+        let authConsoleView = AuthConsoleView(authentication: authController)
         authConsoleView.startSignUp()
     }
     
     private func authenticateUser() {
-        let authConsoleView = AuthConsoleView()
-        authConsoleView.delegate = self
+        let authController = AuthController()
+        let authConsoleView = AuthConsoleView(authentication: authController)
         authConsoleView.startLogin()
     }
     
     private func displayHomeScreen() {
-        guard let restaurant = restaurantManager.getRestaurant() else {
+        /*guard let restaurant = RestaurantManager.shared.getRestaurant() else {
             print("No restaurants found")
             return
-        }
+        }*/
         
-        let homeConsoleView = HomeConsoleView(restaurant: restaurant)
-        homeConsoleView.delegate = self
+        let homeConsoleView = HomeConsoleView()
+        //homeConsoleView.delegate = self
         homeConsoleView.displayHomeOptions()
     }
 }
 
-extension Main: LoginStateDelegate {
-    func isUserLoggedIn(_ state: Bool) {
-        isUserLoggedIn = state
-    }
-}
-
-extension Main: InitialSetupTogglable {
-    func toggleInitialSetup() {
-        isInitialSetup.toggle()
-    }
-}
 // MARK: - Test extension
 extension Main {
     func printDataDictionary(_ dictionary: [[String: String]]) {
@@ -151,19 +102,40 @@ extension Main {
         }
     }
     
-    func retrieveAccounts() {
+    func testAdminController() {
+        let admin = AdminController()
+        let authController = AuthController()
+        let adminConsoleView = AdminConsoleView(admin: admin, authentication: authController)
+        adminConsoleView.displayAdminOption()
+    }
+    
+    func testTables() {
         let csvReader = CSVReader()
         let csvParser = CSVParser()
         
         do {
-            let data = try csvReader.transformContents(from: "Test_Account")
-            print(data)
-            let accounts = csvParser.parseAccounts(from: data)
-            for account in accounts {
-                print(account.description)
-            }
+            let data = try csvReader.readCSV(from: FileName.table.rawValue)
+            print(data.description)
+            print()
+            let tables = csvParser.parseTables(from: data)
+            //print("\(tables.description)")
         } catch {
-            print("Same shit different error: \(error)")
+            print("Error: \(error)")
+        }
+        displayHomeScreen()
+    }
+    
+    func testAccount() {
+        let csvReader = CSVReader()
+        let csvParser = CSVParser()
+        
+        do {
+            let data = try csvReader.readCSV(from: FileName.account.rawValue)
+            print(data.description)
+            let tables = csvParser.parseAccounts(from: data)
+            print("\(tables.description)")
+        } catch {
+            print("Error: \(error)")
         }
     }
 }
@@ -171,5 +143,8 @@ extension Main {
 // MARK: - Caller
 let main = Main()
 //main.start()
-main.retrieveAccounts()
+//main.retrieveAccounts()
 
+main.testTables()
+//main.testAccount()
+//main.testAdminController()

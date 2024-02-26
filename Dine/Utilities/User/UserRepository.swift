@@ -14,4 +14,5 @@ protocol UserRepository {
     func searchUser(username: String) -> Account?
     func isUserActive(username: String) -> Bool
     func isManager(username: String) -> Bool
+    func getAccounts() -> [Account]
 }

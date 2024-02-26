@@ -7,7 +7,7 @@
 
 import Foundation
 
-class OrderManager: Codable {
+class OrderManager {
     static let shared = OrderManager()
     
     private init() {}

@@ -74,6 +74,7 @@
 		55D9E4782B8892B000780B4F /* CSVReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E4772B8892B000780B4F /* CSVReader.swift */; };
 		55D9E47A2B88B24E00780B4F /* CSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E4792B88B24E00780B4F /* CSVParser.swift */; };
 		55D9E47C2B88B60600780B4F /* CSVParseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E47B2B88B60600780B4F /* CSVParseError.swift */; };
+		55D9E47E2B8C704D00780B4F /* UserStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E47D2B8C704D00780B4F /* UserStatus.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -157,6 +158,7 @@
 		55D9E4772B8892B000780B4F /* CSVReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVReader.swift; sourceTree = "<group>"; };
 		55D9E4792B88B24E00780B4F /* CSVParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParser.swift; sourceTree = "<group>"; };
 		55D9E47B2B88B60600780B4F /* CSVParseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParseError.swift; sourceTree = "<group>"; };
+		55D9E47D2B8C704D00780B4F /* UserStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +221,7 @@
 		55081A662B467B0F00D71B31 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				553BA49D2B69018800B2F7E3 /* Bill.swift */,
 				551E9BD82B6D2AAB003C57E3 /* Admin */,
 				553BA49C2B69018100B2F7E3 /* Bill */,
 				55081A8D2B46973400D71B31 /* Person */,
@@ -226,6 +229,7 @@
 				55081A8B2B46972600D71B31 /* Order */,
 				55081A8A2B4696F500D71B31 /* Restaurant */,
 				55081A732B46877400D71B31 /* Menu */,
+				55D9E47D2B8C704D00780B4F /* UserStatus.swift */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -369,7 +373,6 @@
 		553BA49C2B69018100B2F7E3 /* Bill */ = {
 			isa = PBXGroup;
 			children = (
-				553BA49D2B69018800B2F7E3 /* Bill.swift */,
 				553BA4A52B6B73FC00B2F7E3 /* BillManager.swift */,
 			);
 			path = Bill;
@@ -680,6 +683,7 @@
 				558B05C52B74E86B009159BA /* UserRepository.swift in Sources */,
 				553BA49A2B68DB2800B2F7E3 /* TableManager.swift in Sources */,
 				558B05C32B74B7AE009159BA /* RestaurantManager.swift in Sources */,
+				55D9E47E2B8C704D00780B4F /* UserStatus.swift in Sources */,
 				55A65C9E2B62375300776D03 /* HomeConsoleView.swift in Sources */,
 				558B05C72B74E9D6009159BA /* InMemoryUserRepository.swift in Sources */,
 				558B05BD2B73AE15009159BA /* AppOnboardingProtocol.swift in Sources */,

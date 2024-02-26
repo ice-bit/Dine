@@ -7,29 +7,32 @@
 
 import Foundation
 
-class AdminController {
-    /// name
-    /// email
-    /// phoneNo
-    /// account
-    /// branch
-    func createEmployee(name: String, email: String, phoneNumber: String) {
-        
+protocol AdminPrivilages {
+    func removeAccount(user: Account) -> Bool
+    func getAccounts() -> [Account]?
+}
+
+struct AdminController: AdminPrivilages {
+    private let accounts: UserRepository = InMemoryUserRepository.shared
+    
+    func removeAccount(user: Account) -> Bool {
+        do {
+            try accounts.removeUser(user)
+            return true
+        } catch {
+            print("Failed to remove: \(error)")
+            return false
+        }
     }
     
-    /// Restaurant
-    /// name
-    /// [Branch]
-    func createRestaurant(name: String) {
+    /*func removeAccount(username: String, password: String) -> Bool {
         
+    }*/
+    
+    func getAccounts() -> [Account]? {
+        let users = accounts.getAccounts()
+        guard !users.isEmpty else { return nil }
+        return users
     }
     
-    ///
-    /// Branch
-    /// name
-    /// location
-    /// [Table]
-    func createBranch() {
-        
-    }
 }

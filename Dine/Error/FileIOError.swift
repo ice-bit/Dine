@@ -28,4 +28,7 @@ enum FileIOError: Error {
     case documentDirectoryUnavailable
     case writeError(Error)
     case readError(Error)
+    case fileCreationFailed
+    case fileReadError
+    case noDataAvailable
 }

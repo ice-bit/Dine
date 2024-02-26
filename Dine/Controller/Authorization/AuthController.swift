@@ -7,12 +7,13 @@
 
 import Foundation
 
-class AuthController {
-    private let userRepository: UserRepository
-    
-    init(userRepository: UserRepository) {
-        self.userRepository = userRepository
-    }
+protocol Authentication {
+    func createAccount(username: String, password: String, userRole: UserRole) throws
+    func login(username: String, password: String) -> Bool
+}
+
+class AuthController: Authentication {
+    private let userRepository: UserRepository = InMemoryUserRepository.shared
     
     func createAccount(username: String, password: String, userRole: UserRole) throws {
         guard !userRepository.checkUserPresence(username: username) else { throw AuthenticationError.userAlreadyExists }
@@ -21,7 +22,9 @@ class AuthController {
         
         let account = Account(username: username, password: password, accountStatus: .active, userRole: userRole)
         
+        // Add the new user to the memory
         userRepository.addUser(account)
+        UserStatus.initialSetup.updateStatus(false)
         UserStatus.userLoggedIn.updateStatus(true)
     }
     

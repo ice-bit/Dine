@@ -18,7 +18,7 @@ class TableController: TableService {
     private let tableManager = TableManager.shared
 
     func addTable(maxCapacity: Int, locationIdentifier: Int) {
-        let table = Table(maxCapacity: maxCapacity, locationIdentifier: locationIdentifier)
+        let table = Table(tableStatus: .free, maxCapacity: maxCapacity, locationIdentifier: locationIdentifier)
         tableManager.addTable(table)
     }
     

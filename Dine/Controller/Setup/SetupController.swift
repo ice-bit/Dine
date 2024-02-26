@@ -8,15 +8,11 @@
 import Foundation
 
 class SetupController {
-    let restaurantManager: RestaurantManager
-    
-    init(restaurantManager: RestaurantManager) {
-        self.restaurantManager = restaurantManager
-    }
+    let restaurantManager = RestaurantManager.shared
     
     func createRestaurant(name: String, locationName: String) -> Bool {
         let restaurant = Restaurant(name: name, location: locationName)
-        restaurantManager.setRestaurant(restaurant)
+        //restaurantManager.setRestaurant(restaurant)
         // Restaurnat setup finished
         //UserStatus.restaurantSetup.updateStatus(true)
         return true

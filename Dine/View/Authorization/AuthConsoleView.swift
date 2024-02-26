@@ -7,14 +7,17 @@
 
 import Foundation
 
-protocol LoginStateDelegate: AnyObject {
+/*protocol LoginStateDelegate: AnyObject {
     func isUserLoggedIn(_ state: Bool)
-}
+}*/
 
 class AuthConsoleView {
-    private let userRepository: UserRepository = InMemoryUserRepository.shared
+    //weak var delegate: LoginStateDelegate?
+    private let authentication: Authentication
     
-    weak var delegate: LoginStateDelegate?
+    init(authentication: Authentication) {
+        self.authentication = authentication
+    }
 
     func startSignUp() {
         promptSignUpCredentials(isInitial: true)
@@ -40,10 +43,9 @@ class AuthConsoleView {
         let username = readLine() ?? ""
         print("New Password:")
         let password = readLine() ?? ""
-        
-        let authController = AuthController(userRepository: userRepository)
+    
         do {
-            try authController.createAccount(username: username, password: password, userRole: userRole)
+            try authentication.createAccount(username: username, password: password, userRole: userRole)
             print("Account successfully created")
         } catch AuthenticationError.userAlreadyExists {
             print("Failed to create account. User already exists.")
@@ -63,9 +65,9 @@ class AuthConsoleView {
         print("Password:")
         let password = readLine() ?? ""
         
-        let authController = AuthController(userRepository: userRepository)
-        if authController.login(username: username, password: password) {
-            delegate?.isUserLoggedIn(true)
+        if authentication.login(username: username, password: password) {
+            //delegate?.isUserLoggedIn(true)
+            UserStatus.userLoggedIn.updateStatus(false)
             print("Logged in successfully.")
         } else {
             print("Login failed")

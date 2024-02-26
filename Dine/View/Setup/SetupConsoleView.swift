@@ -7,18 +7,12 @@
 
 import Foundation
 
-protocol InitialSetupTogglable: AnyObject {
+/*protocol InitialSetupTogglable: AnyObject {
     func toggleInitialSetup()
-}
+}*/
 
 class SetupConsoleView {
-    private let restaurantManager: RestaurantManager
-    
-    weak var delegate: InitialSetupTogglable?
-    
-    init(restaurantManager: RestaurantManager) {
-        self.restaurantManager = restaurantManager
-    }
+    //weak var delegate: InitialSetupTogglable?
     
     func promptRestaurantSetup() {
         print("Enter restaurant name")
@@ -37,9 +31,9 @@ class SetupConsoleView {
             promptRestaurantSetup()
         }*/
         
-        let setupController = SetupController(restaurantManager: restaurantManager)
+        let setupController = SetupController()
         if setupController.createRestaurant(name: restaurantName, locationName: locationName) {
-            delegate?.toggleInitialSetup()
+            //delegate?.toggleInitialSetup()
             print("Created restaurant successfully")
         } else {
             print("Failed to create restaurant")

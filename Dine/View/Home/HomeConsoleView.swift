@@ -8,13 +8,9 @@
 import Foundation
 
 class HomeConsoleView {
-    private let restaurant: Restaurant
+    private let restaurant = RestaurantManager.shared.getRestaurant()
     
-    weak var delegate: LoginStateDelegate?
-    
-    init(restaurant: Restaurant) {
-        self.restaurant = restaurant
-    }
+    //weak var delegate: LoginStateDelegate?
     
     func displayHomeOptions() {
         print("Home")
@@ -57,21 +53,21 @@ class HomeConsoleView {
             let menuConsoleView = MenuConsoleView(menu: restaurant.menu)
             menuConsoleView.viewMenu()
         case "8": // Add employee
-            let authConsoleView = AuthConsoleView()
+            let authController = AuthController()
+            let authConsoleView = AuthConsoleView(authentication: authController)
             authConsoleView.createEmployee()
         case "9": // Customize Table
             let tableConsoleView = TableConsoleView()
             tableConsoleView.displayOptions()
         case "10": // Sign Out
-            //UserStatus.userLoggedIn.updateStatus(false)
-            delegate?.isUserLoggedIn(false)
-            return
+            UserStatus.userLoggedIn.updateStatus(false)
+            //delegate?.isUserLoggedIn(false)
+            //return
         case "0":
             exit(0)
         default:
             print("Invalid input")
+            displayHomeOptions()
         }
-        
-        displayHomeOptions()
     }
 }

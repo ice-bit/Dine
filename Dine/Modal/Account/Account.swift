@@ -11,7 +11,7 @@ enum AccountStatus: String {
     case active, closed, cancelled
 }
 
-enum UserRole: String {
+enum UserRole: String, CaseIterable {
     case admin, manager, waitStaff, chef, employee
 }
 
@@ -86,7 +86,7 @@ extension Account: Equatable {
 
 extension Account: CSVWritable {
     func toCSVString() -> String {
-        var csvText = "\(userId),\(username),\(password),\(accountStatus.rawValue),\(userRole.rawValue)"
+        let csvText = "\(userId),\(username),\(password),\(accountStatus.rawValue),\(userRole.rawValue)"
         return csvText
     }
 }

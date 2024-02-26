@@ -10,45 +10,59 @@
 /// guaranteed to match the order in which they were added.
 
 import Foundation
+import Foundation
+
+enum CSVReaderError: Error {
+    case fileNotFound
+    case fileReadError
+    case invalidCSVFormat
+}
 
 struct CSVReader {
-    func transformContents(from fileName: String) throws -> [[String: String]] {
-        guard let contents = try retrieveContents(of: fileName) else {
+    func readCSV(from fileName: String) throws -> [[String: String]] {
+        let fileURL = try getCSVFileURL(fileName)
+        let contents = try String(contentsOf: fileURL)
+        let csvData = try parseCSV(contents)
+        return csvData
+    }
+    
+    private func getCSVFileURL(_ fileName: String) throws -> URL {
+        guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             throw FileIOError.documentDirectoryUnavailable
         }
         
-        var csvData: [[String: String]] = []
+        let fileURL = documentDirectory.appendingPathComponent("\(fileName).csv")
         
-        let rows: [String] = contents.components(separatedBy: "\n")
-        let headerComponents: [String] = rows[0].components(separatedBy: ",")
+        guard FileManager.default.fileExists(atPath: fileURL.path) else {
+            // File doesn't exist, create it
+            try "".write(to: fileURL, atomically: true, encoding: .utf8)
+            return fileURL
+        }
+        
+        return fileURL
+    }
+    
+    private func parseCSV(_ contents: String) throws -> [[String: String]] {
+        var csvData: [[String: String]] = []
+        let rows = contents.components(separatedBy: "\n")
+        
+        guard let headerRow = rows.first else {
+            throw CSVReaderError.invalidCSVFormat
+        }
+        let headerComponents = headerRow.components(separatedBy: ",")
         
         for row in rows.dropFirst() {
-            print(rows.count)
             var rowData = [String: String]()
-            let columnComponents: [String] = row.components(separatedBy: ",")
+            let columnComponents = row.components(separatedBy: ",")
             for (index, columnComponent) in columnComponents.enumerated() {
-                rowData[headerComponents[index]] = columnComponent
+                if index < headerComponents.count {
+                    rowData[headerComponents[index]] = columnComponent
+                }
             }
             csvData.append(rowData)
         }
         
         return csvData
     }
-    
-    func retrieveContents(of fileName: String) throws -> String? {
-        let fileManager = FileManager.default
-        guard let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            throw FileIOError.documentDirectoryUnavailable
-        }
-        
-        let fileURL = documentDirectory.appending(path: "\(fileName).csv")
-        
-        do {
-            let contents = try String(contentsOf: fileURL)
-            return contents
-        } catch {
-            print("Error reading file: \(error)")
-            return nil
-        }
-    }
 }
+

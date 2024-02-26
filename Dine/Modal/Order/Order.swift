@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum OrderStatus: Int, Codable, CaseIterable {
+enum OrderStatus: Int, CaseIterable {
     case received = 1
     case preparing = 2
     case completed = 3
@@ -15,13 +15,14 @@ enum OrderStatus: Int, Codable, CaseIterable {
     case none = 5
 }
 
-class Order: Codable {
+class Order {
     private let _orderId: UUID
-    private let table: Table
+    private let tableId: UUID
+//    private let table: Table
     private var _orderStatus: OrderStatus {
         didSet {
             if _orderStatus == .completed {
-                table.changeTableStatus(to: .free)
+//                table.changeTableStatus(to: .free)  // write a delgate to dynamically change the order
             }
         }
     }
@@ -33,20 +34,22 @@ class Order: Codable {
         return _orderStatus
     }
     
-    var tableLocationId: Int {
+    /*var tableLocationId: Int {
         return table.locationId
-    }
+    }*/
     
     var orderId: UUID {
         return _orderId
     }
     
-    init(table: Table, orderStatus: OrderStatus, menuItems: [MenuItem]) {
+    init(tableId: UUID, orderStatus: OrderStatus, menuItems: [MenuItem]) {
         self._orderId = UUID()
-        self.table = table
+        self.tableId = tableId
         self._orderStatus = orderStatus
         self.menuItems = menuItems
     }
+    
+    
     
     func displayOrderItems() {
         for (index, item) in menuItems.enumerated() {
