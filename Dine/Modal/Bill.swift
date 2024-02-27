@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Bill: Codable {
+class Bill {
     private var _billId: UUID
     private var amount: Double
     private var date: Date
@@ -19,13 +19,21 @@ class Bill: Codable {
         return _billId
     }
     
-    init(amount: Double, tip: Double, tax: Double, isPaid: Bool) {
-        self._billId = UUID()
+    var csvString: String {
+        "\(_billId),\(amount),\(date),\(tip),\(tax),\(isPaid)"
+    }
+    
+    init(_billId: UUID, amount: Double, date: Date, tip: Double, tax: Double, isPaid: Bool) {
+        self._billId = _billId
         self.amount = amount
-        self.date = Date()
+        self.date = date
         self.tip = tip
         self.tax = tax
         self.isPaid = isPaid
+    }
+    
+    convenience init(amount: Double, tip: Double, tax: Double, isPaid: Bool) {
+        self.init(_billId: UUID(), amount: amount, date: Date(), tip: tip, tax: tax, isPaid: isPaid)
     }
     
     convenience init(amount: Double, tax: Double, isPaid: Bool) {

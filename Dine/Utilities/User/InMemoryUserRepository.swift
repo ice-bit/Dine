@@ -10,6 +10,7 @@ import Foundation
 @frozen enum FileName: String {
     case account = "Test_Account"
     case table = "Test_Table"
+    case bill = "bills_test_1"
 }
 
 enum UserRepositoryError: Error {
