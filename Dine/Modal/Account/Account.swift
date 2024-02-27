@@ -12,7 +12,7 @@ enum AccountStatus: String {
 }
 
 enum UserRole: String, CaseIterable {
-    case admin, manager, waitStaff, chef, employee
+    case admin, manager, waitStaff, kitchenStaff, employee
 }
 
 class Account {

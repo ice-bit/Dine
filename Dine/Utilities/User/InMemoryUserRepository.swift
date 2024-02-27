@@ -7,12 +7,6 @@
 
 import Foundation
 
-@frozen enum FileName: String {
-    case account = "Test_Account"
-    case table = "Test_Table"
-    case bill = "bills_test_1"
-}
-
 enum UserRepositoryError: Error {
     case userNotFound
 }
@@ -63,7 +57,7 @@ class InMemoryUserRepository: UserRepository {
     }
     
     private func saveAccounts() {
-        let fileName = FileName.account.rawValue
+        let fileName = Filename.account.rawValue
         let csvWriter = CSVWriter(fileName: fileName)
         do {
             let isSuccess = try csvWriter.writeToCSV(csvDataModal: self)
@@ -77,7 +71,7 @@ class InMemoryUserRepository: UserRepository {
         let csvReader = CSVReader()
         let csvParser = CSVParser()
         do {
-            let accountData = try csvReader.readCSV(from: FileName.account.rawValue)
+            let accountData = try csvReader.readCSV(from: Filename.account.rawValue)
             accounts = csvParser.parseAccounts(from: accountData)
         } catch {
             print("Error: \(error)")

@@ -12,10 +12,19 @@ class MenuItem: Codable {
     var name: String
     var price: Double
     
-    init(name: String, price: Double) {
-        self.itemId = UUID()
+    /// Returns CSV string without header.
+    var csvString: String {
+        "\(itemId),\(name),\(price)"
+    }
+    
+    init(itemId: UUID, name: String, price: Double) {
+        self.itemId = itemId
         self.name = name
         self.price = price
+    }
+    
+    convenience init(name: String, price: Double) {
+        self.init(itemId: UUID(), name: name, price: price)
     }
 }
 

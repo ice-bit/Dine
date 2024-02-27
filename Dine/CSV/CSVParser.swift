@@ -23,6 +23,22 @@ struct CSVParser {
     func parseBills(from data: [[String: String]]) -> [Bill] {
         return data.compactMap(parseBill(from:))
     }
+    
+    func parseMenu(from data: [[String: String]]) -> [MenuItem] {
+        return data.compactMap(parseMenuItem)
+    }
+    
+    private func parseMenuItem(from menuData: [String: String]) -> MenuItem? {
+        guard let itemUUIDString = menuData["itemId"],
+              let itemId = UUID(uuidString: itemUUIDString),
+              let name = menuData["name"],
+              let priceString = menuData["price"],
+              let price = Double(priceString) else {
+            return nil
+        }
+        
+        return MenuItem(itemId: itemId, name: name, price: price)
+    }
 
     private func parseAccount(from userData: [String: String]) -> Account? {
         guard let userIdString = userData["userId"],

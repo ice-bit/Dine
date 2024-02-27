@@ -42,7 +42,7 @@ class BillManager {
         let csvReader = CSVReader()
         let csvParser = CSVParser()
         do {
-            let data = try csvReader.readCSV(from: FileName.bill.rawValue)
+            let data = try csvReader.readCSV(from: Filename.bill.rawValue)
             print(data.description)
             _bills = csvParser.parseBills(from: data)
             print(_bills.description)
@@ -52,7 +52,7 @@ class BillManager {
     }
     
     func saveBills() {
-        let csvWriter = CSVWriter(fileName: FileName.bill.rawValue)
+        let csvWriter = CSVWriter(fileName: Filename.bill.rawValue)
         do {
             if try csvWriter.writeToCSV(csvDataModal: self) {
                 print("Successfully saved bills")

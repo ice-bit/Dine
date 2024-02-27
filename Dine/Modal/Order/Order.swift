@@ -7,18 +7,17 @@
 
 import Foundation
 
-enum OrderStatus: Int, CaseIterable {
-    case received = 1
-    case preparing = 2
-    case completed = 3
-    case cancelled = 4
-    case none = 5
+enum OrderStatus: String, CaseIterable {
+    case received
+    case preparing
+    case completed
+    case cancelled
+    case none
 }
 
 class Order {
     private let _orderId: UUID
     private let tableId: UUID
-//    private let table: Table
     private var _orderStatus: OrderStatus {
         didSet {
             if _orderStatus == .completed {
@@ -34,19 +33,21 @@ class Order {
         return _orderStatus
     }
     
-    /*var tableLocationId: Int {
-        return table.locationId
-    }*/
-    
     var orderId: UUID {
         return _orderId
     }
     
-    init(tableId: UUID, orderStatus: OrderStatus, menuItems: [MenuItem]) {
-        self._orderId = UUID()
+    
+    
+    init(_orderId: UUID, tableId: UUID, _orderStatus: OrderStatus, menuItems: [MenuItem]) {
+        self._orderId = _orderId
         self.tableId = tableId
-        self._orderStatus = orderStatus
+        self._orderStatus = _orderStatus
         self.menuItems = menuItems
+    }
+    
+    convenience init(tableId: UUID, orderStatus: OrderStatus, menuItems: [MenuItem]) {
+        self.init(_orderId: UUID(), tableId: tableId, _orderStatus: orderStatus, menuItems: menuItems)
     }
     
     

@@ -47,7 +47,7 @@ class TableManager {
         let csvParser = CSVParser()
         
         do {
-            let data = try csvReader.readCSV(from: FileName.table.rawValue)
+            let data = try csvReader.readCSV(from: Filename.table.rawValue)
             tables = csvParser.parseTables(from: data)
         } catch {
             print("Error: \(error)")
@@ -55,7 +55,7 @@ class TableManager {
     }
     
     func saveTable() {
-        let csvWriter = CSVWriter(fileName: FileName.table.rawValue)
+        let csvWriter = CSVWriter(fileName: Filename.table.rawValue)
         do {
             if try csvWriter.writeToCSV(csvDataModal: self) {
                 print("Write success")

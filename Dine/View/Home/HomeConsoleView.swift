@@ -8,7 +8,7 @@
 import Foundation
 
 class HomeConsoleView {
-    private let restaurant = RestaurantManager.shared.getRestaurant()
+    private let restaurant = RestaurantManager.shared.restaurant
     
     //weak var delegate: LoginStateDelegate?
     
@@ -41,8 +41,8 @@ class HomeConsoleView {
             let billConsoleView = BillingConsoleView()
             billConsoleView.generatebill()
         case "4": // Update order status
-            let chefConsoleView = UpdateStatusConsoleView()
-            chefConsoleView.manageReceivedOrders()
+            let updateConsoleView = UpdateStatusConsoleView()
+            updateConsoleView.manageReceivedOrders()
         case "5": // View bills
             let billConsoleView = BillingConsoleView()
             billConsoleView.displayBills()

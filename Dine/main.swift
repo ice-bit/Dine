@@ -114,7 +114,7 @@ extension Main {
         let csvParser = CSVParser()
         
         do {
-            let data = try csvReader.readCSV(from: FileName.table.rawValue)
+            let data = try csvReader.readCSV(from: Filename.table.rawValue)
             print(data.description)
             print()
             let tables = csvParser.parseTables(from: data)
@@ -130,7 +130,7 @@ extension Main {
         let csvParser = CSVParser()
         
         do {
-            let data = try csvReader.readCSV(from: FileName.account.rawValue)
+            let data = try csvReader.readCSV(from: Filename.account.rawValue)
             print(data.description)
             let tables = csvParser.parseAccounts(from: data)
             print("\(tables.description)")
@@ -138,13 +138,30 @@ extension Main {
             print("Error: \(error)")
         }
     }
+    
+    func test() {
+        while true {
+            displayHomeScreen()
+        }
+    }
 }
 
 // MARK: - Caller
-let main = Main()
+//let main = Main()
 //main.start()
 //main.retrieveAccounts()
 
-main.testTables()
+//main.testTables()
 //main.testAccount()
 //main.testAdminController()
+//main.test()
+
+let managerAccount =  Account(userId: UUID(), username: "SuperManager_123", password: "StrongP@ss123", accountStatus: .active, userRole: .manager)
+let adminAccount =  Account(userId: UUID(), username: "AdminManager_123", password: "StrongP@ss123", accountStatus: .active, userRole: .admin)
+let waitStaffAccount =  Account(userId: UUID(), username: "WaitStaffManager_123", password: "StrongP@ss123", accountStatus: .active, userRole: .waitStaff)
+let kitchenStaffAccount =  Account(userId: UUID(), username: "KitchenStaffManager_123", password: "StrongP@ss123", accountStatus: .active, userRole: .kitchenStaff)
+
+while true {
+    let accessController = UserAccessController(account: kitchenStaffAccount)
+    accessController.redirectUser()
+}
