@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct UserAccessController {
+struct UserRouter {
     private let account: Account
 
     init(account: Account) {
         self.account = account
     }
     
-    func redirectUser() {
+    func routeUser() {
         let userRole = account.userRole
         switch userRole {
         case .admin:
