@@ -12,8 +12,8 @@
 import Foundation
 
 @frozen enum UserStatus: String {
-    case userLoggedIn = "T1"
-    case initialSetup = "S2"
+    case userLoggedIn = "T3"
+    case initialSetup = "S3"
     case restaurantExists = "R1"
     
     func getStatus() -> Bool {

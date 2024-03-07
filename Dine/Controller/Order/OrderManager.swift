@@ -10,40 +10,39 @@ import Foundation
 class OrderManager {
     static let shared = OrderManager()
     
-    private init() {}
+    private init() {
+        loadOrders()
+    }
     
-    private var _orders: [Order] = []
+    private var orders: [Order] = []
     
     var ordersCount: Int {
-        return _orders.count
-    }
-    
-    var getUncompletedOrders: [Order] {
-        _orders.filter({ $0.orderStatus == .received || $0.orderStatus == .preparing })
-    }
-    
-    subscript(_ index: Int) -> Order {
-        return _orders[index]
+        orders.count
     }
     
     func addOrder( order: Order) {
-        _orders.append(order)
-        
+        orders.append(order)
+        saveOrders()
     }
     
     func removeOrder(_ order: Order) -> Bool {
-        guard let orderIndex = _orders.firstIndex(where: { $0.orderId == order.orderId }) else {
+        guard let orderIndex = orders.firstIndex(where: { $0.orderIdValue == order.orderIdValue }) else {
             return false
         }
         
-        _orders.remove(at: orderIndex)
+        orders.remove(at: orderIndex)
+        saveOrders()
         
         return true
     }
     
+    func getUncompletedOrders() -> [Order] {
+        orders.filter({ $0.orderStatusValue == .received || $0.orderStatusValue == .preparing })
+    }
+    
     // Orders that are completed
     func getUnbilledOrders() -> [Order]? {
-        let unbilledOrders = _orders.filter { $0.isOrderBilled == false && $0.orderStatus == .completed }
+        let unbilledOrders = orders.filter { $0.isOrderBilled == false && $0.orderStatusValue == .completed }
         
         guard !unbilledOrders.isEmpty else { return nil }
         
@@ -51,10 +50,46 @@ class OrderManager {
     }
     
     func displayOrders() {
-        for (index, order) in _orders.enumerated() {
-            print("\(index + 1). Order: \(order.orderId)")
+        for (index, order) in orders.enumerated() {
+            print("\(index + 1). Order: \(order.orderIdValue)")
             print(" - Ordered Items:")
             print(" - \(order.displayOrderItems())")
         }
+    }
+    
+    func saveOrders() {
+        Task {
+            let csvDAO = CSVDataAccessObject()
+            await csvDAO.save(to: .orderFile, entity: self)
+        }
+    }
+  
+    func loadOrders() {
+        Task {
+            let csvReader = CSVReader()
+            let orderParser = OrderParser()
+            do {
+                let data = try await csvReader.readCSVAs2DArray(from: Filename.orderFile.rawValue)
+                orders = orderParser.parseOrders(from: data)
+            } catch {
+                print("Error encountered: \(error)")
+            }
+        }
+    }
+}
+
+extension OrderManager: CSVWritable {
+    func toCSVString() -> String {
+        var csvString = "orderId,tableId,isOrderBilled,orderStatus,itemIds"
+        for (index, order) in orders.enumerated() {
+            if index != self.orders.count {
+                csvString.append("\n")
+            }
+            
+            let row = order.csvString
+            csvString.append(row)
+        }
+        
+        return csvString
     }
 }

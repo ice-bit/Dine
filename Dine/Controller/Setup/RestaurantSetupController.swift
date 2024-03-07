@@ -7,12 +7,16 @@
 
 import Foundation
 
-class RestaurantSetupController {
-    let restaurantManager = RestaurantManager.shared
-    
+protocol RestaurantSetupProtocol {
+    func createRestaurant(name: String, locationName: String) -> Bool
+}
+
+class RestaurantSetupController: RestaurantSetupProtocol {
     func createRestaurant(name: String, locationName: String) -> Bool {
+        let restaurantDataManager = RestaurantDataManager()
+        
         let restaurant = Restaurant(name: name, location: locationName)
-        restaurantManager.restaurant = restaurant
+        restaurantDataManager.setRestaurant(restaurant: restaurant)
         // Restaurnat setup finished
         UserStatus.restaurantExists.updateStatus(true)
         return true

@@ -19,7 +19,7 @@ class BillingConsoleView {
         
         print("Unbilled Orders")
         for (index, order) in unbilledOrders.enumerated() {
-            print("\(index + 1). Order: \(order.orderId)")
+            print("\(index + 1). Order: \(order.orderIdValue)")
             print("Ordered Items:")
             print(" - ")
             order.displayOrderItems()
@@ -28,7 +28,7 @@ class BillingConsoleView {
         print("Enter the number of the order you want to choose (or 0 to cancel):")
         if let choice = readLine(), let orderNumber = Int(choice), orderNumber >= 1, orderNumber <= unbilledOrders.count {
             let chosenUnbilledOrder = unbilledOrders[orderNumber - 1]
-            print("You have chosen order: \(chosenUnbilledOrder.orderId)")
+            print("You have chosen order: \(chosenUnbilledOrder.orderIdValue)")
             return chosenUnbilledOrder
         } else {
             print("Invalid choice or canceled.")

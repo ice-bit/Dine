@@ -37,3 +37,5 @@ extension MenuItem: Hashable {
         return lhs.itemId == rhs.itemId
     }
 }
+
+extension MenuItem: Parsable {}

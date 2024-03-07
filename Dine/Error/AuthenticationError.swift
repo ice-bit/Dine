@@ -13,4 +13,5 @@ enum AuthenticationError: Error {
     case inactiveAccount
     case userAlreadyExists
     case noUserFound
+    case other(Error)
 }

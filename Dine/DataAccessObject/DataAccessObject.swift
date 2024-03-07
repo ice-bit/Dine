@@ -10,8 +10,9 @@ import Foundation
 protocol DataAccessObject{
     associatedtype Entity
     
-    func add(_ entity: Entity) async throws
-    func get() async throws -> [Entity]
-    func update(_ entity: Entity) async throws
-    func delete(_ entity: Entity) async throws
+    func add(_ entity: Entity)
+    func get() -> [Entity]
+    func update(_ entity: Entity) throws
+    func delete(_ entity: Entity) throws
+    func save(to file: Filename, entity: CSVWritable)
 }

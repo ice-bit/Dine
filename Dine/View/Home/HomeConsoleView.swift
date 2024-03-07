@@ -8,8 +8,6 @@
 import Foundation
 
 class HomeConsoleView {
-    private let restaurant = RestaurantManager.shared.restaurant
-    
     //weak var delegate: LoginStateDelegate?
     
     func displayHomeOptions() {
@@ -29,13 +27,18 @@ class HomeConsoleView {
     }
     
     private func handleHomeOptions() {
+        let restaurantDataManager = RestaurantDataManager()
+        guard let restaurant = restaurantDataManager.getRestaurant() else {
+            print("No restaurant found")
+            return
+        }
         let choice = readLine() ?? ""
         switch choice {
         case "1": // Home
             let orderConsoleView = OrderConsoleView(restaurant: restaurant)
             orderConsoleView.promptMenuItemsSelection()
         case "2": // Customize menu
-            let menuConsoleView = MenuConsoleView(menu: restaurant.menu)
+            let menuConsoleView = MenuConsoleView()
             menuConsoleView.displayAndHandleMenuOptions()
         case "3": // Generate bill
             let billConsoleView = BillingConsoleView()
@@ -50,7 +53,7 @@ class HomeConsoleView {
             let orderConsoleView = OrderConsoleView(restaurant: restaurant)
             orderConsoleView.viewOrders()
         case "7": // View menu
-            let menuConsoleView = MenuConsoleView(menu: restaurant.menu)
+            let menuConsoleView = MenuConsoleView()
             menuConsoleView.viewMenu()
         case "8": // Add employee
             let authController = AuthController()

@@ -11,7 +11,7 @@ class BillManager {
     static let shared = BillManager()
     
     private init() {
-        retrieveBills()
+        loadBills()
     }
     
     private var _bills: [Bill] = []
@@ -38,27 +38,43 @@ class BillManager {
         }
     }
     
-    func retrieveBills() {
+    /*func retrieveBills() {
         let csvReader = CSVReader()
         let csvParser = CSVParser()
         do {
-            let data = try csvReader.readCSV(from: Filename.bill.rawValue)
-            print(data.description)
+            let data = try csvReader.readCSV(from: Filename.billFile.rawValue)
+//            print(data.description)
             _bills = csvParser.parseBills(from: data)
-            print(_bills.description)
+//            print(_bills.description)
         } catch {
             print("ERROR: \(error)!")
         }
     }
     
     func saveBills() {
-        let csvWriter = CSVWriter(fileName: Filename.bill.rawValue)
+        let csvWriter = CSVWriter()
         do {
-            if try csvWriter.writeToCSV(csvDataModal: self) {
+            if try csvWriter.writeToCSV(into: Filename.billFile.rawValue, csvDataModal: self) {
                 print("Successfully saved bills")
             }
         } catch {
             print("ERROR: \(error)!")
+        }
+    }*/
+    
+    func saveBills() {
+        Task {
+            let csvDAO = CSVDataAccessObject()
+            await csvDAO.save(to: .billFile, entity: self)
+        }
+    }
+    
+    func loadBills() {
+        Task {
+            let csvDAO = CSVDataAccessObject()
+            if let bills = await csvDAO.load(from: .billFile, parser: BillParser()) as? [Bill] {
+                _bills = bills
+            }
         }
     }
 }

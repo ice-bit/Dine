@@ -58,3 +58,5 @@ class Bill {
         return billDetails
     }
 }
+
+extension Bill: Parsable {}

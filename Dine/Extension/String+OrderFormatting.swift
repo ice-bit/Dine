@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+extension String {
+    static func formatOrderDetails(_ order: Order) -> String {
+        return """
+        Order \(order.orderIdValue) - Status: \(order.orderStatusValue)
+          Items:\n\(order.menuItems.map { " - \($0.name) - $\($0.price)" }.joined(separator: "\n"))
+        """
+    }
+}

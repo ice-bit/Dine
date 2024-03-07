@@ -7,49 +7,45 @@
 
 import Foundation
 
-class Menu: Codable {
-    private var _items: [MenuItem]
+class Menu {
+    static let shared = Menu()
+    
+    private init() {
+        loadMenu()
+    }
+    
+    private var items: [MenuItem] = []
     
     var itemsCount: Int {
-        return _items.count
+        return items.count
     }
     
     var menuItems: [MenuItem] {
-        return _items
-    }
-    
-    /// Creates an instance of `Menu` with empty array of `MenuItem`.
-    convenience init() {
-        self.init(items: [])
-    }
-    
-    init(items: [MenuItem]) {
-        self._items = items
-        retrieveMenuItems()
+        return items
     }
     
     subscript(index: Int) -> MenuItem {
-        return _items[index]
-    }
+        return items[index]
+    } 
     
     func displayMenuItems() {
         guard !menuItems.isEmpty else {
             print("Please add items to menu")
             return
         }
-        for (index, item) in _items.enumerated() {
+        for (index, item) in items.enumerated() {
             print("\(index + 1). \(item.name) - $\(item.price)")
         }
     }
     
     func addItem(_ item: MenuItem) {
-        _items.append(item)
+        items.append(item)
         saveMenu()
     }
     
     func removeItem(_ item: MenuItem) {
-        if let indexToRemove = _items.firstIndex(where: { $0.itemId == item.itemId }) {
-            _items.remove(at: indexToRemove)
+        if let indexToRemove = items.firstIndex(where: { $0.itemId == item.itemId }) {
+            items.remove(at: indexToRemove)
             print("\(item.name) removed from the menu.")
         } else {
             print("\(item.name) not found in the menu.")
@@ -58,27 +54,24 @@ class Menu: Codable {
         saveMenu()
     }
     
-    func retrieveMenuItems() {
-        let csvReader = CSVReader()
-        let csvParser = CSVParser()
-        do {
-            let data = try csvReader.readCSV(from: Filename.menu.rawValue)
-            print("Menu data:\n\(data.description)")
-            _items = csvParser.parseMenu(from: data)
-            print("Items:\n\(_items.description)")
-        } catch {
-            print("ERROR: \(error)!")
-        }
+    func fetchMenuItem(with uuid: UUID) -> MenuItem? {
+        guard let menuItem = menuItems.first(where: { $0.itemId == uuid }) else { return nil }
+        return menuItem
     }
     
     func saveMenu() {
-        let csvWriter = CSVWriter(fileName: Filename.menu.rawValue)
-        do {
-            if try csvWriter.writeToCSV(csvDataModal: self) {
-                print("Menu saved!")
+        Task {
+            let csvDAO = CSVDataAccessObject()
+            await csvDAO.save(to: .menuFile, entity: self)
+        }
+    }
+    
+    func loadMenu() {
+        Task {
+            let csvDAO = CSVDataAccessObject()
+            if let menuItems = await csvDAO.load(from: .menuFile, parser: MenuParser()) as? [MenuItem] {
+                self.items = menuItems
             }
-        } catch {
-            print("ERROR: \(error)!")
         }
     }
 }
@@ -86,8 +79,8 @@ class Menu: Codable {
 extension Menu: CSVWritable {
     func toCSVString() -> String {
         var csvString = "itemId,name,price"
-        for (index, menuItem) in _items.enumerated() {
-            if index != self._items.count {
+        for (index, menuItem) in items.enumerated() {
+            if index != self.items.count {
                 csvString.append("\n")
             }
             

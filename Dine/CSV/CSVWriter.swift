@@ -7,14 +7,12 @@
 
 import Foundation
 
-struct CSVWriter {
-    private let fileName: String
-    
-    init(fileName: String) {
-        self.fileName = fileName
-    }
-    
-    func writeToCSV(csvDataModal data: CSVWritable) throws -> Bool {
+protocol CSVDataWritable {
+    func writeToCSV(into fileName: String, csvDataModal data: CSVWritable) async throws
+}
+
+struct CSVWriter: CSVDataWritable {
+    func writeToCSV(into fileName: String, csvDataModal data: CSVWritable) async throws {
         let fileManager = FileManager.default
         
         guard let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
@@ -29,11 +27,8 @@ struct CSVWriter {
             try csvString.write(to: fileURL, atomically: true, encoding: .utf8)
             print("Saved to \(fileName).csv")
             print("File URL: \(fileURL)")
-            return true
         } catch {
             print("Error writing CSV file:", error)
         }
-        
-        return false
     }
 }

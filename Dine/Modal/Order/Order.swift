@@ -16,54 +16,58 @@ enum OrderStatus: String, CaseIterable {
 }
 
 class Order {
-    private let _orderId: UUID
+    private let orderId: UUID
     private let tableId: UUID
-    private var _orderStatus: OrderStatus {
-        didSet {
-            if _orderStatus == .completed {
-//                table.changeTableStatus(to: .free)  // write a delgate to dynamically change the order
-            }
-        }
+    var isOrderBilled: Bool
+    private var orderStatus: OrderStatus
+    
+    var menuItems: [MenuItem]
+    
+    // Computed property for order status
+    var orderStatusValue: OrderStatus {
+        get { return orderStatus }
+        set { orderStatus = newValue }
     }
     
-    var isOrderBilled: Bool = false
-    private let menuItems: [MenuItem]
-    
-    var orderStatus: OrderStatus {
-        return _orderStatus
+    var orderIdValue: UUID {
+        orderId
     }
     
-    var orderId: UUID {
-        return _orderId
-    }
-    
-    
-    
-    init(_orderId: UUID, tableId: UUID, _orderStatus: OrderStatus, menuItems: [MenuItem]) {
-        self._orderId = _orderId
+    // Initializer with all properties
+    init(orderId: UUID, tableId: UUID, orderStatus: OrderStatus, isOrderBilled: Bool, menuItems: [MenuItem]) {
+        self.orderId = orderId
         self.tableId = tableId
-        self._orderStatus = _orderStatus
+        self.orderStatus = orderStatus
+        self.isOrderBilled = isOrderBilled
         self.menuItems = menuItems
     }
     
+    // Convenience initializer with only required properties
     convenience init(tableId: UUID, orderStatus: OrderStatus, menuItems: [MenuItem]) {
-        self.init(_orderId: UUID(), tableId: tableId, _orderStatus: orderStatus, menuItems: menuItems)
+        self.init(orderId: UUID(), tableId: tableId, orderStatus: orderStatus, isOrderBilled: false, menuItems: menuItems)
     }
     
-    
-    
+    // Improved displayOrderItems function
     func displayOrderItems() {
         for (index, item) in menuItems.enumerated() {
-            print("\(index + 1). \(item.name) - $\(item.price)")
+            print("\(index + 1). \(item.name) - $\(String(format: "%.2f", item.price))") // Use String.format for better formatting
         }
     }
     
-    func orderedItems() -> [MenuItem] {
-        return menuItems
+    // Helper function to get item IDs as a comma-separated string
+    private func itemIdsCSVString() -> String {
+        return menuItems.map { $0.itemId.uuidString }.joined(separator: ",") // Use map and joined for cleaner syntax
     }
     
-    func changeOrderStatus(_ status: OrderStatus) {
-        _orderStatus = status
+    // Generate CSV string using computed property and helper function
+    var csvString: String {
+        return "\(orderId),\(tableId),\(isOrderBilled),\(orderStatusValue.rawValue),\(itemIdsCSVString())"
+    }
+    
+    // Change order status function with safer update
+    func changeOrderStatus(to newStatus: OrderStatus) {
+        guard newStatus != orderStatusValue else { return } // Avoid unnecessary updates
+        orderStatusValue = newStatus
     }
 }
 

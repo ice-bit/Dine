@@ -20,6 +20,7 @@ struct AdminConsoleView {
         print("1. Create Account")
         print("2. Remove Account")
         print("3. View Accounts")
+        print("4. Sign Out")
         handleAdminOptions()
     }
     
@@ -35,6 +36,10 @@ struct AdminConsoleView {
         case "3":
             // redirect to viewing accounts
             displayAccounts()
+        case "4": // Sign out
+            let accountConsoleView = AccountConsoleView()
+            accountConsoleView.displayAccountOptions()
+            return
         default:
             print("Invalid input! Try again.")
             handleAdminOptions()
@@ -48,7 +53,6 @@ struct AdminConsoleView {
         let password = readLine() ?? ""
         guard let userRole = promptUserRole() else { return }
         
-        let authController = AuthController()
         do {
             try authentication.createAccount(username: username, password: password, userRole: userRole)
         } catch {

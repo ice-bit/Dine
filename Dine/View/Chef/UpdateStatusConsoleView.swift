@@ -42,7 +42,7 @@ class UpdateStatusConsoleView {
             if let choiceString = readLine(), let orderNumber = Int(choiceString) {
                 if orderNumber >= 1 && orderNumber <= orders.count {
                     let chosenOrder = orders[orderNumber - 1]
-                    print("You have chosen order: \(chosenOrder.orderId)")
+                    print("You have chosen order: \(chosenOrder.orderIdValue)")
                     return chosenOrder
                 } else {
                     print("Invalid choice. Please enter a number between 1 and \(orders.count) or 0 to cancel.")

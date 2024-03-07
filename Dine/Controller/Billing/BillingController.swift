@@ -16,7 +16,7 @@ class BillingController: BillService {
     private let billManager = BillManager.shared
     
     func createBill(for order: Order, tip: Double?) {
-        let menuItems = order.orderedItems()
+        let menuItems = order.menuItems
         let totalAmount = menuItems.reduce(0.0) { $0 + $1.price }
         let tax = totalAmount * 0.18
         

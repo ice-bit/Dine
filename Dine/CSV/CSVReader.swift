@@ -11,17 +11,23 @@
 
 import Foundation
 
-enum CSVReaderError: Error {
-    case fileNotFound
-    case fileReadError
-    case invalidCSVFormat
+protocol CSVReadable {
+    func readCSV(from fileName: String) async throws -> [[String: String]]
+    func readCSVAs2DArray(from fileName: String) async throws -> [[String]]
 }
 
 struct CSVReader {
-    func readCSV(from fileName: String) throws -> [[String: String]] {
+    func readCSV(from fileName: String) async throws -> [[String: String]] {
         let fileURL = try getCSVFileURL(fileName)
         let contents = try String(contentsOf: fileURL)
         let csvData = try parseCSV(contents)
+        return csvData
+    }
+    
+    func readCSVAs2DArray(from fileName: String) async throws -> [[String]] {
+        let fileURL = try getCSVFileURL(fileName)
+        let contents = try String(contentsOf: fileURL)
+        let csvData = try parseCSVAs2DArray(contents)
         return csvData
     }
     
@@ -63,5 +69,31 @@ struct CSVReader {
         
         return csvData
     }
+    
+    private func parseCSVAs2DArray(_ contents: String) throws -> [[String]] {
+        var csvData: [[String]] = []
+        let rows = contents.components(separatedBy: "\n")
+        
+        guard let headerRow = rows.first else {
+            throw CSVReaderError.invalidCSVFormat
+        }
+        //let headerComponents = headerRow.components(separatedBy: ",")
+        
+        for row in rows.dropFirst() {
+            var rowData = [String]()
+            let columnComponents = row.components(separatedBy: ",")
+            for columnComponent in columnComponents {
+                rowData.append(columnComponent)
+            }
+            csvData.append(rowData)
+        }
+        
+        return csvData
+    }
 }
 
+enum CSVReaderError: Error {
+    case fileNotFound
+    case fileReadError
+    case invalidCSVFormat
+}

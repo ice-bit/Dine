@@ -28,7 +28,9 @@ struct KitchenStaffConsoleView {
             let updateConsoleView = UpdateStatusConsoleView()
             updateConsoleView.manageReceivedOrders()
         case "2": // Account
-            print("Yet to implement")
+            let accountConsoleView = AccountConsoleView()
+            accountConsoleView.displayAccountOptions()
+            return
         case "3": // Quit
             exit(0)
         default:

@@ -7,15 +7,15 @@
 
 import Foundation
 
-enum AccountStatus: String {
+enum AccountStatus: String, Codable {
     case active, closed, cancelled
 }
 
-enum UserRole: String, CaseIterable {
+enum UserRole: String, CaseIterable, Codable {
     case admin, manager, waitStaff, kitchenStaff, employee
 }
 
-class Account {
+class Account: Codable {
     private let _userId: UUID
     private var _username: String
     private var _password: String
@@ -90,3 +90,5 @@ extension Account: CSVWritable {
         return csvText
     }
 }
+
+extension Account: Parsable {}

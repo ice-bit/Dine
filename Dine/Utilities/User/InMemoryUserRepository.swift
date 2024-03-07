@@ -15,7 +15,7 @@ class InMemoryUserRepository: UserRepository {
     static let shared = InMemoryUserRepository()
     
     private init() {
-        retrieveAccounts()
+        loadAccounts()
     }
     
     private var accounts: [Account] = []
@@ -57,24 +57,18 @@ class InMemoryUserRepository: UserRepository {
     }
     
     private func saveAccounts() {
-        let fileName = Filename.account.rawValue
-        let csvWriter = CSVWriter(fileName: fileName)
-        do {
-            let isSuccess = try csvWriter.writeToCSV(csvDataModal: self)
-            print("\(isSuccess)")
-        } catch {
-            print("Error: \(error)!")
+        Task {
+            let csvDAO = CSVDataAccessObject()
+            await csvDAO.save(to: .accountFile, entity: self)
         }
     }
     
-    private func retrieveAccounts() {
-        let csvReader = CSVReader()
-        let csvParser = CSVParser()
-        do {
-            let accountData = try csvReader.readCSV(from: Filename.account.rawValue)
-            accounts = csvParser.parseAccounts(from: accountData)
-        } catch {
-            print("Error: \(error)")
+    private func loadAccounts() {
+        Task {
+            let csvDAO = CSVDataAccessObject()
+            if let accounts = await csvDAO.load(from: .billFile, parser: AccountParser()) as? [Account] {
+                self.accounts = accounts
+            }
         }
     }
 }

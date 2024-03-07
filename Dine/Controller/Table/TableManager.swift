@@ -11,7 +11,7 @@ class TableManager {
     static let shared = TableManager()
     
     private init() {
-        retrieveTable()
+        loadTables()
     }
     
     private var tables: [Table] = []
@@ -30,40 +30,34 @@ class TableManager {
     
     func addTable(_ table: Table) {
         tables.append(table)
-        saveTable()
+        saveTables()
     }
     
     func removeTable(_ table: Table) {
         if let index = tables.firstIndex(where: {$0.tableId == table.tableId }) {
             tables.remove(at: index)
-            saveTable()
+            saveTables()
         } else {
             print("No tables found")
         }
     }
     
-    func retrieveTable() {
-        let csvReader = CSVReader()
-        let csvParser = CSVParser()
-        
-        do {
-            let data = try csvReader.readCSV(from: Filename.table.rawValue)
-            tables = csvParser.parseTables(from: data)
-        } catch {
-            print("Error: \(error)")
+    func saveTables() {
+        Task {
+            let csvDAO = CSVDataAccessObject()
+            await csvDAO.save(to: .tableFile, entity: self)
         }
     }
     
-    func saveTable() {
-        let csvWriter = CSVWriter(fileName: Filename.table.rawValue)
-        do {
-            if try csvWriter.writeToCSV(csvDataModal: self) {
-                print("Write success")
+    func loadTables() {
+        Task {
+            let csvDAO = CSVDataAccessObject()
+            if let tables = await csvDAO.load(from: .tableFile, parser: TableParser()) as? [Table] {
+                self.tables = tables
             }
-        } catch {
-            print("Error: \(error)")
         }
     }
+    
 }
 
 extension TableManager: CSVWritable {

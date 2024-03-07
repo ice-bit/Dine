@@ -8,6 +8,11 @@
 import Foundation
 
 class RestaurantSetupConsoleView {
+    private let restaurantSetupProtocol: RestaurantSetupProtocol
+    
+    init(restaurantSetupProtocol: RestaurantSetupProtocol) {
+        self.restaurantSetupProtocol = restaurantSetupProtocol
+    }
     
     func promptRestaurantSetup() {
         print("Enter restaurant name")
@@ -26,8 +31,7 @@ class RestaurantSetupConsoleView {
             promptRestaurantSetup()
         }
         
-        let setupController = SetupRestaurantController()
-        if setupController.createRestaurant(name: restaurantName, locationName: locationName) {
+        if restaurantSetupProtocol.createRestaurant(name: restaurantName, locationName: locationName) {
             print("Created restaurant successfully")
         } else {
             print("Failed to create restaurant")

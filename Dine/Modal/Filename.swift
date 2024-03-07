@@ -8,8 +8,12 @@
 import Foundation
 
 @frozen enum Filename: String {
-    case account = "Test_Account"
-    case table = "Test_Table"
-    case bill = "bills_test_1"
-    case menu = "menu_test_1"
+    case accountFile = "Test_Account"
+    case tableFile = "Test_Table"
+    case billFile = "bills_test_1"
+    case menuFile = "menu_test_1"
+    case orderFile = "Dine_test_order"
+    case menuItemFile = "Dine_test_menuItem"
+    case joinOrderItemFile = "Dine_test_joinOrderItem"
 }
+

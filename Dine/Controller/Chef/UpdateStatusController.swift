@@ -16,11 +16,11 @@ class UpdateStatusController: UpdateStatusService {
     private let orderManager: OrderManager = OrderManager.shared
     
     func changeStatus(for order: Order, to status: OrderStatus) {
-        order.changeOrderStatus(status)
+        order.changeOrderStatus(to: status)
     }
     
     func fetchReceivedOrders() -> [Order]? {
-        let receivedOrders = orderManager.getUncompletedOrders
+        let receivedOrders = orderManager.getUncompletedOrders()
         
         guard !receivedOrders.isEmpty else {
             print("No received orders found!")

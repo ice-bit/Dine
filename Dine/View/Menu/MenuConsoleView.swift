@@ -8,10 +8,14 @@
 import Foundation
 
 class MenuConsoleView {
-    private let menu: Menu
+    private let menu = Menu.shared
     
-    init(menu: Menu) {
-        self.menu = menu
+    init() {
+        loadMenu()
+    }
+    
+    func loadMenu() {
+        menu.loadMenu()
     }
     
     func displayAndHandleMenuOptions() {
@@ -111,7 +115,6 @@ class MenuConsoleView {
     }
     
     func viewMenu() {
-        
         let menuController = MenuController(menu: menu)
         menuController.displayMenuItems()
     }

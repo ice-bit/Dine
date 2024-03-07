@@ -10,8 +10,6 @@ import Foundation
 struct ManagerConsoleView {
     private let account: Account
     
-    private let restaurant = RestaurantManager.shared.restaurant
-    
     init(account: Account) {
         self.account = account
     }
@@ -30,6 +28,12 @@ struct ManagerConsoleView {
     }
     
     private func handleOption() {
+        let restaurantDataManager = RestaurantDataManager()
+        guard let restaurant = restaurantDataManager.getRestaurant() else {
+            print("No restaurant found")
+            return
+        }
+        
         let choice = readLine() ?? ""
         switch choice {
         case "1": // Generate bill
@@ -39,7 +43,7 @@ struct ManagerConsoleView {
             let tableConsoleView = TableConsoleView()
             tableConsoleView.displayOptions()
         case "3": // Customize menu
-            let menuConsoleView = MenuConsoleView(menu: restaurant.menu)
+            let menuConsoleView = MenuConsoleView()
             menuConsoleView.displayAndHandleMenuOptions()
         case "4": // View bill
             let billConsoleView = BillingConsoleView()
@@ -48,12 +52,14 @@ struct ManagerConsoleView {
             let orderConsoleView = OrderConsoleView(restaurant: restaurant)
             orderConsoleView.viewOrders()
         case "6": // View menu
-            let menuConsoleView = MenuConsoleView(menu: restaurant.menu)
+            let menuConsoleView = MenuConsoleView()
             menuConsoleView.viewMenu()
         case "7": // View tables
             print("Yet to implement")
         case "8": // Account
-            print("Yet to implement")
+            let accountConsoleView = AccountConsoleView()
+            accountConsoleView.displayAccountOptions()
+            return
         case "9": // Quit
             exit(0)
         default:

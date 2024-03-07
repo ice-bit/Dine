@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+enum UserDefaultsKeys: String {
+    case currentUserKey = "Dine.currentUser"
+    case restaurantKey = "Dine.restaurant"
+}

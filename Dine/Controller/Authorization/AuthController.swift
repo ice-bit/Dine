@@ -29,33 +29,58 @@ class AuthController: Authentication {
     }
     
     func login(username: String, password: String) -> Bool {
-        do {
-            let authenticationManager = AuthenticationManager(userRespository: userRepository)
-            let isValidLogin =  try authenticationManager.isLoginValid(username: username, password: password)
-            if isValidLogin {
-                //UserStatus.userLoggedIn.updateStatus(true)
-                return true
-            }
-        } catch {
-            if let authError = error as? AuthenticationError {
-                switch authError {
-                case .invalidUsername:
-                    print("Invalid username")
-                case .invalidPassword:
-                    print("Invalid password")
-                case .userAlreadyExists:
-                    print("User already exist")
-                case .inactiveAccount:
-                    print("Inactive account")
-                case .noUserFound:
-                    print("No user found under username: \(username)")
-                }
-            } else {
-                print("An error occurred: \(error.localizedDescription)")
-            }
+        let result = isLoginValid(username: username, password: password)
+
+        switch result {
+        case .success(let account):
+            let userStore = UserStore()
+            userStore.setUser(account: account)
+            UserStatus.userLoggedIn.updateStatus(true)
+            return true
+        case .failure(let error):
+            handleLoginError(error, username: username)
+            return false
         }
-        
-        return false
     }
+    
+    private func handleLoginError(_ error: AuthenticationError, username: String) {
+        switch error {
+        case .invalidUsername:
+            print("Invalid username")
+        case .invalidPassword:
+            print("Invalid password")
+        case .userAlreadyExists:
+            print("User already exists")
+        case .inactiveAccount:
+            print("Inactive account")
+        case .noUserFound:
+            print("No user found under username: \(username)")
+        case .other(let error):
+            print("An error occurred: \(error.localizedDescription)")
+        }
+    }
+    
+    private func isLoginValid(username: String, password: String) -> Result<Account, AuthenticationError> {
+        do {
+            guard let user = userRepository.searchUser(username: username) else {
+                throw AuthenticationError.noUserFound
+            }
+            
+            guard user.accountStatus == .active else {
+                throw AuthenticationError.inactiveAccount
+            }
+            
+            guard user.password == password else {
+                throw AuthenticationError.invalidPassword
+            }
+            
+            return .success(user)
+        } catch let error as AuthenticationError {
+            return .failure(error)
+        } catch {
+            return .failure(.other(error))
+        }
+    }
+
     
 }

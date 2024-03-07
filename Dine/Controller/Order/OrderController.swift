@@ -8,7 +8,7 @@
 import Foundation
 
 protocol OrderService {
-    func createOrder(for table: Table, menuItem: [MenuItem])
+    func createOrder(for table: Table, menuItems: [MenuItem: Int])
     func getOrdersCount() -> Int
     func displayOrders()
     func getUnbilledOrders() -> [Order]?
@@ -17,8 +17,16 @@ protocol OrderService {
 class OrderController: OrderService {
     private let orderManager = OrderManager.shared
     
-    func createOrder(for table: Table, menuItem: [MenuItem]) {
-        let order = Order(tableId: table.tableId, orderStatus: .received, menuItems: menuItem)
+    func createOrder(for table: Table, menuItems: [MenuItem: Int]) {
+        var orderMenuItems: [MenuItem] = []
+        
+        // Iterate through the dictionary of menu item quantities
+        for (menuItem, quantity) in menuItems {
+            // Append the menu item to the array the specified number of times
+            orderMenuItems.append(contentsOf: Array(repeating: menuItem, count: quantity))
+        }
+        
+        let order = Order(tableId: table.tableId, orderStatus: .received, menuItems: orderMenuItems)
         // Change table status
         table.changeTableStatus(to: .occupied)
         

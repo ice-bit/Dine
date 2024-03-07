@@ -9,11 +9,17 @@ import Foundation
 
 class OrderConsoleView {
     private let restaurant: Restaurant
+    private let menu = Menu.shared
     private let orderService: OrderService = OrderController()
     private let tableService: TableService = TableController()
     
     init(restaurant: Restaurant) {
         self.restaurant = restaurant
+        loadMenu()
+    }
+    
+    func loadMenu() {
+        Menu.shared.loadMenu()
     }
     
     func displayTablesAndChoose() -> Table? {
@@ -45,16 +51,16 @@ class OrderConsoleView {
         var orderQuantities: [MenuItem: Int] = [:]
         
         // Display menu items
-        restaurant.menu.displayMenuItems()
+        menu.displayMenuItems()
         
         while true {
             print("Enter the item number to add to your order (0 to finish):")
             
-            if let input = readLine(), let choice = Int(input), choice >= 0 && choice <= restaurant.menu.itemsCount {
+            if let input = readLine(), let choice = Int(input), choice >= 0 && choice <= menu.itemsCount {
                 if choice == 0 {
                     break
                 } else {
-                    let selectedItem = restaurant.menu[choice - 1]
+                    let selectedItem = menu[choice - 1]
                     
                     // Update quantity or add new item to the order
                     if let quantity = orderQuantities[selectedItem] {
@@ -86,7 +92,7 @@ class OrderConsoleView {
             return
         }
         
-        orderService.createOrder(for: table, menuItem: Array(orderQuantities.keys))
+        orderService.createOrder(for: table, menuItems: orderQuantities)
         print("Order created successfully!")
     }
     

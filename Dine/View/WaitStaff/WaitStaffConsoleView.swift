@@ -10,9 +10,6 @@ import Foundation
 struct WaitStaffConsoleView {
     private let account: Account
     
-    private let restaurant = RestaurantManager.shared.restaurant
-    
-    
     init(account: Account) {
         self.account = account
     }
@@ -30,6 +27,12 @@ struct WaitStaffConsoleView {
     }
     
     private func handleOptions() {
+        let restaurantDataManager = RestaurantDataManager()
+        guard let restaurant = restaurantDataManager.getRestaurant() else {
+            print("No restaurants found!")
+            return
+        }
+        
         let choice = readLine() ?? ""
         switch choice {
         case "1": // Place order
@@ -48,10 +51,12 @@ struct WaitStaffConsoleView {
             let orderConsoleView = OrderConsoleView(restaurant: restaurant)
             orderConsoleView.viewOrders()
         case "6": // View menu
-            let menuConsoleView = MenuConsoleView(menu: restaurant.menu)
+            let menuConsoleView = MenuConsoleView()
             menuConsoleView.viewMenu()
         case "7": // Account
-            print("Yet to implement")
+            let accountConsoleView = AccountConsoleView()
+            accountConsoleView.displayAccountOptions()
+            return
         case "0": // Quit
             exit(0)
         default:

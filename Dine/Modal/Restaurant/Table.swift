@@ -49,3 +49,5 @@ class Table {
     }
     
 }
+
+extension Table: Parsable {}

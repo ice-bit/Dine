@@ -29,6 +29,19 @@
 		5512D9FA2B875D1700E2CFCD /* FileIOError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5512D9F92B875D1700E2CFCD /* FileIOError.swift */; };
 		551E9BDA2B6D2AB6003C57E3 /* Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551E9BD92B6D2AB6003C57E3 /* Admin.swift */; };
 		551E9BDD2B720D88003C57E3 /* MenuConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551E9BDC2B720D88003C57E3 /* MenuConsoleView.swift */; };
+		55236CC62B97619E00D04A9D /* AssociationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55236CC52B97619E00D04A9D /* AssociationManager.swift */; };
+		55236CC82B9761B600D04A9D /* MenuDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55236CC72B9761B600D04A9D /* MenuDAO.swift */; };
+		55236CCC2B9851CE00D04A9D /* String+OrderFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55236CCB2B9851CE00D04A9D /* String+OrderFormatting.swift */; };
+		55236CCE2B98981D00D04A9D /* InMemoryDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55236CCD2B98981D00D04A9D /* InMemoryDAO.swift */; };
+		55236CD02B98A42400D04A9D /* InMemoryBillDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55236CCF2B98A42400D04A9D /* InMemoryBillDAO.swift */; };
+		55236CD32B99D6F400D04A9D /* MenuParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55236CD22B99D6F400D04A9D /* MenuParser.swift */; };
+		55236CD52B99D71A00D04A9D /* AccountParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55236CD42B99D71A00D04A9D /* AccountParser.swift */; };
+		55236CD72B99D72A00D04A9D /* TableParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55236CD62B99D72A00D04A9D /* TableParser.swift */; };
+		55236CD92B99D73D00D04A9D /* BillParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55236CD82B99D73D00D04A9D /* BillParser.swift */; };
+		55236CDB2B99D75900D04A9D /* OrderParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55236CDA2B99D75900D04A9D /* OrderParser.swift */; };
+		55236CDD2B99D78B00D04A9D /* CSVParcable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55236CDC2B99D78B00D04A9D /* CSVParcable.swift */; };
+		55236CDF2B99D8DD00D04A9D /* Parsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55236CDE2B99D8DD00D04A9D /* Parsable.swift */; };
+		55236CE32B99F86100D04A9D /* CSVDataAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55236CE22B99F86100D04A9D /* CSVDataAccessObject.swift */; };
 		5529B6342B73668B00B35D99 /* StartUpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5529B6332B73668B00B35D99 /* StartUpManager.swift */; };
 		553BA4902B67A5B300B2F7E3 /* BillingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553BA48F2B67A5B300B2F7E3 /* BillingController.swift */; };
 		553BA4922B67A5BE00B2F7E3 /* BillingConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553BA4912B67A5BE00B2F7E3 /* BillingConsoleView.swift */; };
@@ -49,23 +62,26 @@
 		5545DAC22B502C50007D31B6 /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5545DAC12B502C50007D31B6 /* FoodItem.swift */; };
 		55636DCB2B8DDC7F00B2CDA6 /* String+DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55636DCA2B8DDC7F00B2CDA6 /* String+DateExtension.swift */; };
 		55636DCF2B8DF2DB00B2CDA6 /* Filename.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55636DCE2B8DF2DB00B2CDA6 /* Filename.swift */; };
-		55636DD12B8E0BF000B2CDA6 /* UserAccessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55636DD02B8E0BF000B2CDA6 /* UserAccessController.swift */; };
+		55636DD12B8E0BF000B2CDA6 /* UserRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55636DD02B8E0BF000B2CDA6 /* UserRouter.swift */; };
 		55636DD42B8E0FF300B2CDA6 /* ManagerConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55636DD32B8E0FF300B2CDA6 /* ManagerConsoleView.swift */; };
 		55636DD72B8E140B00B2CDA6 /* KitchenStaffConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55636DD62B8E140B00B2CDA6 /* KitchenStaffConsoleView.swift */; };
 		55636DDE2B8E164500B2CDA6 /* WaitStaffConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55636DDD2B8E164500B2CDA6 /* WaitStaffConsoleView.swift */; };
+		55636DE02B8F363400B2CDA6 /* Stash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55636DDF2B8F363400B2CDA6 /* Stash.swift */; };
+		55636DE42B8F414100B2CDA6 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55636DE32B8F414100B2CDA6 /* UserStore.swift */; };
+		55636DE62B8F5D0000B2CDA6 /* RestaurantDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55636DE52B8F5D0000B2CDA6 /* RestaurantDataManager.swift */; };
+		55636DE82B8F5D3200B2CDA6 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55636DE72B8F5D3200B2CDA6 /* UserDefaultsKeys.swift */; };
+		55636DED2B91AE0100B2CDA6 /* AccountConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55636DEC2B91AE0100B2CDA6 /* AccountConsoleView.swift */; };
 		557D5E892B5FA63D00A402D3 /* RestaurantController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557D5E882B5FA63D00A402D3 /* RestaurantController.swift */; };
 		557D5E8C2B5FC06F00A402D3 /* AdminConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557D5E8B2B5FC06F00A402D3 /* AdminConsoleView.swift */; };
 		557D5E8F2B5FC0F100A402D3 /* AdminController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557D5E8E2B5FC0F100A402D3 /* AdminController.swift */; };
 		557D5E922B5FD6DD00A402D3 /* AuthConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557D5E912B5FD6DD00A402D3 /* AuthConsoleView.swift */; };
-		557D5E942B5FE69100A402D3 /* SetupConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557D5E932B5FE69100A402D3 /* SetupConsoleView.swift */; };
+		557D5E942B5FE69100A402D3 /* RestaurantSetupConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557D5E932B5FE69100A402D3 /* RestaurantSetupConsoleView.swift */; };
 		55881AC82B7A242000422051 /* TableConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55881AC72B7A242000422051 /* TableConsoleView.swift */; };
 		55881ACB2B7A246C00422051 /* TableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55881ACA2B7A246C00422051 /* TableController.swift */; };
 		558B05BD2B73AE15009159BA /* AppOnboardingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558B05BC2B73AE15009159BA /* AppOnboardingProtocol.swift */; };
-		558B05BF2B74AAE5009159BA /* SetupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558B05BE2B74AAE5009159BA /* SetupController.swift */; };
-		558B05C32B74B7AE009159BA /* RestaurantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558B05C22B74B7AE009159BA /* RestaurantManager.swift */; };
+		558B05BF2B74AAE5009159BA /* RestaurantSetupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558B05BE2B74AAE5009159BA /* RestaurantSetupController.swift */; };
 		558B05C52B74E86B009159BA /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558B05C42B74E86B009159BA /* UserRepository.swift */; };
 		558B05C72B74E9D6009159BA /* InMemoryUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558B05C62B74E9D6009159BA /* InMemoryUserRepository.swift */; };
-		558B05CA2B75FDE2009159BA /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558B05C92B75FDE2009159BA /* AuthenticationManager.swift */; };
 		55A65C952B60EC7600776D03 /* LoginConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A65C942B60EC7600776D03 /* LoginConsoleView.swift */; };
 		55A65C982B61108F00776D03 /* OrderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A65C972B61108F00776D03 /* OrderController.swift */; };
 		55A65C9B2B613AD300776D03 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A65C9A2B613AD300776D03 /* MenuController.swift */; };
@@ -74,13 +90,14 @@
 		55A65CA52B6246C500776D03 /* OrderConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A65CA42B6246C500776D03 /* OrderConsoleView.swift */; };
 		55A7836F2B4BFD0E00E20DF9 /* EditAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A7836E2B4BFD0E00E20DF9 /* EditAccountController.swift */; };
 		55A783732B4C009000E20DF9 /* AuthenticationValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A783722B4C009000E20DF9 /* AuthenticationValidator.swift */; };
-		55C660922B6BBE9200E7FFFB /* String+OrderFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C660912B6BBE9200E7FFFB /* String+OrderFormatting.swift */; };
 		55D9E4712B88746D00780B4F /* CSVWritable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E4702B88746D00780B4F /* CSVWritable.swift */; };
 		55D9E4732B88748D00780B4F /* CSVWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E4722B88748D00780B4F /* CSVWriter.swift */; };
 		55D9E4782B8892B000780B4F /* CSVReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E4772B8892B000780B4F /* CSVReader.swift */; };
-		55D9E47A2B88B24E00780B4F /* CSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E4792B88B24E00780B4F /* CSVParser.swift */; };
 		55D9E47C2B88B60600780B4F /* CSVParseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E47B2B88B60600780B4F /* CSVParseError.swift */; };
 		55D9E47E2B8C704D00780B4F /* UserStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E47D2B8C704D00780B4F /* UserStatus.swift */; };
+		55FE85052B95D8F900E7E78B /* OrderItemAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FE85042B95D8F800E7E78B /* OrderItemAssociation.swift */; };
+		55FE85082B96EC2A00E7E78B /* DataAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FE85072B96EC2A00E7E78B /* DataAccessObject.swift */; };
+		55FE850C2B96FF3B00E7E78B /* InMemoryOrderDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FE850B2B96FF3B00E7E78B /* InMemoryOrderDAO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -119,6 +136,19 @@
 		5512D9F92B875D1700E2CFCD /* FileIOError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileIOError.swift; sourceTree = "<group>"; };
 		551E9BD92B6D2AB6003C57E3 /* Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Admin.swift; sourceTree = "<group>"; };
 		551E9BDC2B720D88003C57E3 /* MenuConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuConsoleView.swift; sourceTree = "<group>"; };
+		55236CC52B97619E00D04A9D /* AssociationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssociationManager.swift; sourceTree = "<group>"; };
+		55236CC72B9761B600D04A9D /* MenuDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDAO.swift; sourceTree = "<group>"; };
+		55236CCB2B9851CE00D04A9D /* String+OrderFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+OrderFormatting.swift"; sourceTree = "<group>"; };
+		55236CCD2B98981D00D04A9D /* InMemoryDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryDAO.swift; sourceTree = "<group>"; };
+		55236CCF2B98A42400D04A9D /* InMemoryBillDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryBillDAO.swift; sourceTree = "<group>"; };
+		55236CD22B99D6F400D04A9D /* MenuParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuParser.swift; sourceTree = "<group>"; };
+		55236CD42B99D71A00D04A9D /* AccountParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountParser.swift; sourceTree = "<group>"; };
+		55236CD62B99D72A00D04A9D /* TableParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableParser.swift; sourceTree = "<group>"; };
+		55236CD82B99D73D00D04A9D /* BillParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillParser.swift; sourceTree = "<group>"; };
+		55236CDA2B99D75900D04A9D /* OrderParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderParser.swift; sourceTree = "<group>"; };
+		55236CDC2B99D78B00D04A9D /* CSVParcable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParcable.swift; sourceTree = "<group>"; };
+		55236CDE2B99D8DD00D04A9D /* Parsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parsable.swift; sourceTree = "<group>"; };
+		55236CE22B99F86100D04A9D /* CSVDataAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVDataAccessObject.swift; sourceTree = "<group>"; };
 		5529B6332B73668B00B35D99 /* StartUpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartUpManager.swift; sourceTree = "<group>"; };
 		553BA48F2B67A5B300B2F7E3 /* BillingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingController.swift; sourceTree = "<group>"; };
 		553BA4912B67A5BE00B2F7E3 /* BillingConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingConsoleView.swift; sourceTree = "<group>"; };
@@ -139,23 +169,26 @@
 		5545DAC12B502C50007D31B6 /* FoodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItem.swift; sourceTree = "<group>"; };
 		55636DCA2B8DDC7F00B2CDA6 /* String+DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+DateExtension.swift"; sourceTree = "<group>"; };
 		55636DCE2B8DF2DB00B2CDA6 /* Filename.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filename.swift; sourceTree = "<group>"; };
-		55636DD02B8E0BF000B2CDA6 /* UserAccessController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccessController.swift; sourceTree = "<group>"; };
+		55636DD02B8E0BF000B2CDA6 /* UserRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRouter.swift; sourceTree = "<group>"; };
 		55636DD32B8E0FF300B2CDA6 /* ManagerConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerConsoleView.swift; sourceTree = "<group>"; };
 		55636DD62B8E140B00B2CDA6 /* KitchenStaffConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitchenStaffConsoleView.swift; sourceTree = "<group>"; };
 		55636DDD2B8E164500B2CDA6 /* WaitStaffConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitStaffConsoleView.swift; sourceTree = "<group>"; };
+		55636DDF2B8F363400B2CDA6 /* Stash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stash.swift; sourceTree = "<group>"; };
+		55636DE32B8F414100B2CDA6 /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
+		55636DE52B8F5D0000B2CDA6 /* RestaurantDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDataManager.swift; sourceTree = "<group>"; };
+		55636DE72B8F5D3200B2CDA6 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		55636DEC2B91AE0100B2CDA6 /* AccountConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountConsoleView.swift; sourceTree = "<group>"; };
 		557D5E882B5FA63D00A402D3 /* RestaurantController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantController.swift; sourceTree = "<group>"; };
 		557D5E8B2B5FC06F00A402D3 /* AdminConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminConsoleView.swift; sourceTree = "<group>"; };
 		557D5E8E2B5FC0F100A402D3 /* AdminController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminController.swift; sourceTree = "<group>"; };
 		557D5E912B5FD6DD00A402D3 /* AuthConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthConsoleView.swift; sourceTree = "<group>"; };
-		557D5E932B5FE69100A402D3 /* SetupConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupConsoleView.swift; sourceTree = "<group>"; };
+		557D5E932B5FE69100A402D3 /* RestaurantSetupConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSetupConsoleView.swift; sourceTree = "<group>"; };
 		55881AC72B7A242000422051 /* TableConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableConsoleView.swift; sourceTree = "<group>"; };
 		55881ACA2B7A246C00422051 /* TableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableController.swift; sourceTree = "<group>"; };
 		558B05BC2B73AE15009159BA /* AppOnboardingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOnboardingProtocol.swift; sourceTree = "<group>"; };
-		558B05BE2B74AAE5009159BA /* SetupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupController.swift; sourceTree = "<group>"; };
-		558B05C22B74B7AE009159BA /* RestaurantManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantManager.swift; sourceTree = "<group>"; };
+		558B05BE2B74AAE5009159BA /* RestaurantSetupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSetupController.swift; sourceTree = "<group>"; };
 		558B05C42B74E86B009159BA /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		558B05C62B74E9D6009159BA /* InMemoryUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryUserRepository.swift; sourceTree = "<group>"; };
-		558B05C92B75FDE2009159BA /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		55A65C942B60EC7600776D03 /* LoginConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginConsoleView.swift; sourceTree = "<group>"; };
 		55A65C972B61108F00776D03 /* OrderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderController.swift; sourceTree = "<group>"; };
 		55A65C9A2B613AD300776D03 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
@@ -164,13 +197,14 @@
 		55A65CA42B6246C500776D03 /* OrderConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConsoleView.swift; sourceTree = "<group>"; };
 		55A7836E2B4BFD0E00E20DF9 /* EditAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountController.swift; sourceTree = "<group>"; };
 		55A783722B4C009000E20DF9 /* AuthenticationValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationValidator.swift; sourceTree = "<group>"; };
-		55C660912B6BBE9200E7FFFB /* String+OrderFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+OrderFormatting.swift"; sourceTree = "<group>"; };
 		55D9E4702B88746D00780B4F /* CSVWritable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVWritable.swift; sourceTree = "<group>"; };
 		55D9E4722B88748D00780B4F /* CSVWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVWriter.swift; sourceTree = "<group>"; };
 		55D9E4772B8892B000780B4F /* CSVReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVReader.swift; sourceTree = "<group>"; };
-		55D9E4792B88B24E00780B4F /* CSVParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParser.swift; sourceTree = "<group>"; };
 		55D9E47B2B88B60600780B4F /* CSVParseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParseError.swift; sourceTree = "<group>"; };
 		55D9E47D2B8C704D00780B4F /* UserStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatus.swift; sourceTree = "<group>"; };
+		55FE85042B95D8F800E7E78B /* OrderItemAssociation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemAssociation.swift; sourceTree = "<group>"; };
+		55FE85072B96EC2A00E7E78B /* DataAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAccessObject.swift; sourceTree = "<group>"; };
+		55FE850B2B96FF3B00E7E78B /* InMemoryOrderDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryOrderDAO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,19 +247,24 @@
 		55081A5E2B467AF800D71B31 /* Dine */ = {
 			isa = PBXGroup;
 			children = (
+				55FE85062B96DFB300E7E78B /* DataAccessObject */,
 				55D9E4762B88927800780B4F /* Data */,
 				55D9E46E2B877D0100780B4F /* CSV */,
 				5501FB3C2B7E1AC700A8311B /* Error */,
-				558B05C82B75FDCD009159BA /* Authentication */,
 				55C660902B6BBE8900E7FFFB /* Extension */,
 				55081A662B467B0F00D71B31 /* Modal */,
 				55081A672B467B1300D71B31 /* View */,
 				55081A682B467B1700D71B31 /* Controller */,
 				5545DAA22B4E77C4007D31B6 /* Utilities */,
 				55081A5F2B467AF800D71B31 /* main.swift */,
+				55636DE32B8F414100B2CDA6 /* UserStore.swift */,
+				55636DE72B8F5D3200B2CDA6 /* UserDefaultsKeys.swift */,
 				5529B6332B73668B00B35D99 /* StartUpManager.swift */,
 				558B05BC2B73AE15009159BA /* AppOnboardingProtocol.swift */,
-				558B05C22B74B7AE009159BA /* RestaurantManager.swift */,
+				55636DE52B8F5D0000B2CDA6 /* RestaurantDataManager.swift */,
+				55236CC52B97619E00D04A9D /* AssociationManager.swift */,
+				55636DDF2B8F363400B2CDA6 /* Stash.swift */,
+				55236CDE2B99D8DD00D04A9D /* Parsable.swift */,
 			);
 			path = Dine;
 			sourceTree = "<group>";
@@ -233,6 +272,7 @@
 		55081A662B467B0F00D71B31 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				55FE85032B95D8DC00E7E78B /* CSVModal */,
 				553BA49D2B69018800B2F7E3 /* Bill.swift */,
 				551E9BD82B6D2AAB003C57E3 /* Admin */,
 				553BA49C2B69018100B2F7E3 /* Bill */,
@@ -250,6 +290,7 @@
 		55081A672B467B1300D71B31 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				55636DEB2B91ADF100B2CDA6 /* Account */,
 				55636DD82B8E161B00B2CDA6 /* WaitStaff */,
 				55636DD52B8E13F600B2CDA6 /* KitchenStaff */,
 				55636DD22B8E0FE200B2CDA6 /* Manager */,
@@ -279,7 +320,7 @@
 				557D5E8D2B5FC0E700A402D3 /* Admin */,
 				557D5E7E2B5EBDD600A402D3 /* Setup */,
 				55A783692B48324A00E20DF9 /* Authorization */,
-				55636DD02B8E0BF000B2CDA6 /* UserAccessController.swift */,
+				55636DD02B8E0BF000B2CDA6 /* UserRouter.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -352,6 +393,19 @@
 				551E9BDC2B720D88003C57E3 /* MenuConsoleView.swift */,
 			);
 			path = Menu;
+			sourceTree = "<group>";
+		};
+		55236CD12B99D6DE00D04A9D /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				55236CD22B99D6F400D04A9D /* MenuParser.swift */,
+				55236CD42B99D71A00D04A9D /* AccountParser.swift */,
+				55236CD62B99D72A00D04A9D /* TableParser.swift */,
+				55236CD82B99D73D00D04A9D /* BillParser.swift */,
+				55236CDA2B99D75900D04A9D /* OrderParser.swift */,
+				55236CDC2B99D78B00D04A9D /* CSVParcable.swift */,
+			);
+			path = Parser;
 			sourceTree = "<group>";
 		};
 		553BA48D2B67A59B00B2F7E3 /* Billing */ = {
@@ -454,11 +508,19 @@
 			path = WaitStaff;
 			sourceTree = "<group>";
 		};
+		55636DEB2B91ADF100B2CDA6 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				55636DEC2B91AE0100B2CDA6 /* AccountConsoleView.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
 		557D5E7E2B5EBDD600A402D3 /* Setup */ = {
 			isa = PBXGroup;
 			children = (
 				557D5E882B5FA63D00A402D3 /* RestaurantController.swift */,
-				558B05BE2B74AAE5009159BA /* SetupController.swift */,
+				558B05BE2B74AAE5009159BA /* RestaurantSetupController.swift */,
 			);
 			path = Setup;
 			sourceTree = "<group>";
@@ -466,7 +528,7 @@
 		557D5E852B5FA58800A402D3 /* Setup */ = {
 			isa = PBXGroup;
 			children = (
-				557D5E932B5FE69100A402D3 /* SetupConsoleView.swift */,
+				557D5E932B5FE69100A402D3 /* RestaurantSetupConsoleView.swift */,
 			);
 			path = Setup;
 			sourceTree = "<group>";
@@ -501,14 +563,6 @@
 				55881AC72B7A242000422051 /* TableConsoleView.swift */,
 			);
 			path = Table;
-			sourceTree = "<group>";
-		};
-		558B05C82B75FDCD009159BA /* Authentication */ = {
-			isa = PBXGroup;
-			children = (
-				558B05C92B75FDE2009159BA /* AuthenticationManager.swift */,
-			);
-			path = Authentication;
 			sourceTree = "<group>";
 		};
 		5598434B2B5AAFCA00930AF8 /* User */ = {
@@ -585,8 +639,8 @@
 		55C660902B6BBE8900E7FFFB /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				55C660912B6BBE9200E7FFFB /* String+OrderFormatting.swift */,
 				55636DCA2B8DDC7F00B2CDA6 /* String+DateExtension.swift */,
+				55236CCB2B9851CE00D04A9D /* String+OrderFormatting.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -594,10 +648,11 @@
 		55D9E46E2B877D0100780B4F /* CSV */ = {
 			isa = PBXGroup;
 			children = (
+				55236CD12B99D6DE00D04A9D /* Parser */,
 				55D9E4702B88746D00780B4F /* CSVWritable.swift */,
 				55D9E4722B88748D00780B4F /* CSVWriter.swift */,
 				55D9E4772B8892B000780B4F /* CSVReader.swift */,
-				55D9E4792B88B24E00780B4F /* CSVParser.swift */,
+				55236CE22B99F86100D04A9D /* CSVDataAccessObject.swift */,
 			);
 			path = CSV;
 			sourceTree = "<group>";
@@ -607,6 +662,26 @@
 			children = (
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		55FE85032B95D8DC00E7E78B /* CSVModal */ = {
+			isa = PBXGroup;
+			children = (
+				55FE85042B95D8F800E7E78B /* OrderItemAssociation.swift */,
+			);
+			path = CSVModal;
+			sourceTree = "<group>";
+		};
+		55FE85062B96DFB300E7E78B /* DataAccessObject */ = {
+			isa = PBXGroup;
+			children = (
+				55FE85072B96EC2A00E7E78B /* DataAccessObject.swift */,
+				55FE850B2B96FF3B00E7E78B /* InMemoryOrderDAO.swift */,
+				55236CC72B9761B600D04A9D /* MenuDAO.swift */,
+				55236CCD2B98981D00D04A9D /* InMemoryDAO.swift */,
+				55236CCF2B98A42400D04A9D /* InMemoryBillDAO.swift */,
+			);
+			path = DataAccessObject;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -669,8 +744,11 @@
 			files = (
 				5545DABC2B5021B7007D31B6 /* RestaurantMenu.swift in Sources */,
 				554396522B58FECD004D08ED /* ModelJSONSerializer.swift in Sources */,
-				557D5E942B5FE69100A402D3 /* SetupConsoleView.swift in Sources */,
+				557D5E942B5FE69100A402D3 /* RestaurantSetupConsoleView.swift in Sources */,
+				55236CD72B99D72A00D04A9D /* TableParser.swift in Sources */,
 				554396632B5A9C40004D08ED /* ConsolePrinter.swift in Sources */,
+				55236CDF2B99D8DD00D04A9D /* Parsable.swift in Sources */,
+				55236CC62B97619E00D04A9D /* AssociationManager.swift in Sources */,
 				55081A6A2B467BF300D71B31 /* Restaurant.swift in Sources */,
 				55081A6C2B467C7000D71B31 /* Branch.swift in Sources */,
 				55081A872B46938F00D71B31 /* Order.swift in Sources */,
@@ -682,32 +760,42 @@
 				55636DD42B8E0FF300B2CDA6 /* ManagerConsoleView.swift in Sources */,
 				553BA4A62B6B73FC00B2F7E3 /* BillManager.swift in Sources */,
 				55081A6E2B467CF400D71B31 /* Person.swift in Sources */,
+				55236CCE2B98981D00D04A9D /* InMemoryDAO.swift in Sources */,
+				55236CE32B99F86100D04A9D /* CSVDataAccessObject.swift in Sources */,
 				5545DAC22B502C50007D31B6 /* FoodItem.swift in Sources */,
 				55081A7D2B4688AD00D71B31 /* Meal.swift in Sources */,
 				55A7836F2B4BFD0E00E20DF9 /* EditAccountController.swift in Sources */,
 				5543965E2B5A9976004D08ED /* ConsoleView.swift in Sources */,
 				55081A832B468E3100D71B31 /* Chef.swift in Sources */,
+				55236CC82B9761B600D04A9D /* MenuDAO.swift in Sources */,
 				55D9E4732B88748D00780B4F /* CSVWriter.swift in Sources */,
 				551E9BDA2B6D2AB6003C57E3 /* Admin.swift in Sources */,
+				55636DED2B91AE0100B2CDA6 /* AccountConsoleView.swift in Sources */,
 				55A65C982B61108F00776D03 /* OrderController.swift in Sources */,
+				55236CD02B98A42400D04A9D /* InMemoryBillDAO.swift in Sources */,
 				553BA4922B67A5BE00B2F7E3 /* BillingConsoleView.swift in Sources */,
 				5512D9FA2B875D1700E2CFCD /* FileIOError.swift in Sources */,
 				554396492B5168F8004D08ED /* FileIOService.swift in Sources */,
 				55081A702B467D9D00D71B31 /* Employee.swift in Sources */,
 				554396672B5AAD31004D08ED /* CommandLineInputHandler.swift in Sources */,
 				553BA4A32B6A3B0100B2F7E3 /* UpdateStatusController.swift in Sources */,
+				55636DE62B8F5D0000B2CDA6 /* RestaurantDataManager.swift in Sources */,
 				55081A852B4690E900D71B31 /* Kitchen.swift in Sources */,
 				55636DCB2B8DDC7F00B2CDA6 /* String+DateExtension.swift in Sources */,
 				55081A7F2B468D1800D71B31 /* Address.swift in Sources */,
 				55D9E4712B88746D00780B4F /* CSVWritable.swift in Sources */,
+				55FE85052B95D8F900E7E78B /* OrderItemAssociation.swift in Sources */,
+				55236CD32B99D6F400D04A9D /* MenuParser.swift in Sources */,
 				55636DCF2B8DF2DB00B2CDA6 /* Filename.swift in Sources */,
 				55081A812B468DF300D71B31 /* Manager.swift in Sources */,
 				55081A602B467AF800D71B31 /* main.swift in Sources */,
 				557D5E922B5FD6DD00A402D3 /* AuthConsoleView.swift in Sources */,
+				55FE85082B96EC2A00E7E78B /* DataAccessObject.swift in Sources */,
+				55FE850C2B96FF3B00E7E78B /* InMemoryOrderDAO.swift in Sources */,
 				55081A792B46881900D71B31 /* MenuItem.swift in Sources */,
-				558B05CA2B75FDE2009159BA /* AuthenticationManager.swift in Sources */,
 				55A65CA52B6246C500776D03 /* OrderConsoleView.swift in Sources */,
 				55081A892B4694E000D71B31 /* WaitStaff.swift in Sources */,
+				55636DE02B8F363400B2CDA6 /* Stash.swift in Sources */,
 				557D5E8C2B5FC06F00A402D3 /* AdminConsoleView.swift in Sources */,
 				55081A7B2B46887900D71B31 /* MealItem.swift in Sources */,
 				55081A772B4687DE00D71B31 /* MenuSection.swift in Sources */,
@@ -719,28 +807,32 @@
 				55881AC82B7A242000422051 /* TableConsoleView.swift in Sources */,
 				553BA4902B67A5B300B2F7E3 /* BillingController.swift in Sources */,
 				55D9E4782B8892B000780B4F /* CSVReader.swift in Sources */,
-				55C660922B6BBE9200E7FFFB /* String+OrderFormatting.swift in Sources */,
 				55636DD72B8E140B00B2CDA6 /* KitchenStaffConsoleView.swift in Sources */,
-				55636DD12B8E0BF000B2CDA6 /* UserAccessController.swift in Sources */,
+				55236CDD2B99D78B00D04A9D /* CSVParcable.swift in Sources */,
+				55636DD12B8E0BF000B2CDA6 /* UserRouter.swift in Sources */,
+				55236CD52B99D71A00D04A9D /* AccountParser.swift in Sources */,
 				55A65CA02B623AC400776D03 /* Table.swift in Sources */,
 				551E9BDD2B720D88003C57E3 /* MenuConsoleView.swift in Sources */,
+				55636DE42B8F414100B2CDA6 /* UserStore.swift in Sources */,
 				5501FB3E2B7E1AD900A8311B /* AuthenticationError.swift in Sources */,
 				553BA49E2B69018800B2F7E3 /* Bill.swift in Sources */,
 				557D5E892B5FA63D00A402D3 /* RestaurantController.swift in Sources */,
+				55236CCC2B9851CE00D04A9D /* String+OrderFormatting.swift in Sources */,
 				558B05C52B74E86B009159BA /* UserRepository.swift in Sources */,
 				553BA49A2B68DB2800B2F7E3 /* TableManager.swift in Sources */,
-				558B05C32B74B7AE009159BA /* RestaurantManager.swift in Sources */,
+				55236CD92B99D73D00D04A9D /* BillParser.swift in Sources */,
 				55D9E47E2B8C704D00780B4F /* UserStatus.swift in Sources */,
 				55A65C9E2B62375300776D03 /* HomeConsoleView.swift in Sources */,
 				558B05C72B74E9D6009159BA /* InMemoryUserRepository.swift in Sources */,
 				55636DDE2B8E164500B2CDA6 /* WaitStaffConsoleView.swift in Sources */,
 				558B05BD2B73AE15009159BA /* AppOnboardingProtocol.swift in Sources */,
 				553BA4972B67DA1400B2F7E3 /* OrderManager.swift in Sources */,
+				55636DE82B8F5D3200B2CDA6 /* UserDefaultsKeys.swift in Sources */,
 				55081A722B46817E00D71B31 /* Account.swift in Sources */,
-				558B05BF2B74AAE5009159BA /* SetupController.swift in Sources */,
+				55236CDB2B99D75900D04A9D /* OrderParser.swift in Sources */,
+				558B05BF2B74AAE5009159BA /* RestaurantSetupController.swift in Sources */,
 				5545DAA62B4E77F3007D31B6 /* UserPrompter.swift in Sources */,
 				557D5E8F2B5FC0F100A402D3 /* AdminController.swift in Sources */,
-				55D9E47A2B88B24E00780B4F /* CSVParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -868,6 +960,7 @@
 		55081A642B467AF800D71B31 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VVZ8G92URG;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -879,6 +972,7 @@
 		55081A652B467AF800D71B31 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VVZ8G92URG;
 				ENABLE_HARDENED_RUNTIME = YES;

@@ -19,7 +19,7 @@ struct RestaurantDataManager {
     
     func setRestaurant(restaurant: Restaurant) {
         let restaurantData = try? JSONEncoder().encode(restaurant)
-        UserDefaults.standard.set(restaurant, forKey: UserDefaultsKeys.restaurantKey.rawValue)
+        UserDefaults.standard.set(restaurantData, forKey: UserDefaultsKeys.restaurantKey.rawValue)
     }
     
     func removeRestaurnt() {

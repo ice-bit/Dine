@@ -23,7 +23,7 @@ class AuthConsoleView {
         promptSignUpCredentials(isInitial: true)
     }
     
-    func startLogin() {
+    func userLogin() {
         promptLoginCredentials()
     }
     

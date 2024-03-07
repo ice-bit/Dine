@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+protocol CSVParsable {
+    associatedtype Entity: Parsable
+    
+    func parse(from data: [[String : String]]) -> [Entity]
+}
