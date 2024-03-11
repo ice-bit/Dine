@@ -12,7 +12,7 @@
 import Foundation
 
 @frozen enum UserStatus: String {
-    case userLoggedIn = "userLoggedIn_v1.3"
+    case userLoggedIn = "userLoggedIn_v1.4"
     case initialSetup = "initialSetup_v1.2"
     case restaurantExists = "restaurantExists_v1.0"
     

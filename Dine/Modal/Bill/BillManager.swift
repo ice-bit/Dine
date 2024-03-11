@@ -63,19 +63,19 @@ class BillManager {
     }*/
     
     func saveBills() {
-        Task {
+//        Task {
             let csvDAO = CSVDataAccessObject()
-            await csvDAO.save(to: .billFile, entity: self)
-        }
+            /*await*/ csvDAO.save(to: .billFile, entity: self)
+//        }
     }
     
     func loadBills() {
-        Task {
+//        Task {
             let csvDAO = CSVDataAccessObject()
-            if let bills = await csvDAO.load(from: .billFile, parser: BillParser()) as? [Bill] {
+            if let bills = /*await*/ csvDAO.load(from: .billFile, parser: BillParser()) as? [Bill] {
                 _bills = bills
             }
-        }
+//        }
     }
 }
 

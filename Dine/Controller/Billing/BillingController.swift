@@ -30,6 +30,7 @@ class BillingController: BillService {
         // Change bill status
         order.isOrderBilled = true
         billManager.addBill(bill)
+        OrderManager.shared.saveOrders()
     }
     
     func displayBills() {

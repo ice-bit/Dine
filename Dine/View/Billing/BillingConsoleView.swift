@@ -23,6 +23,7 @@ class BillingConsoleView {
             print("Ordered Items:")
             print(" - ")
             order.displayOrderItems()
+            print()
         }
         
         print("Enter the number of the order you want to choose (or 0 to cancel):")
