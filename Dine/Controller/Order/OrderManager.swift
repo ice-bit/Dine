@@ -58,23 +58,26 @@ class OrderManager {
     }
     
     func saveOrders() {
-        Task {
+//        Task {
             let csvDAO = CSVDataAccessObject()
-            await csvDAO.save(to: .orderFile, entity: self)
-        }
+            /*await*/ csvDAO.save(to: .orderFile, entity: self)
+//        }
     }
   
     func loadOrders() {
-        Task {
+//        Task {
             let csvReader = CSVReader()
             let orderParser = OrderParser()
             do {
-                let data = try await csvReader.readCSVAs2DArray(from: Filename.orderFile.rawValue)
-                orders = orderParser.parseOrders(from: data)
+                let data = try /*await*/ csvReader.readCSVAs2DArray(from: Filename.orderFile.rawValue)
+                let fetchedOrders = try orderParser.parseOrders(from: data)
+                self.orders = fetchedOrders
+            } catch is LoadingError {
+                print("Menu items not loaded")
             } catch {
                 print("Error encountered: \(error)")
             }
-        }
+//        }
     }
 }
 

@@ -8,26 +8,30 @@
 import Foundation
 
 struct OrderParser {
-    func parseOrders(from data: [[String]]) -> [Order] {
-         data.compactMap(parseOrder)
+    func parseOrders(from data: [[String]]) throws -> [Order] {
+         try data.compactMap(parseOrder)
     }
     
-    private func parseOrder(from orderData: [String]) -> Order? {
+    private func parseOrder(from orderData: [String]) throws -> Order? {
+        let menu = Menu.shared
+        guard !menu.menuItems.isEmpty else {
+            throw LoadingError.menuItemsNotLoaded
+        }
         guard orderData.count >= 4 else { return nil }
-        
+
         // Extract order information
         guard let orderId = UUID(uuidString:orderData[0]),
               let tableId = UUID(uuidString: orderData[1]),
               let isOrderBilled = Bool(orderData[2]),
               let orderStatus = OrderStatus(rawValue: orderData[3]) else {
-            return nil
+            throw CSVParseError.parsingFailed
         }
         
         // extract
         var mappedMenuItems = [MenuItem]()
         for index in 4..<orderData.count {
             if let itemId = UUID(uuidString: orderData[index]) {
-                if let menuItem = Menu.shared.fetchMenuItem(with: itemId) {
+                if let menuItem = menu.fetchMenuItem(with: itemId) {
                     mappedMenuItems.append(menuItem)
                 } else {
                     print("Go check menu")
@@ -39,4 +43,8 @@ struct OrderParser {
         
         return Order(orderId: orderId, tableId: tableId, orderStatus: orderStatus, isOrderBilled: isOrderBilled, menuItems: mappedMenuItems)
     }
+}
+
+enum LoadingError: Error {
+    case menuItemsNotLoaded
 }

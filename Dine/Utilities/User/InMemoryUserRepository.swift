@@ -56,27 +56,35 @@ class InMemoryUserRepository: UserRepository {
         return accounts
     }
     
-    private func saveAccounts() {
-        Task {
-            let csvDAO = CSVDataAccessObject()
-            await csvDAO.save(to: .accountFile, entity: self)
+    func changePassword(for account: Account, to newPassword: String) {
+        if let account = accounts.first(where: { $0 == account }) {
+            print("Debug info: \(account.username)")
+            account.updatePassword(newPassword)
+            saveAccounts()
         }
     }
     
-    private func loadAccounts() {
-        Task {
+    private func saveAccounts() {
+//        Task {
             let csvDAO = CSVDataAccessObject()
-            if let accounts = await csvDAO.load(from: .billFile, parser: AccountParser()) as? [Account] {
+            /*await*/ csvDAO.save(to: .accountFile, entity: self)
+//        }
+    }
+    
+    private func loadAccounts() {
+//        Task {
+            let csvDAO = CSVDataAccessObject()
+            if let accounts = /*await*/ csvDAO.load(from: .accountFile, parser: AccountParser()) as? [Account] {
                 self.accounts = accounts
             }
-        }
+//        }
     }
 }
 
 extension InMemoryUserRepository: CSVWritable {
     func toCSVString() -> String {
         var csvString = "userId,username,password,accountStatus,userRole"
-        for (index, account) in self.accounts.enumerated() {
+        for (index, account) in self.accounts.enumerated() { 
             let row = account.toCSVString()
             
             // Append a new line if it's not the last account

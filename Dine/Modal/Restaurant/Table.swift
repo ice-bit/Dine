@@ -13,16 +13,12 @@ enum TableStatus: String, CaseIterable {
 
 class Table {
     private let _tableId: UUID
-    private var _tableStatus: TableStatus
+    var tableStatus: TableStatus
     private let maxCapacity: Int
     private let _locationIdentifier: Int
     
     var tableId: UUID {
         return _tableId
-    }
-    
-    var tableStatus: TableStatus {
-        return _tableStatus
     }
     
     var locationId: Int {
@@ -31,7 +27,7 @@ class Table {
     
     init(tableId: UUID, tableStatus: TableStatus, maxCapacity: Int, locationIdentifier: Int) {
         self._tableId = tableId
-        self._tableStatus = tableStatus
+        self.tableStatus = tableStatus
         self.maxCapacity = maxCapacity
         self._locationIdentifier = locationIdentifier
     }
@@ -41,11 +37,11 @@ class Table {
     }
     
     func changeTableStatus(to status: TableStatus) {
-        _tableStatus = status
+        tableStatus = status
     }
     
     func getCSVString() -> String {
-        return "\(_tableId),\(_tableStatus.rawValue),\(maxCapacity),\(_locationIdentifier)"
+        return "\(_tableId),\(tableStatus.rawValue),\(maxCapacity),\(_locationIdentifier)"
     }
     
 }

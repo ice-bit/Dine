@@ -9,4 +9,6 @@ import Foundation
 
 enum CSVParseError: Error {
     case missingRequiredFields
+    case insufficientData
+    case parsingFailed
 }

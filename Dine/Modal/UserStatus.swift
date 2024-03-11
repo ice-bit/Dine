@@ -12,9 +12,9 @@
 import Foundation
 
 @frozen enum UserStatus: String {
-    case userLoggedIn = "T3"
-    case initialSetup = "S3"
-    case restaurantExists = "R1"
+    case userLoggedIn = "userLoggedIn_v1.3"
+    case initialSetup = "initialSetup_v1.2"
+    case restaurantExists = "restaurantExists_v1.0"
     
     func getStatus() -> Bool {
         return UserDefaults.standard.bool(forKey: self.rawValue)

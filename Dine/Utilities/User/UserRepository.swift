@@ -15,4 +15,5 @@ protocol UserRepository {
     func isUserActive(username: String) -> Bool
     func isManager(username: String) -> Bool
     func getAccounts() -> [Account]
+    func changePassword(for account: Account, to newPassword: String)
 }

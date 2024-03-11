@@ -22,7 +22,7 @@ struct WaitStaffConsoleView {
         print("5. View Orders")
         print("6. View Menu")
         print("7. Account")
-        print("0. Quit")
+        print("0. Sign Out")
         handleOptions()
     }
     
@@ -58,6 +58,8 @@ struct WaitStaffConsoleView {
             accountConsoleView.displayAccountOptions()
             return
         case "0": // Quit
+            UserStatus.userLoggedIn.updateStatus(false)
+            UserStore.removeCurrentUser()
             exit(0)
         default:
             print("Invalid input! Try again")

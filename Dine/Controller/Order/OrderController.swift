@@ -28,7 +28,9 @@ class OrderController: OrderService {
         
         let order = Order(tableId: table.tableId, orderStatus: .received, menuItems: orderMenuItems)
         // Change table status
-        table.changeTableStatus(to: .occupied)
+        TableManager.shared.changeTableStatus(for: table.tableId, to: .occupied)
+        
+        
         
         // Adding to OrderManager
         orderManager.addOrder(order: order)

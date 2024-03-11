@@ -67,12 +67,12 @@ class Menu {
     }
     
     func loadMenu() {
-        Task {
+//        Task {
             let csvDAO = CSVDataAccessObject()
-            if let menuItems = await csvDAO.load(from: .menuFile, parser: MenuParser()) as? [MenuItem] {
+            if let menuItems = /*await*/ csvDAO.load(from: .menuFile, parser: MenuParser()) as? [MenuItem] {
                 self.items = menuItems
             }
-        }
+//        }
     }
 }
 

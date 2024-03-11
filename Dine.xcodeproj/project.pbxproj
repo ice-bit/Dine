@@ -30,10 +30,8 @@
 		551E9BDA2B6D2AB6003C57E3 /* Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551E9BD92B6D2AB6003C57E3 /* Admin.swift */; };
 		551E9BDD2B720D88003C57E3 /* MenuConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551E9BDC2B720D88003C57E3 /* MenuConsoleView.swift */; };
 		55236CC62B97619E00D04A9D /* AssociationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55236CC52B97619E00D04A9D /* AssociationManager.swift */; };
-		55236CC82B9761B600D04A9D /* MenuDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55236CC72B9761B600D04A9D /* MenuDAO.swift */; };
 		55236CCC2B9851CE00D04A9D /* String+OrderFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55236CCB2B9851CE00D04A9D /* String+OrderFormatting.swift */; };
 		55236CCE2B98981D00D04A9D /* InMemoryDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55236CCD2B98981D00D04A9D /* InMemoryDAO.swift */; };
-		55236CD02B98A42400D04A9D /* InMemoryBillDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55236CCF2B98A42400D04A9D /* InMemoryBillDAO.swift */; };
 		55236CD32B99D6F400D04A9D /* MenuParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55236CD22B99D6F400D04A9D /* MenuParser.swift */; };
 		55236CD52B99D71A00D04A9D /* AccountParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55236CD42B99D71A00D04A9D /* AccountParser.swift */; };
 		55236CD72B99D72A00D04A9D /* TableParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55236CD62B99D72A00D04A9D /* TableParser.swift */; };
@@ -97,7 +95,6 @@
 		55D9E47E2B8C704D00780B4F /* UserStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E47D2B8C704D00780B4F /* UserStatus.swift */; };
 		55FE85052B95D8F900E7E78B /* OrderItemAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FE85042B95D8F800E7E78B /* OrderItemAssociation.swift */; };
 		55FE85082B96EC2A00E7E78B /* DataAccessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FE85072B96EC2A00E7E78B /* DataAccessObject.swift */; };
-		55FE850C2B96FF3B00E7E78B /* InMemoryOrderDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FE850B2B96FF3B00E7E78B /* InMemoryOrderDAO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -137,10 +134,8 @@
 		551E9BD92B6D2AB6003C57E3 /* Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Admin.swift; sourceTree = "<group>"; };
 		551E9BDC2B720D88003C57E3 /* MenuConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuConsoleView.swift; sourceTree = "<group>"; };
 		55236CC52B97619E00D04A9D /* AssociationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssociationManager.swift; sourceTree = "<group>"; };
-		55236CC72B9761B600D04A9D /* MenuDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDAO.swift; sourceTree = "<group>"; };
 		55236CCB2B9851CE00D04A9D /* String+OrderFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+OrderFormatting.swift"; sourceTree = "<group>"; };
 		55236CCD2B98981D00D04A9D /* InMemoryDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryDAO.swift; sourceTree = "<group>"; };
-		55236CCF2B98A42400D04A9D /* InMemoryBillDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryBillDAO.swift; sourceTree = "<group>"; };
 		55236CD22B99D6F400D04A9D /* MenuParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuParser.swift; sourceTree = "<group>"; };
 		55236CD42B99D71A00D04A9D /* AccountParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountParser.swift; sourceTree = "<group>"; };
 		55236CD62B99D72A00D04A9D /* TableParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableParser.swift; sourceTree = "<group>"; };
@@ -204,7 +199,6 @@
 		55D9E47D2B8C704D00780B4F /* UserStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatus.swift; sourceTree = "<group>"; };
 		55FE85042B95D8F800E7E78B /* OrderItemAssociation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemAssociation.swift; sourceTree = "<group>"; };
 		55FE85072B96EC2A00E7E78B /* DataAccessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAccessObject.swift; sourceTree = "<group>"; };
-		55FE850B2B96FF3B00E7E78B /* InMemoryOrderDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryOrderDAO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -676,10 +670,7 @@
 			isa = PBXGroup;
 			children = (
 				55FE85072B96EC2A00E7E78B /* DataAccessObject.swift */,
-				55FE850B2B96FF3B00E7E78B /* InMemoryOrderDAO.swift */,
-				55236CC72B9761B600D04A9D /* MenuDAO.swift */,
 				55236CCD2B98981D00D04A9D /* InMemoryDAO.swift */,
-				55236CCF2B98A42400D04A9D /* InMemoryBillDAO.swift */,
 			);
 			path = DataAccessObject;
 			sourceTree = "<group>";
@@ -767,12 +758,10 @@
 				55A7836F2B4BFD0E00E20DF9 /* EditAccountController.swift in Sources */,
 				5543965E2B5A9976004D08ED /* ConsoleView.swift in Sources */,
 				55081A832B468E3100D71B31 /* Chef.swift in Sources */,
-				55236CC82B9761B600D04A9D /* MenuDAO.swift in Sources */,
 				55D9E4732B88748D00780B4F /* CSVWriter.swift in Sources */,
 				551E9BDA2B6D2AB6003C57E3 /* Admin.swift in Sources */,
 				55636DED2B91AE0100B2CDA6 /* AccountConsoleView.swift in Sources */,
 				55A65C982B61108F00776D03 /* OrderController.swift in Sources */,
-				55236CD02B98A42400D04A9D /* InMemoryBillDAO.swift in Sources */,
 				553BA4922B67A5BE00B2F7E3 /* BillingConsoleView.swift in Sources */,
 				5512D9FA2B875D1700E2CFCD /* FileIOError.swift in Sources */,
 				554396492B5168F8004D08ED /* FileIOService.swift in Sources */,
@@ -791,7 +780,6 @@
 				55081A602B467AF800D71B31 /* main.swift in Sources */,
 				557D5E922B5FD6DD00A402D3 /* AuthConsoleView.swift in Sources */,
 				55FE85082B96EC2A00E7E78B /* DataAccessObject.swift in Sources */,
-				55FE850C2B96FF3B00E7E78B /* InMemoryOrderDAO.swift in Sources */,
 				55081A792B46881900D71B31 /* MenuItem.swift in Sources */,
 				55A65CA52B6246C500776D03 /* OrderConsoleView.swift in Sources */,
 				55081A892B4694E000D71B31 /* WaitStaff.swift in Sources */,

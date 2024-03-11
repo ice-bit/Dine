@@ -20,7 +20,8 @@ struct AdminConsoleView {
         print("1. Create Account")
         print("2. Remove Account")
         print("3. View Accounts")
-        print("4. Sign Out")
+        print("4. Change Password")
+        print("0. Sign Out")
         handleAdminOptions()
     }
     
@@ -36,10 +37,15 @@ struct AdminConsoleView {
         case "3":
             // redirect to viewing accounts
             displayAccounts()
-        case "4": // Sign out
-            let accountConsoleView = AccountConsoleView()
-            accountConsoleView.displayAccountOptions()
-            return
+        case "4":
+            //redirect to change password
+            initiateChangePassword()
+        case "0": // Sign out
+//            let accountConsoleView = AccountConsoleView()
+//            accountConsoleView.displayAccountOptions()
+            UserStatus.userLoggedIn.updateStatus(false)
+            UserStore.removeCurrentUser()
+            exit(0)
         default:
             print("Invalid input! Try again.")
             handleAdminOptions()
@@ -104,6 +110,52 @@ struct AdminConsoleView {
         } else {
             print("Invalid choice or canceled.")
             displayAndChooseAccountToRemove()
+        }
+    }
+    
+    private func displayAndSelectAccount() -> Account? {
+        guard let accounts = admin.getAccounts() else {
+            print("No users found!")
+            return nil
+        }
+        
+        for (index, account) in accounts.enumerated() {
+            print("\(index + 1) - \(account.username)")
+        }
+        
+        print("Enter the number of the account you want to choose (or 0 to cancel):")
+        if let choice = readLine(), let accountNumber = Int(choice), accountNumber >= 1, accountNumber <= accounts.count {
+            let chosenAccount = accounts[accountNumber - 1]
+            print("Selected \(chosenAccount.username)")
+            return chosenAccount
+        } else {
+            print("Invalid choice or canceled.")
+            return nil
+        }
+    }
+    
+    private func promptPassword() -> String {
+        print("Enter new password:")
+        let newPassword = readLine() ?? ""
+        return newPassword
+    }
+    
+    private func initiateChangePassword() {
+        guard let selectedAccount = displayAndSelectAccount() else {
+            print("No accounts selected")
+            return
+        }
+        
+        let newPassword = promptPassword()
+        do {
+            try admin.changePassword(for: selectedAccount, to: newPassword)
+        }  catch AuthenticationError.passwordReuseError {
+            print("Error: Password reuse not allowed. Please choose a different password.")
+        } catch AuthenticationError.weakPasswordError {
+            print("Error: Password is not strong enough. Please choose a stronger password.")
+        } catch {
+            // Handle other potential errors (e.g., network issues, database errors)
+            print("Unexpected error: \(error.localizedDescription)")
         }
     }
     

@@ -12,18 +12,18 @@ class Main {
         let isInitailSetup = UserStatus.initialSetup.getStatus()
         let isUserLoggedIn = UserStatus.userLoggedIn.getStatus()
         
-        if isInitailSetup {
+        // If the app starts for first time
+        if !isInitailSetup {
             setupRestaurant()
             onboardAdmin()
-        } else {
-            if !isUserLoggedIn {
-                userAuthentication()
-            }
-            
-            while true {
-                routeUser()
-            }
         }
+        
+        if !isUserLoggedIn {
+            userAuthentication()
+        }
+        
+        // If the user is logged in
+        routeUser()
     }
     
     private func setupRestaurant() {
@@ -46,8 +46,7 @@ class Main {
     }
     
     private func routeUser() {
-        let userStore = UserStore()
-        if let currentAccount = userStore.getCurrentUser() {
+        if let currentAccount = UserStore.getCurrentUser() {
             let userRouting = UserRouter(account: currentAccount)
             userRouting.routeUser()
         } else {
@@ -80,5 +79,7 @@ class Main {
 }
 
 let main = Main()
-//main.startApp()
-main.login(as: .manager)
+//main.login(as: .waitStaff)
+main.startApp()
+
+

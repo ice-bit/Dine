@@ -19,6 +19,7 @@ class RestaurantSetupController: RestaurantSetupProtocol {
         restaurantDataManager.setRestaurant(restaurant: restaurant)
         // Restaurnat setup finished
         UserStatus.restaurantExists.updateStatus(true)
+        UserStatus.initialSetup.updateStatus(false)
         return true
     }
 }

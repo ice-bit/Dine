@@ -10,6 +10,7 @@ import Foundation
 protocol AdminPrivilages {
     func removeAccount(user: Account) -> Bool
     func getAccounts() -> [Account]?
+    func changePassword(for account: Account, to newPassword: String) throws
 }
 
 struct AdminController: AdminPrivilages {
@@ -33,6 +34,12 @@ struct AdminController: AdminPrivilages {
         let users = accounts.getAccounts()
         guard !users.isEmpty else { return nil }
         return users
+    }
+    
+    func changePassword(for account: Account, to newPassword: String) throws {
+        guard !(newPassword == account.password) else { throw AuthenticationError.passwordReuseError }
+        guard AuthenticationValidator.isStrongPassword(newPassword) else { throw AuthenticationError.weakPasswordError }
+        accounts.changePassword(for: account, to: newPassword)
     }
     
 }

@@ -10,14 +10,6 @@ import Foundation
 class MenuConsoleView {
     private let menu = Menu.shared
     
-    init() {
-        loadMenu()
-    }
-    
-    func loadMenu() {
-        menu.loadMenu()
-    }
-    
     func displayAndHandleMenuOptions() {
         print("Edit Menu")
         print("1. Add Item")

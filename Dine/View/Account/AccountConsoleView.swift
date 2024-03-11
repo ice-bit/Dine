@@ -8,10 +8,8 @@
 import Foundation
 
 struct AccountConsoleView {
-    private let account = UserStore().getCurrentUser()
-    
     func displayAccountOptions() {
-        if let account = account {
+        if let account = UserStore.getCurrentUser() {
             print("Welcome \(account.username)")
         }
         print("1. Change username")
@@ -30,6 +28,8 @@ struct AccountConsoleView {
         case "3":
             UserStatus.userLoggedIn.updateStatus(false)
             print("Logged out!")
+            UserStore.removeCurrentUser()
+            exit(0)
         default:
             print("Invalid input! Try again")
             handleAccountOptions()

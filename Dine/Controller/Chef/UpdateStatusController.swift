@@ -17,6 +17,12 @@ class UpdateStatusController: UpdateStatusService {
     
     func changeStatus(for order: Order, to status: OrderStatus) {
         order.changeOrderStatus(to: status)
+        if status == .completed {
+            TableManager.shared.changeTableStatus(for: order.getTableId, to: .free)
+            TableManager.shared.saveTables()
+        }
+        
+        orderManager.saveOrders()
     }
     
     func fetchReceivedOrders() -> [Order]? {

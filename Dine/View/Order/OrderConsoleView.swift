@@ -15,11 +15,6 @@ class OrderConsoleView {
     
     init(restaurant: Restaurant) {
         self.restaurant = restaurant
-        loadMenu()
-    }
-    
-    func loadMenu() {
-        Menu.shared.loadMenu()
     }
     
     func displayTablesAndChoose() -> Table? {
@@ -48,6 +43,10 @@ class OrderConsoleView {
     }
     
     func promptMenuItemsSelection() {
+        guard !menu.menuItems.isEmpty else {
+            print("No Items found!")
+            return
+        }
         var orderQuantities: [MenuItem: Int] = [:]
         
         // Display menu items

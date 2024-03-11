@@ -19,7 +19,13 @@ class Order {
     private let orderId: UUID
     private let tableId: UUID
     var isOrderBilled: Bool
-    private var orderStatus: OrderStatus
+    private var orderStatus: OrderStatus {
+        willSet {
+            if orderStatus == .completed {
+                TableManager.shared.changeTableStatus(for: tableId, to: .free)
+            }
+        }
+    }
     
     var menuItems: [MenuItem]
     
@@ -29,6 +35,9 @@ class Order {
         set { orderStatus = newValue }
     }
     
+    var getTableId: UUID {
+        tableId
+    }
     var orderIdValue: UUID {
         orderId
     }

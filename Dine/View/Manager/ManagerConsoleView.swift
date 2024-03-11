@@ -23,7 +23,7 @@ struct ManagerConsoleView {
         print("6. View Menu")
         print("7. View Tables")
         print("8. Account")
-        print("9. Quit")
+        print("0. Sign Out")
         handleOption()
     }
     
@@ -60,7 +60,9 @@ struct ManagerConsoleView {
             let accountConsoleView = AccountConsoleView()
             accountConsoleView.displayAccountOptions()
             return
-        case "9": // Quit
+        case "0": // Quit
+            UserStatus.userLoggedIn.updateStatus(false)
+            UserStore.removeCurrentUser()
             exit(0)
         default:
             print("Invalid input")

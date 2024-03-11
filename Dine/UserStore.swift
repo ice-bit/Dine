@@ -8,12 +8,12 @@
 import Foundation
 
 struct UserStore {
-    func setUser(account: Account) {
+    static func setUser(account: Account) {
         let accountData = try?  JSONEncoder().encode(account)
         UserDefaults.standard.set(accountData, forKey: UserDefaultsKeys.currentUserKey.rawValue)
     }
     
-    func getCurrentUser() -> Account? {
+    static func getCurrentUser() -> Account? {
         if let accountData = UserDefaults.standard.data(forKey: UserDefaultsKeys.currentUserKey.rawValue),
            let account = try? JSONDecoder().decode(Account.self, from: accountData) {
             return account
@@ -22,7 +22,7 @@ struct UserStore {
         return nil
     }
     
-    func removeCurrentUser() {
+    static func removeCurrentUser() {
         UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.currentUserKey.rawValue)
     }
 }

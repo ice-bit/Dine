@@ -17,14 +17,14 @@ protocol CSVReadable {
 }
 
 struct CSVReader {
-    func readCSV(from fileName: String) async throws -> [[String: String]] {
+    func readCSV(from fileName: String) /*async*/ throws -> [[String: String]] {
         let fileURL = try getCSVFileURL(fileName)
         let contents = try String(contentsOf: fileURL)
         let csvData = try parseCSV(contents)
         return csvData
     }
     
-    func readCSVAs2DArray(from fileName: String) async throws -> [[String]] {
+    func readCSVAs2DArray(from fileName: String) throws -> [[String]] {
         let fileURL = try getCSVFileURL(fileName)
         let contents = try String(contentsOf: fileURL)
         let csvData = try parseCSVAs2DArray(contents)
@@ -51,9 +51,8 @@ struct CSVReader {
         var csvData: [[String: String]] = []
         let rows = contents.components(separatedBy: "\n")
         
-        guard let headerRow = rows.first else {
-            throw CSVReaderError.invalidCSVFormat
-        }
+        guard let headerRow = rows.first else { throw CSVReaderError.invalidCSVFormat }
+        
         let headerComponents = headerRow.components(separatedBy: ",")
         
         for row in rows.dropFirst() {
@@ -73,11 +72,6 @@ struct CSVReader {
     private func parseCSVAs2DArray(_ contents: String) throws -> [[String]] {
         var csvData: [[String]] = []
         let rows = contents.components(separatedBy: "\n")
-        
-        guard let headerRow = rows.first else {
-            throw CSVReaderError.invalidCSVFormat
-        }
-        //let headerComponents = headerRow.components(separatedBy: ",")
         
         for row in rows.dropFirst() {
             var rowData = [String]()

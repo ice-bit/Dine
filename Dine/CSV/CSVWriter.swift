@@ -8,11 +8,11 @@
 import Foundation
 
 protocol CSVDataWritable {
-    func writeToCSV(into fileName: String, csvDataModal data: CSVWritable) async throws
+    func writeToCSV(into fileName: String, csvDataModal data: CSVWritable) /*async*/ throws
 }
 
 struct CSVWriter: CSVDataWritable {
-    func writeToCSV(into fileName: String, csvDataModal data: CSVWritable) async throws {
+    func writeToCSV(into fileName: String, csvDataModal data: CSVWritable) /*async*/ throws {
         let fileManager = FileManager.default
         
         guard let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {

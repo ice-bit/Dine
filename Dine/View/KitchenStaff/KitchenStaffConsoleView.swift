@@ -17,7 +17,7 @@ struct KitchenStaffConsoleView {
     func displayOptions() {
         print("1. Update Order")
         print("2. Account")
-        print("3. Quit")
+        print("3. Sign Out")
         handleOptions()
     }
     
@@ -32,6 +32,8 @@ struct KitchenStaffConsoleView {
             accountConsoleView.displayAccountOptions()
             return
         case "3": // Quit
+            UserStatus.userLoggedIn.updateStatus(false)
+            UserStore.removeCurrentUser()
             exit(0)
         default:
             print("Invalid input! Try again")

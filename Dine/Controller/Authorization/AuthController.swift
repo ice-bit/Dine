@@ -24,7 +24,7 @@ class AuthController: Authentication {
         
         // Add the new user to the memory
         userRepository.addUser(account)
-        UserStatus.initialSetup.updateStatus(false)
+        UserStatus.initialSetup.updateStatus(true)
         UserStatus.userLoggedIn.updateStatus(true)
     }
     
@@ -33,8 +33,7 @@ class AuthController: Authentication {
 
         switch result {
         case .success(let account):
-            let userStore = UserStore()
-            userStore.setUser(account: account)
+            UserStore.setUser(account: account)
             UserStatus.userLoggedIn.updateStatus(true)
             return true
         case .failure(let error):
@@ -55,6 +54,10 @@ class AuthController: Authentication {
             print("Inactive account")
         case .noUserFound:
             print("No user found under username: \(username)")
+        case .passwordReuseError:
+            print("Password is being reused")
+        case .weakPasswordError:
+            print("Provide strong password")
         case .other(let error):
             print("An error occurred: \(error.localizedDescription)")
         }

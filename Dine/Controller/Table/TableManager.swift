@@ -7,6 +7,10 @@
 
 import Foundation
 
+protocol TableStatusDelegate {
+    func tableStatusChanged(for tableId: UUID, with orderStatus: OrderStatus)
+}
+
 class TableManager {
     static let shared = TableManager()
     
@@ -14,7 +18,9 @@ class TableManager {
         loadTables()
     }
     
-    private var tables: [Table] = []
+    var delegate: TableStatusDelegate?
+    
+    private var tables: [Table] = [] 
     
     var getTables: [Table] {
         return tables
@@ -42,22 +48,58 @@ class TableManager {
         }
     }
     
-    func saveTables() {
-        Task {
-            let csvDAO = CSVDataAccessObject()
-            await csvDAO.save(to: .tableFile, entity: self)
+    func changeTableStatus(for tableId: UUID, to status: TableStatus) {
+        if let index = tables.firstIndex(where: { $0.tableId == tableId }) {
+            tables[index].changeTableStatus(to: status)
+            saveTables()
+        } else {
+            print("Table not found")
         }
+    }
+    
+    func fetchTable(wit id: UUID) -> Table? {
+        if let index = tables.firstIndex(where: {$0.tableId == id }) {
+            return tables[index]
+        } else {
+            return nil
+        }
+    }
+    
+    func saveTables() {
+//        Task {
+            let csvDAO = CSVDataAccessObject()
+            /*await*/ csvDAO.save(to: .tableFile, entity: self)
+//        }
     }
     
     func loadTables() {
-        Task {
+//        Task {
             let csvDAO = CSVDataAccessObject()
-            if let tables = await csvDAO.load(from: .tableFile, parser: TableParser()) as? [Table] {
+            if let tables = /*await*/ csvDAO.load(from: .tableFile, parser: TableParser()) as? [Table] {
                 self.tables = tables
+            }
+//        }
+    }
+    
+}
+
+extension TableManager: TableStatusDelegate {
+    func tableStatusChanged(for tableId: UUID, with orderStatus: OrderStatus) {
+        if let index = tables.firstIndex(where: {$0.tableId == tableId }) {
+            switch orderStatus {
+            case .received:
+                tables[index].tableStatus = .occupied
+            case .preparing:
+                tables[index].tableStatus = .occupied
+            case .completed:
+                tables[index].tableStatus = .free
+            case .cancelled:
+                tables[index].tableStatus = .reserved
+            case .none:
+                tables[index].tableStatus = .free
             }
         }
     }
-    
 }
 
 extension TableManager: CSVWritable {
