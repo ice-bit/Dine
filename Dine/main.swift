@@ -23,7 +23,9 @@ class Main {
         }
         
         // If the user is logged in
-        routeUser()
+        while true {
+            routeUser()
+        }
     }
     
     private func setupRestaurant() {
