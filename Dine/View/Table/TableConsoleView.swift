@@ -18,6 +18,13 @@ class TableConsoleView {
         handleTableOptions()
     }
     
+    func viewTables() {
+        let tables = tableService.fetchTables()
+        for (index, table) in tables.enumerated() {
+            print("\(index + 1) - Table: \(table.tableId)\n - Location ID:\(table.locationId)\n - Status: \(table.tableStatus)")
+        }
+    }
+    
     private func handleTableOptions() {
         print("Enter your choice:")
         let choice = readLine() ?? ""

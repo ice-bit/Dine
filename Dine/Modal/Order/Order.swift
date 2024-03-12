@@ -59,7 +59,7 @@ class Order {
     // Improved displayOrderItems function
     func displayOrderItems() {
         for (index, item) in menuItems.enumerated() {
-            print("\(index + 1). \(item.name) - $\(String(format: "%.2f", item.price))") // Use String.format for better formatting
+            print(" ~ \(index + 1). \(item.name) - $\(String(format: "%.2f", item.price))") // Use String.format for better formatting
         }
     }
     

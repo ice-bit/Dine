@@ -51,7 +51,7 @@ class Bill {
         Amount: \(amount)
         Date: \(formatter.string(from: date))
         Tip: \(tip)
-        Tax: \(tax)
+        Tax: \(tax.rounded(.up))
         Status: \(paidStatus)
         """
         

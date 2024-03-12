@@ -53,7 +53,7 @@ class OrderManager {
         for (index, order) in orders.enumerated() {
             print("\(index + 1). Order: \(order.orderIdValue)")
             print(" - Ordered Items:")
-            print(" - \(order.displayOrderItems())")
+            print(" - \(order.displayOrderItems())\n")
         }
     }
     

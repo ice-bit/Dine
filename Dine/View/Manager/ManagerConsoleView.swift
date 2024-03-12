@@ -55,7 +55,8 @@ struct ManagerConsoleView {
             let menuConsoleView = MenuConsoleView()
             menuConsoleView.viewMenu()
         case "7": // View tables
-            print("Yet to implement")
+            let tableConsoleView = TableConsoleView()
+            tableConsoleView.viewTables()
         case "8": // Account
             let accountConsoleView = AccountConsoleView()
             accountConsoleView.displayAccountOptions()
