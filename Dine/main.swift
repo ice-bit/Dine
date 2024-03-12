@@ -23,7 +23,7 @@ class Main {
         }
         
         // If the user is logged in
-        while true {
+        while !isUserLoggedIn {
             routeUser()
         }
     }

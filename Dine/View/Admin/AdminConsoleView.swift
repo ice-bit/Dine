@@ -63,6 +63,7 @@ struct AdminConsoleView {
             try authentication.createAccount(username: username, password: password, userRole: userRole)
         } catch {
             print("Auth error: \(error)")
+            exit(0)
         }
         
     }
