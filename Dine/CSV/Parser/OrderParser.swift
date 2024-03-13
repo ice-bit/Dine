@@ -34,10 +34,10 @@ struct OrderParser {
                 if let menuItem = menu.fetchMenuItem(with: itemId) {
                     mappedMenuItems.append(menuItem)
                 } else {
-                    print("Go check menu")
+                    print("Menu not loaded")
                 }
             } else {
-                print("Bruh!")
+                print("Not valid UUID")
             }
         }
         

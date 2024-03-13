@@ -35,8 +35,8 @@ class Main {
     }
     
     private func onboardAdmin() {
-        let adminController = AdminController()
-        let authenticateController = AuthController()
+        let adminController: AdminPrivilages = AdminController()
+        let authenticateController: Authentication = AuthController()
         let adminConsoleView = AdminConsoleView(admin: adminController, authentication: authenticateController)
         adminConsoleView.displayAdminOption()
     }

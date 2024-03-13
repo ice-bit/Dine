@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol DataAccessObject{
+protocol DataAccessObject {
     associatedtype Entity
     
     func add(_ entity: Entity)
