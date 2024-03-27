@@ -9,18 +9,19 @@ import Foundation
 
 class OrderConsoleView {
     private let restaurant: Restaurant
-    private let menu = Menu.shared
-    private let orderService: OrderService = OrderController()
-    private let tableService: TableService = TableController()
-    
-    init(restaurant: Restaurant) {
+    private let menuController: MenuController
+    private let orderService: OrderServicable
+    private let tableController: TableServicable
+    init(restaurant: Restaurant, menuController: MenuController, orderService: OrderServicable, tableService: TableServicable) {
         self.restaurant = restaurant
+        self.menuController = menuController
+        self.orderService = orderService
+        self.tableController = tableService
     }
     
-    func displayTablesAndChoose() -> Table? {
-        let availableTables = tableService.fetchAvailableTables()
-        
-        guard !availableTables.isEmpty else {
+    func displayTablesAndChoose() -> RestaurantTable? {
+        guard let availableTables = tableController.fetchAvailableTables(),
+              !availableTables.isEmpty else {
             print("No tables available or try adding new tables.")
             return nil
         }
@@ -34,32 +35,44 @@ class OrderConsoleView {
         if let choice = readLine(), let tableNumber = Int(choice), tableNumber >= 1, tableNumber <= availableTables.count {
             let chosenTable = availableTables[tableNumber - 1]
             print("You chose Table \(chosenTable.tableId)")
-            let tables: [Table] = tableService.fetchTables()
+            guard let tables: [RestaurantTable] = tableController.fetchTables() else {
+                print("No tables available.")
+                return nil
+            }
             return tables.first(where: { $0.tableId == chosenTable.tableId })
-        } else {
+            
+        } else { 
             print("Invalid choice or canceled.")
             return nil
         }
     }
     
     func promptMenuItemsSelection() {
-        guard !menu.menuItems.isEmpty else {
-            print("No Items found!")
+        var orderQuantities: [MenuItem: Int] = [:]
+        guard let menuItems = menuController.getMenuItems() else {
+            print("No items found!")
             return
         }
-        var orderQuantities: [MenuItem: Int] = [:]
-        
         // Display menu items
-        menu.displayMenuItems()
+        for (index, item) in menuItems.enumerated() {
+            print("\(index + 1). \(item.name) - $\(item.price)")
+        }
+        // TODO: Unneccessary
+        guard let itemsCount = menuController.itemsCount(),
+              itemsCount > 0 else {
+            print("No MenuItems found!")
+            return
+        }
+        
         
         while true {
             print("Enter the item number to add to your order (0 to finish):")
             
-            if let input = readLine(), let choice = Int(input), choice >= 0 && choice <= menu.itemsCount {
+            if let input = readLine(), let choice = Int(input), choice >= 0 && choice <= itemsCount {
                 if choice == 0 {
                     break
                 } else {
-                    let selectedItem = menu[choice - 1]
+                    let selectedItem = menuItems[choice - 1]
                     
                     // Update quantity or add new item to the order
                     if let quantity = orderQuantities[selectedItem] {
@@ -91,12 +104,19 @@ class OrderConsoleView {
             return
         }
         
-        orderService.createOrder(for: table, menuItems: orderQuantities)
-        print("Order created successfully!")
+        do {
+            try orderService.createOrder(for: table, menuItems: orderQuantities)
+            print("Order created successfully!")
+        } catch {
+            print(error)
+        }
     }
     
     func viewOrders() {
-        let orderCount: Int = orderService.getOrdersCount()
+        guard let orderCount = orderService.getOrdersCount() else {
+            print("No orders found")
+            return
+        }
         guard orderCount > 0 else {
             print("No orders recieved. Please place orders.")
             return

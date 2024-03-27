@@ -9,7 +9,7 @@ import Foundation
 
 class RestaurantSetupConsoleView {
     private let restaurantSetupProtocol: RestaurantSetupProtocol
-    
+    weak var applicationModeDelegate: ApplicationModeDelegate?
     init(restaurantSetupProtocol: RestaurantSetupProtocol) {
         self.restaurantSetupProtocol = restaurantSetupProtocol
     }
@@ -31,10 +31,13 @@ class RestaurantSetupConsoleView {
             promptRestaurantSetup()
         }
         
-        if restaurantSetupProtocol.createRestaurant(name: restaurantName, locationName: locationName) {
+        do {
+            try restaurantSetupProtocol.createRestaurant(name: restaurantName, locationName: locationName)
             print("Created restaurant successfully")
-        } else {
-            print("Failed to create restaurant")
+            UserStatus.isInitialLaunch.updateStatus(true)
+            applicationModeDelegate?.applicationModeDidChange(to: .signedOut)
+        } catch {
+            print("Failed to create restaurant. Error: \(error)")
         }
     }
 }

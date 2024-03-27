@@ -8,13 +8,13 @@
 import Foundation
 
 struct TableParser: CSVParsable {
-    typealias Entity = Table
+    typealias Entity = RestaurantTable
     
-    func parse(from data: [[String : String]]) -> [Table] {
+    func parse(from data: [[String : String]]) -> [RestaurantTable] {
         data.compactMap(parseTable)
     }
     
-    private func parseTable(from tableData: [String: String]) -> Table? {
+    private func parseTable(from tableData: [String: String]) -> RestaurantTable? {
         guard let tableUUIDString = tableData["tableId"],
               !tableUUIDString.isEmpty,
               let tableId = UUID(uuidString: tableUUIDString),
@@ -27,6 +27,6 @@ struct TableParser: CSVParsable {
      return nil
         }
         
-        return Table(tableId: tableId, tableStatus: tableStatus, maxCapacity: maxCapacity, locationIdentifier: locationIdentifier)
+        return RestaurantTable(tableId: tableId, tableStatus: tableStatus, maxCapacity: maxCapacity, locationIdentifier: locationIdentifier)
     }
 }

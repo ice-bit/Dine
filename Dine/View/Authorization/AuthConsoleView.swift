@@ -67,7 +67,6 @@ class AuthConsoleView {
         
         if authentication.login(username: username, password: password) {
             //delegate?.isUserLoggedIn(true)
-            UserStatus.userLoggedIn.updateStatus(false)
             print("Logged in successfully.")
         } else {
             print("Login failed")

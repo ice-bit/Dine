@@ -5,7 +5,7 @@
 //  Created by doss-zstch1212 on 01/02/24.
 //
 
-import Foundation
+/*import Foundation
 
 class BillManager {
     static let shared = BillManager()
@@ -96,4 +96,4 @@ extension BillManager: CSVWritable {
         
         return csvString
     }
-}
+}*/

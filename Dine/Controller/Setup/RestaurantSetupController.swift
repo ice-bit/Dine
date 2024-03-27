@@ -8,19 +8,18 @@
 import Foundation
 
 protocol RestaurantSetupProtocol {
-    func createRestaurant(name: String, locationName: String) -> Bool
+    func createRestaurant(name: String, locationName: String) throws
 }
 
 class RestaurantSetupController: RestaurantSetupProtocol {
-    func createRestaurant(name: String, locationName: String) -> Bool {
-        let restaurantDataManager = RestaurantDataManager()
-        
+    private let databaseAccess: DatabaseAccess
+    init(databaseAccess: DatabaseAccess) {
+        self.databaseAccess = databaseAccess
+    }
+    
+    func createRestaurant(name: String, locationName: String) throws {
         let restaurant = Restaurant(name: name, location: locationName)
-        restaurantDataManager.setRestaurant(restaurant: restaurant)
-        // Restaurnat setup finished
-        UserStatus.restaurantExists.updateStatus(true)
-        UserStatus.initialSetup.updateStatus(false)
-        return true
+        try databaseAccess.insert(restaurant)
     }
 }
 

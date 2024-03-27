@@ -8,40 +8,74 @@
 import Foundation
 
 class MenuController {
-    private var menu: Menu
-    
-    init(menu: Menu) {
-        self.menu = menu
+    private let menuService: MenuService
+    init(menuService: MenuService) {
+        self.menuService = menuService
     }
     
-    func addItemToMenu(name: String, price: Double) {
+    func addItemToMenu(name: String, price: Double) throws {
         let menuItem = MenuItem(name: name, price: price)
-        menu.addItem(menuItem)
+        try menuService.add(menuItem)
     }
     
-    func removeItemFromMenu(_ menuItem: MenuItem) {
-        menu.removeItem(menuItem)
+    func removeItemFromMenu(_ menuItem: MenuItem) throws {
+        try menuService.delete(menuItem)
+    }
+    
+    func itemsCount() -> Int? {
+        do {
+            guard let results = try menuService.fetch() else { return nil }
+            return results.count
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+    
+    func getMenuItems() -> [MenuItem]? {
+        do {
+            guard let results = try menuService.fetch() else { return nil }
+            return results
+        } catch {
+            print("Failed to load MenuItems!")
+        }
+        return nil
+    }
+    
+    private func fetchMenuitem(_ menuItemID: UUID) -> MenuItem? {
+        guard let resultItems = try? menuService.fetch() else { return nil }
+        guard let itemIndex = resultItems.firstIndex(where: { $0.itemId == menuItemID }) else { return nil }
+        return resultItems[itemIndex]
     }
     
     func editPrice(_ menuItem: MenuItem, price: Double) {
-        if let index = menu.menuItems.firstIndex(where: { $0.itemId == menuItem.itemId }) {
-            menu.menuItems[index].price = price
-        } else {
-            print("Item not found!")
+        guard let item = fetchMenuitem(menuItem.itemId) else {
+            print("No items found user the UUID: \(menuItem.itemId) & Name: \(menuItem.name)!")
+            return
+        }
+        item.price = price
+        do {
+            try menuService.update(item)
+        } catch {
+            print("Failed to update price!")
         }
     }
     
     func editName(_ menuItem: MenuItem, name: String) {
-        if let index = menu.menuItems.firstIndex(where: { $0.itemId == menuItem.itemId }) {
-            menu.menuItems[index].name = name
-        } else {
-            print("Item not found!")
+        guard let item = fetchMenuitem(menuItem.itemId) else {
+            print("No items found user the UUID: \(menuItem.itemId) & Name: \(menuItem.name)!")
+            return
+        }
+        item.name = name
+        do {
+            try menuService.update(item)
+        } catch {
+            print("Failed to update price!")
         }
     }
     
-    func displayMenuItems() {
-        for (index, item) in menu.menuItems.enumerated() {
-            print("\(index + 1). \(item.name) - $\(item.price)")
-        }
+    func fetchMenuItems() -> [MenuItem]? {
+        guard let resultItems = try? menuService.fetch() else { return nil }
+        return resultItems
     }
 }

@@ -9,7 +9,6 @@ import Foundation
 
 class UserManager {
     private let userRepository: UserRepository
-    
     init(userRepository: UserRepository) {
         self.userRepository = userRepository
     }

@@ -5,7 +5,7 @@
 //  Created by doss-zstch1212 on 08/02/24.
 //
 
-import Foundation
+/*import Foundation
 
 enum UserRepositoryError: Error {
     case userNotFound
@@ -14,21 +14,19 @@ enum UserRepositoryError: Error {
 class InMemoryUserRepository: UserRepository {
     static let shared = InMemoryUserRepository()
     
-    private init() {
-        loadAccounts()
-    }
-    
-    private var accounts: [Account] = []
+    private var accounts: [Account] = [
+        Account(username: "restaurant_admin", password: "123456789", accountStatus: .active, userRole: .admin)
+    ]
     
     func addUser(_ user: Account) {
         accounts.append(user)
-        saveAccounts()
+        //saveAccounts()
     }
     
     func removeUser(_ user: Account) throws {
         if let index = accounts.firstIndex(where: { $0 == user }) {
             accounts.remove(at: index)
-            saveAccounts()
+            //saveAccounts()
         } else {
             throw UserRepositoryError.userNotFound
         }
@@ -60,7 +58,7 @@ class InMemoryUserRepository: UserRepository {
         if let account = accounts.first(where: { $0 == account }) {
             print("Debug info: \(account.username)")
             account.updatePassword(newPassword)
-            saveAccounts()
+            //saveAccounts()
         }
     }
     
@@ -97,4 +95,4 @@ extension InMemoryUserRepository: CSVWritable {
         
         return csvString
     }
-}
+}*/

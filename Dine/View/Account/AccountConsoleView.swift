@@ -26,7 +26,6 @@ struct AccountConsoleView {
         case "2":
             print()
         case "3":
-            UserStatus.userLoggedIn.updateStatus(false)
             print("Logged out!")
             UserStore.removeCurrentUser()
             exit(0)

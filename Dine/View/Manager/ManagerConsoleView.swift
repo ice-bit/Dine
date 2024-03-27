@@ -6,12 +6,15 @@
 //
 
 import Foundation
+import NotificationCenter
 
 struct ManagerConsoleView {
     private let account: Account
-    
     init(account: Account) {
         self.account = account
+    }
+    let createDatabaseConnection: () throws -> DatabaseAccess? = {
+        return try SQLiteDataAccess.openDatabase()
     }
     
     func displayManagerOptions() {
@@ -28,43 +31,70 @@ struct ManagerConsoleView {
     }
     
     private func handleOption() {
-        let restaurantDataManager = RestaurantDataManager()
-        guard let restaurant = restaurantDataManager.getRestaurant() else {
+        guard let databaseAccess = try? createDatabaseConnection() else {
+            print("Connection failed")
+            return
+        }
+        // TODO: Give proper retaurant query
+        let fetchRestaurantQuery = "SELECT * FROM \(DatabaseTables.restaurantDBTable.rawValue);"
+        guard let restaurant = try? databaseAccess.retrieve(query: fetchRestaurantQuery, parseRow: Restaurant.parseRow).first as? Restaurant else {
             print("No restaurant found")
+            // TODO: Route to create restaurant screen
             return
         }
         
         let choice = readLine() ?? ""
         switch choice {
         case "1": // Generate bill
-            let billConsoleView = BillingConsoleView()
+            let orderService = OrderServiceImpl(databaseAccess: databaseAccess)
+            let billService = BillServiceImpl(databaseAccess: databaseAccess)
+            let billController = BillingController(billService: billService, orderService: orderService)
+            let billConsoleView = BillingConsoleView(billController: billController)
             billConsoleView.generatebill()
         case "2": // Customize table
-            let tableConsoleView = TableConsoleView()
+            let tableService = TableServiceImpl(databaseAccess: databaseAccess)
+            let tableController = TableController(tableService: tableService)
+            let tableConsoleView = TableConsoleView(tableService: tableController)
             tableConsoleView.displayOptions()
         case "3": // Customize menu
-            let menuConsoleView = MenuConsoleView()
+            let menuService = MenuServiceImpl(databaseAccess: databaseAccess)
+            let menuController = MenuController(menuService: menuService)
+            let menuConsoleView = MenuConsoleView(menuController: menuController)
             menuConsoleView.displayAndHandleMenuOptions()
         case "4": // View bill
-            let billConsoleView = BillingConsoleView()
+            let orderService = OrderServiceImpl(databaseAccess: databaseAccess)
+            let billService = BillServiceImpl(databaseAccess: databaseAccess)
+            let billController = BillingController(billService: billService, orderService: orderService)
+            let billConsoleView = BillingConsoleView(billController: billController)
             billConsoleView.displayBills()
         case "5": // View orders
-            let orderConsoleView = OrderConsoleView(restaurant: restaurant)
+            let orderService = OrderServiceImpl(databaseAccess: databaseAccess)
+            let tableService = TableServiceImpl(databaseAccess: databaseAccess)
+            let tableController = TableController(tableService: tableService)
+            let orderController = OrderController(orderService: orderService, tableService: tableService)
+            let menuService = MenuServiceImpl(databaseAccess: databaseAccess)
+            let menuController = MenuController(menuService: menuService)
+            let orderConsoleView = OrderConsoleView(restaurant: restaurant, menuController: menuController, orderService: orderController, tableService: tableController)
             orderConsoleView.viewOrders()
+            
         case "6": // View menu
-            let menuConsoleView = MenuConsoleView()
+            let menuService = MenuServiceImpl(databaseAccess: databaseAccess)
+            let menuController = MenuController(menuService: menuService)
+            let menuConsoleView = MenuConsoleView(menuController: menuController)
             menuConsoleView.viewMenu()
         case "7": // View tables
-            let tableConsoleView = TableConsoleView()
+            let tableService = TableServiceImpl(databaseAccess: databaseAccess)
+            let tableController = TableController(tableService: tableService)
+            let tableConsoleView = TableConsoleView(tableService: tableController)
             tableConsoleView.viewTables()
         case "8": // Account
             let accountConsoleView = AccountConsoleView()
             accountConsoleView.displayAccountOptions()
             return
         case "0": // Quit
-            UserStatus.userLoggedIn.updateStatus(false)
             UserStore.removeCurrentUser()
-            exit(0)
+            NotificationCenter.default.post(name: .applicationModeDidChanged, object: nil, userInfo: ["newMode": ApplicationMode.signedOut])
+            return
         default:
             print("Invalid input")
             handleOption()

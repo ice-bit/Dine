@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SQLite3
 
 enum AccountStatus: String, Codable {
     case active, closed, cancelled
@@ -91,4 +92,78 @@ extension Account: CSVWritable {
     }
 }
 
-extension Account: Parsable {}
+extension Account: SQLTable {
+    static var createStatement: String {
+        """
+        CREATE TABLE IF NOT EXISTS \(DatabaseTables.accountTable.rawValue) (
+            UserID VARCHAR(32) PRIMARY KEY,
+            Username VARCHAR(255) UNIQUE NOT NULL,
+            Password VARCHAR(255) NOT NULL,
+            AccountStatus VARCHAR(20) NOT NULL,
+            UserRole VARCHAR(20) NOT NULL
+        );
+        """
+    }
+}
+
+extension Account: SQLUpdatable {
+    // Warning: Never store passwords in plain text
+    var createUpdateStatement: String {
+        """
+        UPDATE \(DatabaseTables.accountTable.rawValue)
+            SET Username = '\(username)',
+            Password = '\(password)',
+            AccountStatus = '\(accountStatus.rawValue)',
+            UserRole = '\(userRole.rawValue)'
+        WHERE UserID = '\(userId.uuidString)';
+        """
+    }
+}
+
+extension Account: SQLInsertable {
+    var createInsertStatement: String {
+        """
+        INSERT INTO \(DatabaseTables.accountTable.rawValue) (UserID, Username, Password, AccountStatus, UserRole)
+        VALUES ('\(userId.uuidString)', '\(username)', '\(password)', '\(accountStatus.rawValue)', '\(userRole.rawValue)');
+        """
+    }
+}
+
+extension Account: SQLQueriable {
+    static var createQueryStatement: String {
+        """
+        SELECT * FROM \(DatabaseTables.accountTable.rawValue);
+        """
+    }
+}
+
+extension Account: SQLDeletable {
+    var createDeleteStatement: String {
+        "DELETE FROM \(DatabaseTables.accountTable.rawValue) WHERE UserID = '\(userId)';"
+    }
+}
+
+extension Account: DatabaseParsable {
+    static func parseRow(statement: OpaquePointer?) throws -> Account? {
+        guard let statement = statement else { return nil }
+        
+        guard let userIdCString = sqlite3_column_text(statement, 0),
+              let usernameCString = sqlite3_column_text(statement, 1),
+              let passwordCString = sqlite3_column_text(statement, 2),
+              let accountStatusRawValueCString = sqlite3_column_text(statement, 3),
+              let userRoleRawValueCString = sqlite3_column_text(statement, 4) else {
+            throw DatabaseError.missingRequiredValue
+        }
+        
+        guard let userId = UUID(uuidString: String(cString: userIdCString)),
+              let accountStatus = AccountStatus(rawValue: String(cString: accountStatusRawValueCString)),
+              let userRole = UserRole(rawValue: String(cString: userRoleRawValueCString)) else {
+            throw DatabaseError.conversionFailed
+        }
+        
+        let username = String(cString: usernameCString)
+        let password = String(cString: passwordCString)
+        
+        return Account(userId: userId, username: username, password: password, accountStatus: accountStatus, userRole: userRole)
+    }
+}

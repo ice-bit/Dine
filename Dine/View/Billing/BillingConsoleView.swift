@@ -8,15 +8,17 @@
 import Foundation
 
 class BillingConsoleView {
-    private let billService: BillService = BillingController()
-    private let orderService: OrderService = OrderController()
+    private let billController: BillServicable
+    init(billController: BillServicable) {
+        self.billController = billController
+    }
     
     private func displayUnbilledOrdersAndChoose() -> Order? {
-        guard let unbilledOrders = orderService.getUnbilledOrders() else {
-            print("No orders are ready to be billed.")
+        guard let unbilledOrders =  billController.getUnbilledOrders() else {
+            print("Failed to load orders.")
             return nil
         }
-        
+    
         print("Unbilled Orders")
         for (index, order) in unbilledOrders.enumerated() {
             print("\(index + 1). Order: \(order.orderIdValue)")
@@ -39,11 +41,22 @@ class BillingConsoleView {
 
     func generatebill() {
         guard let order = displayUnbilledOrdersAndChoose() else { return }
-        billService.createBill(for: order, tip: nil)
+        do {
+            try billController.createBill(for: order, tip: nil)
+        } catch {
+            print("Failed to create bill for \(order.orderIdValue): \(error)")
+        }
         print("Bill created successfully.")
     }
     
     func displayBills() {
-        billService.displayBills()
+        guard let bills = billController.fetchBills() else {
+            print("No bills found. Please generate bills.")
+            return
+        }
+        
+        for (index, bill) in bills.enumerated() {
+            print("\(index + 1) - \(bill.displayBill())\n")
+        }
     }
 }

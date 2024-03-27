@@ -8,7 +8,10 @@
 import Foundation
 
 class TableConsoleView {
-    private let tableService: TableService = TableController()
+    private let tableController: TableServicable
+    init(tableService: TableServicable) {
+        self.tableController = tableService
+    }
     
     func displayOptions() {
         print("Table Customization Menu")
@@ -19,7 +22,10 @@ class TableConsoleView {
     }
     
     func viewTables() {
-        let tables = tableService.fetchTables()
+        guard let tables = tableController.fetchTables() else {
+            print("No tables available")
+            return
+        }
         for (index, table) in tables.enumerated() {
             print("\(index + 1) - Table: \(table.tableId)\n - Location ID:\(table.locationId)\n - Status: \(table.tableStatus)")
         }
@@ -53,15 +59,19 @@ class TableConsoleView {
             print("Invalid input for location identifier")
             return
         }
-    
-        tableService.addTable(maxCapacity: capacity, locationIdentifier: locationId)
+        if tableController.addTable(maxCapacity: capacity, locationIdentifier: locationId) {
+            print("Table added successfully.")
+        }
     }
     
     private func removeTablePrompt() {
-        let availableTables = tableService.fetchAvailableTables()
-        
+        guard let availableTables = tableController.fetchAvailableTables() else {
+            print("No tables available")
+            return
+        }
+
         guard !availableTables.isEmpty else {
-            print("No tables available.")
+            print("No available tables")
             return
         }
         
@@ -74,10 +84,14 @@ class TableConsoleView {
         if let choice = readLine(), let tableNumber = Int(choice), tableNumber >= 1, tableNumber <= availableTables.count {
             let chosenTable = availableTables[tableNumber - 1]
             print("You chose Table \(chosenTable.tableId)")
-            let tables = tableService.fetchTables()
+            guard let tables = tableController.fetchTables() else {
+                print("No tables available")
+                return
+            }
             guard let table = tables.first(where: { $0.tableId == chosenTable.tableId }) else { return }
-            
-            tableService.removeTable(table)
+            if tableController.removeTable(table) {
+                print("Table removed Successfully")
+            }
         } else {
             print("Invalid choice or canceled.")
             return

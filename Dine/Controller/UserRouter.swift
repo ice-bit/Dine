@@ -9,9 +9,11 @@ import Foundation
 
 struct UserRouter {
     private let account: Account
-
     init(account: Account) {
         self.account = account
+    }
+    var databaseAccess: DatabaseAccess? {
+        try? SQLiteDataAccess.openDatabase()
     }
     
     func routeUser() {
@@ -31,8 +33,13 @@ struct UserRouter {
     }
     
     private func redirectAdmin() {
-        let adminController: AdminPrivilages = AdminController()
-        let authController: Authentication = AuthController()
+        guard let databaseAccess = databaseAccess else {
+            print("Failed to open db connection!")
+            return
+        }
+        let accountService = AccountServiceImpl(databaseAccess: databaseAccess)
+        let adminController: AdminPrivilages = AdminController(accountService: accountService)
+        let authController: Authentication = AuthController(databaseAccess: databaseAccess)
         let adminConsoleView = AdminConsoleView(admin: adminController, authentication: authController)
         adminConsoleView.displayAdminOption()
     }

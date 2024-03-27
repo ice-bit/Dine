@@ -6,11 +6,11 @@
 //
 
 import Foundation
+import NotificationCenter
 
 struct AdminConsoleView {
     private let admin: AdminPrivilages
     private let authentication: Authentication
-    
     init(admin: AdminPrivilages, authentication: Authentication) {
         self.admin = admin
         self.authentication = authentication
@@ -39,13 +39,11 @@ struct AdminConsoleView {
             displayAccounts()
         case "4":
             //redirect to change password
-            initiateChangePassword()
+            changePassword()
         case "0": // Sign out
-//            let accountConsoleView = AccountConsoleView()
-//            accountConsoleView.displayAccountOptions()
-            UserStatus.userLoggedIn.updateStatus(false)
             UserStore.removeCurrentUser()
-            exit(0)
+            NotificationCenter.default.post(name: .applicationModeDidChanged, object: nil, userInfo: ["newMode": ApplicationMode.signedOut])
+            return
         default:
             print("Invalid input! Try again.")
             handleAdminOptions()
@@ -63,7 +61,6 @@ struct AdminConsoleView {
             try authentication.createAccount(username: username, password: password, userRole: userRole)
         } catch {
             print("Auth error: \(error)")
-            exit(0)
         }
         
     }
@@ -92,7 +89,7 @@ struct AdminConsoleView {
     }
     
     private func displayAndChooseAccountToRemove() {
-        guard let accounts = admin.getAccounts() else {
+        guard let accounts = try? admin.getAccounts() else {
             print("No users found!")
             return
         }
@@ -105,8 +102,10 @@ struct AdminConsoleView {
         if let choice = readLine(), let accountNumber = Int(choice), accountNumber >= 1, accountNumber <= accounts.count {
             let chosenAccount = accounts[accountNumber - 1]
             print("Selected \(chosenAccount.username)")
-            if admin.removeAccount(user: chosenAccount) {
-                print("Account with username: \(chosenAccount.username) is successfully removed.")
+            do {
+                try admin.removeAccount(user: chosenAccount)
+            } catch {
+                print("Account removal failed with error: \(error)")
             }
         } else {
             print("Invalid choice or canceled.")
@@ -115,7 +114,7 @@ struct AdminConsoleView {
     }
     
     private func displayAndSelectAccount() -> Account? {
-        guard let accounts = admin.getAccounts() else {
+        guard let accounts = try? admin.getAccounts() else {
             print("No users found!")
             return nil
         }
@@ -141,7 +140,7 @@ struct AdminConsoleView {
         return newPassword
     }
     
-    private func initiateChangePassword() {
+    private func changePassword() {
         guard let selectedAccount = displayAndSelectAccount() else {
             print("No accounts selected")
             return
@@ -149,19 +148,27 @@ struct AdminConsoleView {
         
         let newPassword = promptPassword()
         do {
-            try admin.changePassword(for: selectedAccount, to: newPassword)
-        }  catch AuthenticationError.passwordReuseError {
-            print("Error: Password reuse not allowed. Please choose a different password.")
-        } catch AuthenticationError.weakPasswordError {
-            print("Error: Password is not strong enough. Please choose a stronger password.")
+            try admin.changePassword(for: selectedAccount.username, to: newPassword)
+        } catch is AuthenticationError {
+            print("Authentication error")
         } catch {
             // Handle other potential errors (e.g., network issues, database errors)
             print("Unexpected error: \(error.localizedDescription)")
         }
     }
     
+    func changeAdminPassword() {
+        print("Set new password:")
+        let password = readLine() ?? ""
+        do {
+            try admin.changePassword(for: "admin", to: password)
+        } catch {
+            print("Password renewal failed with error: \(error)")
+        }
+    }
+    
     private func displayAccounts() {
-        guard let accounts = admin.getAccounts() else {
+        guard let accounts = try? admin.getAccounts() else {
             print("No users found!")
             return
         }

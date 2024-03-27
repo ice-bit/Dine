@@ -12,9 +12,8 @@
 import Foundation
 
 @frozen enum UserStatus: String {
-    case userLoggedIn = "userLoggedIn_v1.9"
-    case initialSetup = "initialSetup_v1.4"
-    case restaurantExists = "restaurantExists_v1.0"
+    case isInitialLaunch = "isIntialLaunch"
+    case isUserLoggedIn = "IsUserLoggedIn"
     
     func getStatus() -> Bool {
         return UserDefaults.standard.bool(forKey: self.rawValue)

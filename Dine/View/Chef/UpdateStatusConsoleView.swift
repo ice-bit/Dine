@@ -8,9 +8,12 @@
 import Foundation
 
 class UpdateStatusConsoleView {
-    private let updateStatusService: UpdateStatusService = UpdateStatusController()
+    private let updateStatusService: UpdateStatusService
+    init(updateStatusService: UpdateStatusService) {
+        self.updateStatusService = updateStatusService
+    }
     
-    func manageReceivedOrders() {
+    func manageReceivedOrders() throws {
         guard let receivedOrders = updateStatusService.fetchReceivedOrders() else {
             print("No recieved orders found!")
             return
@@ -26,7 +29,7 @@ class UpdateStatusConsoleView {
             return
         }
         
-        updateStatusService.changeStatus(for: order, to: status)
+        try updateStatusService.changeStatus(for: order, to: status)
         
     }
     

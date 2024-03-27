@@ -6,54 +6,167 @@
 //
 
 import Foundation
+import NotificationCenter
 
 class Main {
-    func startApp() {
-        let isInitailSetup = UserStatus.initialSetup.getStatus()
-        let isUserLoggedIn = UserStatus.userLoggedIn.getStatus()
-        
-        // If the app starts for first time
-        if !isInitailSetup {
-            setupRestaurant()
-            onboardAdmin()
+    private var applicationMode: ApplicationMode = .idle {
+        didSet {
+            print("Mode changed to \(applicationMode)")
         }
-        
-        if !isUserLoggedIn {
-            userAuthentication()
-        }
-        
-        // If the user is logged in
-        while !isUserLoggedIn {
+    }
+    var databaseAccess: DatabaseAccess? {
+        try? SQLiteDataAccess.openDatabase()
+    }
+    
+    init() {
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationModeDidChange), name: .applicationModeDidChanged, object: nil)
+    }
+    
+    func start() {
+        switch applicationMode {
+        case .signedIn:
             routeUser()
+        case .signedOut:
+            userAuthentication()
+        case .initialSetup:
+            if verifyAndSetup() {
+                applicationMode = .signedOut
+            }
+        case .idle:
+            applicationMode = .initialSetup
         }
+    }
+    
+    private func verifyAndSetup() -> Bool {
+        guard let databaseAccess else {
+            print("Failed to open database connection!")
+            return false
+        }
+        let dbService = DatabaseService(databaseAccess: databaseAccess)
+        if !dbService.verifyTablesExistence() {
+            loadDB()
+        }
+        if !dbService.verifyRestaurantExistence() {
+            setupRestaurant()
+        } else {
+            print("Restaurant exists")
+        }
+        if !dbService.verifyAdminExistence() {
+            do {
+                try createAdmin(databaseAccess: databaseAccess)
+            } catch {
+                print(error)
+            }
+        } else {
+            print("Admin exists")
+        }
+        return true
+    }
+    
+    private func loadDB() {
+        guard let fileURL = createFileURL() else {
+            print("Failed to get file URL.")
+            return
+        }
+        
+        print("Database file path: \(fileURL.path)")
+        
+        do {
+            try createDatabaseTables()
+            return
+        } catch {
+            print("An error occurred: \(error)")
+        }
+        return
+    }
+    
+    private func createFileURL() -> URL? {
+        guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            print("Document directory unavailable.")
+            return nil
+        }
+        
+        return documentDirectory.appendingPathComponent("dine.sqlite")
+    }
+    
+    private func createDatabaseTables() throws {
+        guard let databaseAccess = databaseAccess else {
+            print("Failed to open database connection!")
+            return
+        }
+        
+        do {
+            try databaseAccess.createTable(for: Account.self)
+            try databaseAccess.createTable(for: Restaurant.self)
+            try databaseAccess.createTable(for: Order.self)
+            try databaseAccess.createTable(for: MenuItem.self)
+            try databaseAccess.createTable(for: Bill.self)
+            try databaseAccess.createTable(for: RestaurantTable.self)
+            try databaseAccess.createTable(for: OrderItem.self)
+            print("Info: Tables created successfully.")
+        } catch let error as SQLiteError {
+            throw error
+        }
+    }
+    
+    private func createAdmin(databaseAccess: DatabaseAccess) throws {
+        let adminAccount = Account(username: "admin", password: "12345678", accountStatus: .active, userRole: .admin)
+        UserStore.setUser(userID: adminAccount.userId)
+        try databaseAccess.insert(adminAccount)
+    }
+    
+    private func changeAdminPassword() {
+        guard let databaseAccess = databaseAccess else {
+            print("Failed to open database connection!")
+            return
+        }
+        let accountService = AccountServiceImpl(databaseAccess: databaseAccess)
+        let adminController: AdminPrivilages = AdminController(accountService: accountService)
+        let authController = AuthController(databaseAccess: databaseAccess)
+        let adminConsoleView = AdminConsoleView(admin: adminController, authentication: authController)
+        adminConsoleView.changeAdminPassword()
     }
     
     private func setupRestaurant() {
-        let restaurantSetupController = RestaurantSetupController()
+        guard let databaseAccess = databaseAccess else {
+            print("Failed to open database connection!")
+            return
+        }
+        let restaurantSetupController = RestaurantSetupController(databaseAccess: databaseAccess)
         let restaurantSetupConsoleView = RestaurantSetupConsoleView(restaurantSetupProtocol: restaurantSetupController)
-        restaurantSetupConsoleView.promptRestaurantSetup()
+        return restaurantSetupConsoleView.promptRestaurantSetup()
     }
     
     private func onboardAdmin() {
-        let adminController: AdminPrivilages = AdminController()
-        let authenticateController: Authentication = AuthController()
+        guard let databaseAccess = databaseAccess else {
+            print("Failed to open database connection!")
+            return
+        }
+        let accountService = AccountServiceImpl(databaseAccess: databaseAccess)
+        let adminController: AdminPrivilages = AdminController(accountService: accountService)
+        let authenticateController: Authentication = AuthController(databaseAccess: databaseAccess)
         let adminConsoleView = AdminConsoleView(admin: adminController, authentication: authenticateController)
         adminConsoleView.displayAdminOption()
     }
     
     private func userAuthentication() {
-        let authenticateController = AuthController()
+        guard let databaseAccess = databaseAccess else {
+            print("Failed to open database connection!")
+            return
+        }
+        let authenticateController = AuthController(databaseAccess: databaseAccess)
         let authenticationConsoleView = AuthConsoleView(authentication: authenticateController)
         authenticationConsoleView.userLogin()
     }
     
     private func routeUser() {
-        if let currentAccount = UserStore.getCurrentUser() {
-            let userRouting = UserRouter(account: currentAccount)
-            userRouting.routeUser()
-        } else {
-            print("No current user found!")
+        guard let currentAccount = UserStore.getCurrentUser() else {
+            print("No user found")
+            return
         }
+        
+        let userRouting = UserRouter(account: currentAccount)
+        userRouting.routeUser()
     }
     
     func login(as userRole: UserRole) {
@@ -80,8 +193,26 @@ class Main {
     }
 }
 
+extension Main {
+    @objc func applicationModeDidChange(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let newMode = userInfo["newMode"] as? ApplicationMode else { return }
+        applicationMode = newMode
+    }
+}
+
 let main = Main()
 //main.login(as: .waitStaff)
-main.startApp()
+while true {
+    main.start()
+}
+
+
+
+
+
+
+
+
 
 

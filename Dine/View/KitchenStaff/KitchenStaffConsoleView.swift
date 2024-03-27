@@ -6,12 +6,15 @@
 //
 
 import Foundation
+import NotificationCenter
 
 struct KitchenStaffConsoleView {
     private let account: Account
-    
     init(account: Account) {
         self.account = account
+    }
+    let createDatabaseConnection: () throws -> DatabaseAccess? = {
+        return try SQLiteDataAccess.openDatabase()
     }
     
     func displayOptions() {
@@ -22,19 +25,29 @@ struct KitchenStaffConsoleView {
     }
     
     private func handleOptions() {
+        guard let databaseAccess = try? createDatabaseConnection() else {
+            print("Connection failed")
+            return
+        }
         let choice = readLine() ?? ""
         switch choice {
         case "1": // Update order status
-            let updateConsoleView = UpdateStatusConsoleView()
-            updateConsoleView.manageReceivedOrders()
+            let orderService = OrderServiceImpl(databaseAccess: databaseAccess)
+            let updateController = UpdateStatusController(orderService: orderService)
+            let updateConsoleView = UpdateStatusConsoleView(updateStatusService: updateController)
+            do {
+                try updateConsoleView.manageReceivedOrders()
+            } catch {
+                print(error)
+            }
         case "2": // Account
             let accountConsoleView = AccountConsoleView()
             accountConsoleView.displayAccountOptions()
             return
         case "3": // Quit
-            UserStatus.userLoggedIn.updateStatus(false)
             UserStore.removeCurrentUser()
-            exit(0)
+            NotificationCenter.default.post(name: .applicationModeDidChanged, object: nil, userInfo: ["newMode": ApplicationMode.signedOut])
+            return
         default:
             print("Invalid input! Try again")
             handleOptions()

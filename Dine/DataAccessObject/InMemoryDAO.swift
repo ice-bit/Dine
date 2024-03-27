@@ -37,7 +37,7 @@ class InMemoryDAO<Entity: Equatable>: DataAccessObject {
         let csvWriter: CSVDataWritable = CSVWriter()
         Task {
             do {
-                try await csvWriter.writeToCSV(into: file.rawValue, csvDataModal: entity)
+                try /*await*/ csvWriter.writeToCSV(into: file.rawValue, csvDataModal: entity)
             } catch is FileIOError {
                 print("Documentory is unavailable or inaccessible!")
             } catch {

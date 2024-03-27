@@ -8,13 +8,11 @@
 import Foundation
 
 enum AuthenticationError: Error {
-    case invalidUsername
-    case invalidPassword
+    case invalidUsername(reason: String)
+    case invalidPassword(reason: String)
     case inactiveAccount
     case userAlreadyExists
     case noUserFound
-    case weakPasswordError
-    case passwordReuseError
     case other(Error)
     
     func handleLoginError() {
@@ -29,10 +27,6 @@ enum AuthenticationError: Error {
             print("Inactive account")
         case .noUserFound:
             print("No user found under username")
-        case .passwordReuseError:
-            print("Password is being reused")
-        case .weakPasswordError:
-            print("Provide strong password")
         case .other(let error):
             print("An error occurred: \(error.localizedDescription)")
         }

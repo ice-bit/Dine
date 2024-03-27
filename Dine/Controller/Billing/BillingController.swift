@@ -7,15 +7,21 @@
 
 import Foundation
 
-protocol BillService {
-    func createBill(for order: Order, tip: Double?)
-    func displayBills()
+protocol BillServicable {
+    func createBill(for order: Order, tip: Double?) throws
+    func fetchBills() -> [Bill]?
+    func getUnbilledOrders() -> [Order]?
 }
 
-class BillingController: BillService {
-    private let billManager = BillManager.shared
+class BillingController: BillServicable {
+    private let billService: BillService
+    private let orderService: OrderService
+    init(billService: BillService, orderService: OrderService) {
+        self.billService = billService
+        self.orderService = orderService
+    }
     
-    func createBill(for order: Order, tip: Double?) {
+    func createBill(for order: Order, tip: Double?) throws {
         let menuItems = order.menuItems
         let totalAmount = menuItems.reduce(0.0) { $0 + $1.price }
         let tax = totalAmount * 0.18
@@ -28,12 +34,28 @@ class BillingController: BillService {
         }
         
         // Change bill status
-        order.isOrderBilled = true
-        billManager.addBill(bill)
-        OrderManager.shared.saveOrders()
+        order.isOrderBilledValue = true
+        // Change bill status
+        order.orderStatusValue = .completed
+        try orderService.update(order)
+        try billService.add(bill)
     }
     
-    func displayBills() {
-        billManager.displayBills()
+    func fetchBills() -> [Bill]? {
+        guard let bills = try? billService.fetch() else {
+            print("No bills found")
+            return nil
+        }
+        return bills
+    }
+    
+    func getUnbilledOrders() -> [Order]? {
+        guard let resultOrders =  try? orderService.fetch() else {
+            print("Failed to load orders.")
+            return nil
+        }
+        
+        let unbilledOrders = resultOrders.filter { $0.isOrderBilledValue == false }
+        return unbilledOrders
     }
 }

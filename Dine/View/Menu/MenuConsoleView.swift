@@ -8,8 +8,10 @@
 import Foundation
 
 class MenuConsoleView {
-    private let menu = Menu.shared
-    
+    private let menuController: MenuController
+    init(menuController: MenuController) {
+        self.menuController = menuController
+    }
     func displayAndHandleMenuOptions() {
         print("Edit Menu")
         print("1. Add Item")
@@ -17,9 +19,6 @@ class MenuConsoleView {
         print("3. Edit Price")
         print("4. Edit Name")
         print("0. Go Back")
-        
-        let menuController = MenuController(menu: menu)
-        
         let choice = readLine()
         switch choice {
         case "1":
@@ -48,12 +47,18 @@ class MenuConsoleView {
     }
     
     private func displayMenuItemsAndChoose() -> MenuItem? {
-        let menuController = MenuController(menu: menu)
-        menuController.displayMenuItems()
+        guard let menuItems = menuController.getMenuItems() else {
+            print("No menuItem found!")
+            return nil
+        }
+        
+        for (index, item) in menuItems.enumerated() {
+            print("\(index + 1). \(item.name) - $\(item.price)")
+        }
         
         print("Enter the item number to select (0 to finish):")
-        if let choice = readLine(), let itemNumber = Int(choice), itemNumber >= 1, itemNumber <= menu.itemsCount {
-            let chosenItem = menu.menuItems[itemNumber - 1]
+        if let choice = readLine(), let itemNumber = Int(choice), itemNumber >= 1, itemNumber <= menuItems.count {
+            let chosenItem = menuItems[itemNumber - 1]
             print("You chose item \(chosenItem.itemId)")
             return chosenItem
         } else {
@@ -89,25 +94,35 @@ class MenuConsoleView {
             print("Failed to unwrap - \(#function)")
             return
         }
-        
         guard let price = Double(unwrappedStrPrice) else {
             print("Failed to convert string to double - \(#function)")
             return
         }
-        
-        let menuContoller = MenuController(menu: menu)
-        menuContoller.addItemToMenu(name: name, price: price)
+        do {
+            try menuController.addItemToMenu(name: name, price: price)
+        } catch {
+            print(error)
+        }
     }
     
     private func promptRemovalOfItem() {
         if let menuItem = displayMenuItemsAndChoose() {
-            let menuController = MenuController(menu: menu)
-            menuController.removeItemFromMenu(menuItem)
+            do {
+                try menuController.removeItemFromMenu(menuItem)
+            } catch {
+                print(error)
+            }
         }
     }
     
     func viewMenu() {
-        let menuController = MenuController(menu: menu)
-        menuController.displayMenuItems()
+        guard let menuItems = menuController.getMenuItems() else {
+            print("No menuItem found!")
+            return 
+        }
+        
+        for (index, item) in menuItems.enumerated() {
+            print("\(index + 1). \(item.name) - $\(item.price)")
+        }
     }
 }

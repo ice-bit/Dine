@@ -5,7 +5,7 @@
 //  Created by doss-zstch1212 on 30/01/24.
 //
 
-import Foundation
+/*import Foundation
 
 protocol TableStatusDelegate {
     func tableStatusChanged(for tableId: UUID, with orderStatus: OrderStatus)
@@ -20,9 +20,9 @@ class TableManager {
     
     var delegate: TableStatusDelegate?
     
-    private var tables: [Table] = [] 
+    private var tables: [RestaurantTable] = [] 
     
-    var getTables: [Table] {
+    var getTables: [RestaurantTable] {
         return tables
     }
     
@@ -30,16 +30,16 @@ class TableManager {
         return tables.count
     }
     
-    var availableTables: [Table] {
+    var availableTables: [RestaurantTable] {
         return tables.filter { $0.tableStatus == .free }
     }
     
-    func addTable(_ table: Table) {
+    func addTable(_ table: RestaurantTable) {
         tables.append(table)
         saveTables()
     }
     
-    func removeTable(_ table: Table) {
+    func removeTable(_ table: RestaurantTable) {
         if let index = tables.firstIndex(where: {$0.tableId == table.tableId }) {
             tables.remove(at: index)
             saveTables()
@@ -57,7 +57,7 @@ class TableManager {
         }
     }
     
-    func fetchTable(wit id: UUID) -> Table? {
+    func fetchTable(wit id: UUID) -> RestaurantTable? {
         if let index = tables.firstIndex(where: {$0.tableId == id }) {
             return tables[index]
         } else {
@@ -75,7 +75,7 @@ class TableManager {
     func loadTables() {
 //        Task {
             let csvDAO = CSVDataAccessObject()
-            if let tables = /*await*/ csvDAO.load(from: .tableFile, parser: TableParser()) as? [Table] {
+            if let tables = /*await*/ csvDAO.load(from: .tableFile, parser: TableParser()) as? [RestaurantTable] {
                 self.tables = tables
             }
 //        }
@@ -119,4 +119,4 @@ extension TableManager: CSVWritable {
         
         return csvString
     }
-}
+}*/

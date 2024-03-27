@@ -8,31 +8,34 @@
 import Foundation
 
 protocol UpdateStatusService {
-    func changeStatus(for order: Order, to status: OrderStatus)
+    func changeStatus(for order: Order, to status: OrderStatus) throws
     func fetchReceivedOrders() -> [Order]?
 }
 
 class UpdateStatusController: UpdateStatusService {
-    private let orderManager: OrderManager = OrderManager.shared
-    
-    func changeStatus(for order: Order, to status: OrderStatus) {
-        order.changeOrderStatus(to: status)
+    private let orderService: OrderService
+    init(orderService: OrderService) {
+        self.orderService = orderService
+    }
+    func changeStatus(for order: Order, to status: OrderStatus) throws {
+        order.orderStatusValue = status
+        try orderService.update(order)
+//        let table =
         if status == .completed {
-            TableManager.shared.changeTableStatus(for: order.getTableId, to: .free)
-            TableManager.shared.saveTables()
+//            try orderService.
         }
-        
-        orderManager.saveOrders()
+        try orderService.update(order)
     }
     
     func fetchReceivedOrders() -> [Order]? {
-        let receivedOrders = orderManager.getUncompletedOrders()
-        
-        guard !receivedOrders.isEmpty else {
-            print("No received orders found!")
-            return nil
+        do {
+            let resultOrders = try orderService.fetch()
+            return resultOrders
+        } catch {
+            print("Failed to fetch orders: \(error)")
         }
         
-        return receivedOrders
+        return nil
+        
     }
 }
