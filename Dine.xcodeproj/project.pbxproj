@@ -89,6 +89,7 @@
 		55C5F7242BB4031B0012B8C2 /* CustomNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C5F7232BB4031B0012B8C2 /* CustomNotifications.swift */; };
 		55C5F7262BB4804D0012B8C2 /* MenuService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C5F7252BB4804D0012B8C2 /* MenuService.swift */; };
 		55C5F7282BB480B10012B8C2 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C5F7272BB480B10012B8C2 /* AccountService.swift */; };
+		55C5F72B2BB539170012B8C2 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C5F72A2BB539170012B8C2 /* UserDefault.swift */; };
 		55D47AF12BAC3FAA00DBEC12 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D47AF02BAC3FAA00DBEC12 /* OrderItem.swift */; };
 		55D9E4712B88746D00780B4F /* CSVWritable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E4702B88746D00780B4F /* CSVWritable.swift */; };
 		55D9E4732B88748D00780B4F /* CSVWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9E4722B88748D00780B4F /* CSVWriter.swift */; };
@@ -205,6 +206,7 @@
 		55C5F7232BB4031B0012B8C2 /* CustomNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNotifications.swift; sourceTree = "<group>"; };
 		55C5F7252BB4804D0012B8C2 /* MenuService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuService.swift; sourceTree = "<group>"; };
 		55C5F7272BB480B10012B8C2 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
+		55C5F72A2BB539170012B8C2 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		55D47AF02BAC3FAA00DBEC12 /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
 		55D9E4702B88746D00780B4F /* CSVWritable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVWritable.swift; sourceTree = "<group>"; };
 		55D9E4722B88748D00780B4F /* CSVWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVWriter.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 		55081A5E2B467AF800D71B31 /* Dine */ = {
 			isa = PBXGroup;
 			children = (
+				55C5F7292BB5351C0012B8C2 /* PropertyWrappers */,
 				55081A5F2B467AF800D71B31 /* main.swift */,
 				55DB06F82BB1BCFD009A28B0 /* NonPersistance */,
 				5522D24D2BA1849A00740AA8 /* Database */,
@@ -646,6 +649,14 @@
 			path = Authorization;
 			sourceTree = "<group>";
 		};
+		55C5F7292BB5351C0012B8C2 /* PropertyWrappers */ = {
+			isa = PBXGroup;
+			children = (
+				55C5F72A2BB539170012B8C2 /* UserDefault.swift */,
+			);
+			path = PropertyWrappers;
+			sourceTree = "<group>";
+		};
 		55C660902B6BBE8900E7FFFB /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -880,6 +891,7 @@
 				55081A792B46881900D71B31 /* MenuItem.swift in Sources */,
 				55A65CA52B6246C500776D03 /* OrderConsoleView.swift in Sources */,
 				55081A892B4694E000D71B31 /* WaitStaff.swift in Sources */,
+				55C5F72B2BB539170012B8C2 /* UserDefault.swift in Sources */,
 				557D5E8C2B5FC06F00A402D3 /* AdminConsoleView.swift in Sources */,
 				55081A7B2B46887900D71B31 /* MealItem.swift in Sources */,
 				55081A772B4687DE00D71B31 /* MenuSection.swift in Sources */,

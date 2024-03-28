@@ -9,7 +9,7 @@ import Foundation
 import NotificationCenter
 
 class Main {
-    private var applicationMode: ApplicationMode = .idle {
+    private var applicationMode: ApplicationMode = .signedOut {
         didSet {
             print("Mode changed to \(applicationMode)")
         }
@@ -23,61 +23,48 @@ class Main {
     }
     
     func start() {
+        if !UserDefaults.hasOnboarded {
+            onBoardUser()
+        }
         switch applicationMode {
         case .signedIn:
             routeUser()
         case .signedOut:
             userAuthentication()
-        case .initialSetup:
-            if verifyAndSetup() {
-                applicationMode = .signedOut
-            }
-        case .idle:
-            applicationMode = .initialSetup
         }
     }
     
-    private func verifyAndSetup() -> Bool {
-        guard let databaseAccess else {
-            print("Failed to open database connection!")
-            return false
-        }
-        let dbService = DatabaseService(databaseAccess: databaseAccess)
-        if !dbService.verifyTablesExistence() {
-            loadDB()
-        }
-        if !dbService.verifyRestaurantExistence() {
-            setupRestaurant()
-        } else {
-            print("Restaurant exists")
-        }
-        if !dbService.verifyAdminExistence() {
-            do {
-                try createAdmin(databaseAccess: databaseAccess)
-            } catch {
-                print(error)
+    func onBoardUser() {
+        guard let databaseAccess else { return }
+        if loadDB() {
+            if setupRestaurant() {
+                print("Restaurant setup complete")
+                if createAdmin(databaseAccess: databaseAccess) {
+                    print("Default Admin account created")
+                    if changeAdminPassword() {
+                        print("Admin password changed successfully")
+                        UserDefaults.hasOnboarded = true
+                    }
+                }
             }
-        } else {
-            print("Admin exists")
         }
-        return true
     }
     
-    private func loadDB() {
+    private func loadDB() -> Bool {
         guard let fileURL = createFileURL() else {
             print("Failed to get file URL.")
-            return
+            return false
         }
         
         print("Database file path: \(fileURL.path)")
         
         do {
             try createDatabaseTables()
-            return
+            return true
         } catch {
             print("An error occurred: \(error)")
         }
-        return
+        return false
     }
     
     private func createFileURL() -> URL? {
@@ -94,47 +81,55 @@ class Main {
             print("Failed to open database connection!")
             return
         }
-        
+        try databaseAccess.createTable(for: Account.self)
+        try databaseAccess.createTable(for: Restaurant.self)
+        try databaseAccess.createTable(for: Order.self)
+        try databaseAccess.createTable(for: MenuItem.self)
+        try databaseAccess.createTable(for: Bill.self)
+        try databaseAccess.createTable(for: RestaurantTable.self)
+        try databaseAccess.createTable(for: OrderItem.self)
+        print("Info: Tables created successfully.")
+    }
+    
+    private func createAdmin(databaseAccess: DatabaseAccess) -> Bool {
+        let adminAccount = Account(username: "admin", password: "12345678", accountStatus: .active, userRole: .admin)
+        UserStore.setUser(userID: adminAccount.userId)
         do {
-            try databaseAccess.createTable(for: Account.self)
-            try databaseAccess.createTable(for: Restaurant.self)
-            try databaseAccess.createTable(for: Order.self)
-            try databaseAccess.createTable(for: MenuItem.self)
-            try databaseAccess.createTable(for: Bill.self)
-            try databaseAccess.createTable(for: RestaurantTable.self)
-            try databaseAccess.createTable(for: OrderItem.self)
-            print("Info: Tables created successfully.")
-        } catch let error as SQLiteError {
-            throw error
+            try databaseAccess.insert(adminAccount)
+            return true
+        } catch {
+            print("Failed to insert")
+            return false
         }
     }
     
-    private func createAdmin(databaseAccess: DatabaseAccess) throws {
-        let adminAccount = Account(username: "admin", password: "12345678", accountStatus: .active, userRole: .admin)
-        UserStore.setUser(userID: adminAccount.userId)
-        try databaseAccess.insert(adminAccount)
-    }
-    
-    private func changeAdminPassword() {
+    private func changeAdminPassword() -> Bool {
         guard let databaseAccess = databaseAccess else {
             print("Failed to open database connection!")
-            return
+            return false
         }
         let accountService = AccountServiceImpl(databaseAccess: databaseAccess)
         let adminController: AdminPrivilages = AdminController(accountService: accountService)
         let authController = AuthController(databaseAccess: databaseAccess)
         let adminConsoleView = AdminConsoleView(admin: adminController, authentication: authController)
-        adminConsoleView.changeAdminPassword()
+        if adminConsoleView.changeAdminPassword() {
+            return true
+        } else {
+            return false
+        }
     }
     
-    private func setupRestaurant() {
+    private func setupRestaurant() -> Bool {
         guard let databaseAccess = databaseAccess else {
             print("Failed to open database connection!")
-            return
+            return false
         }
         let restaurantSetupController = RestaurantSetupController(databaseAccess: databaseAccess)
         let restaurantSetupConsoleView = RestaurantSetupConsoleView(restaurantSetupProtocol: restaurantSetupController)
-        return restaurantSetupConsoleView.promptRestaurantSetup()
+        if restaurantSetupConsoleView.promptRestaurantSetup() {
+            return true
+        }
+        return false
     }
     
     private func onboardAdmin() {

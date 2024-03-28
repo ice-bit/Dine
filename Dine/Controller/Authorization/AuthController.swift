@@ -97,8 +97,6 @@ class AuthController: Authentication {
 enum ApplicationMode: String {
     case signedIn
     case signedOut
-    case initialSetup
-    case idle
 }
 
 struct ApplicationModeStore {

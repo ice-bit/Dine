@@ -157,14 +157,17 @@ struct AdminConsoleView {
         }
     }
     
-    func changeAdminPassword() {
+    func changeAdminPassword() -> Bool {
         print("Set new password:")
         let password = readLine() ?? ""
         do {
-            try admin.changePassword(for: "admin", to: password)
+            if try admin.changePassword(for: "admin", to: password) {
+                return true
+            }
         } catch {
             print("Password renewal failed with error: \(error)")
         }
+        return false
     }
     
     private func displayAccounts() {

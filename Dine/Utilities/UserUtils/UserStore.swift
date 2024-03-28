@@ -9,11 +9,11 @@ import Foundation
 
 struct UserStore {
     static func setUser(userID: UUID) {
-        UserDefaults.standard.set(userID.uuidString, forKey: UserDefaultsKeys.currentUserKey.rawValue)
+        UserDefaults.standard.set(userID.uuidString, forKey: UserDefaults.Keys.currentUserID)
     }
     
     static func getCurrentUser() -> Account? {
-        guard let currentUserIDString = UserDefaults.standard.value(forKey: UserDefaultsKeys.currentUserKey.rawValue) as? String else {
+        guard let currentUserIDString = UserDefaults.standard.value(forKey: UserDefaults.Keys.currentUserID) as? String else {
             print("Current user unavailable!")
             return nil
         }
@@ -37,11 +37,7 @@ struct UserStore {
     }
     
     static func removeCurrentUser() {
-        UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.currentUserKey.rawValue)
+        UserDefaults.standard.removeObject(forKey: UserDefaults.Keys.currentUserID)
     }
-}
-
-enum UserDefaultsKeys: String {
-    case currentUserKey = "Dine.currentUser"
 }
 

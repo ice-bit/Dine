@@ -193,6 +193,21 @@
                   endingLineNumber = "38"
                   offsetFromSymbolStart = "228">
                </Location>
+               <Location
+                  uuid = "FA7A4B9B-C3FD-4E9F-9522-EFD79654548C - 24afa97a2bd8e8b7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dine.AdminController.changePassword(for: Swift.String, to: Swift.String) throws -&gt; Swift.Bool"
+                  moduleName = "Dine"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/doss-zstch1212/Developer/ConsoleApp/Dine/Dine/Controller/Admin/AdminController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "228">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>

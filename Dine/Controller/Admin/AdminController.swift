@@ -10,7 +10,7 @@ import Foundation
 protocol AdminPrivilages {
     func removeAccount(user: Account) throws
     func getAccounts() throws -> [Account]?
-    func changePassword(for username: String, to newPassword: String) throws
+    func changePassword(for username: String, to newPassword: String) throws -> Bool
 }
 
 struct AdminController: AdminPrivilages {
@@ -27,7 +27,7 @@ struct AdminController: AdminPrivilages {
         try accountService.fetch()
     }
     
-    func changePassword(for username: String, to newPassword: String) throws {
+    func changePassword(for username: String, to newPassword: String) throws -> Bool {
         guard AuthenticationValidator.isStrongPassword(newPassword) else {
             throw AuthenticationError.invalidPassword(reason: "Password is not strong enough. Please choose a stronger password.")
         }
@@ -36,9 +36,11 @@ struct AdminController: AdminPrivilages {
         if let account = fetchUser(with: username) {
             account.updatePassword(newPassword)
             try accountService.update(account)
+            return true
         } else {
             print("Failed to perform fetch/no accounts under the username \(username)")
         }
+        return false
     }
     
     private func fetchUser(with username: String) -> Account? {

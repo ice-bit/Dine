@@ -14,7 +14,7 @@ class RestaurantSetupConsoleView {
         self.restaurantSetupProtocol = restaurantSetupProtocol
     }
     
-    func promptRestaurantSetup() {
+    func promptRestaurantSetup() -> Bool {
         print("Enter restaurant name")
         let restaurantName = readLine() ?? ""
         
@@ -34,11 +34,11 @@ class RestaurantSetupConsoleView {
         do {
             try restaurantSetupProtocol.createRestaurant(name: restaurantName, locationName: locationName)
             print("Created restaurant successfully")
-            UserStatus.isInitialLaunch.updateStatus(true)
-            applicationModeDelegate?.applicationModeDidChange(to: .signedOut)
+            return true
         } catch {
             print("Failed to create restaurant. Error: \(error)")
         }
+        return false
     }
 }
 
